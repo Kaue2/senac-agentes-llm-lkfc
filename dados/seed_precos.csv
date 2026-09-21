@@ -1,0 +1,131 @@
+fabricante,marca,produto,principio_ativo,eh_referencia,produto_referencia,farmacia,sku_farmacia,data_hora_coleta,preco_tabela,preco_farmacia,preco_pbm,programa_pbm,disponivel
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Araujo,ARA-0001,2026-09-10 00:00:00,336.36,326.27,218.63,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Araujo,ARA-0001,2026-09-11 00:00:00,332.23,322.26,215.95,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Araujo,ARA-0001,2026-09-12 00:00:00,333.91,323.89,217.04,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Araujo,ARA-0001,2026-09-13 00:00:00,333.56,323.55,216.81,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Araujo,ARA-0001,2026-09-14 00:00:00,337.01,326.9,219.06,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Araujo,ARA-0001,2026-09-15 00:00:00,336.61,326.51,218.8,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Araujo,ARA-0001,2026-09-16 00:00:00,338.05,327.91,219.73,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Araujo,ARA-0001,2026-09-17 00:00:00,332.65,322.67,216.22,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Araujo,ARA-0001,2026-09-18 00:00:00,334.9,324.85,217.69,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Araujo,ARA-0001,2026-09-19 00:00:00,332.27,322.3,215.98,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Drogasil,DRO-0002,2026-09-10 00:00:00,333.53,323.52,216.79,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Drogasil,DRO-0002,2026-09-11 00:00:00,335.46,325.4,218.05,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Drogasil,DRO-0002,2026-09-12 00:00:00,332.24,322.27,215.96,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Drogasil,DRO-0002,2026-09-13 00:00:00,333.4,323.4,216.71,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Drogasil,DRO-0002,2026-09-14 00:00:00,336.43,326.34,218.68,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Drogasil,DRO-0002,2026-09-15 00:00:00,335.72,325.65,218.22,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Drogasil,DRO-0002,2026-09-16 00:00:00,333.54,323.53,216.8,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Drogasil,DRO-0002,2026-09-17 00:00:00,336.02,325.94,218.41,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Drogasil,DRO-0002,2026-09-18 00:00:00,337.5,327.38,219.38,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Drogasil,DRO-0002,2026-09-19 00:00:00,332.11,322.15,215.87,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Raia,RAI-0003,2026-09-10 00:00:00,337.47,327.35,219.36,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Raia,RAI-0003,2026-09-11 00:00:00,336.75,326.65,218.89,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Raia,RAI-0003,2026-09-12 00:00:00,334.35,324.32,217.33,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Raia,RAI-0003,2026-09-13 00:00:00,333.11,323.12,216.52,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Raia,RAI-0003,2026-09-14 00:00:00,338.49,328.34,220.02,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Raia,RAI-0003,2026-09-15 00:00:00,334.32,324.29,217.31,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Raia,RAI-0003,2026-09-16 00:00:00,332.69,322.71,216.25,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Raia,RAI-0003,2026-09-17 00:00:00,332.71,322.73,216.26,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Raia,RAI-0003,2026-09-18 00:00:00,337.75,327.62,219.54,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Raia,RAI-0003,2026-09-19 00:00:00,336.12,326.04,218.48,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Pacheco,PAC-0004,2026-09-10 00:00:00,337.48,327.36,219.36,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Pacheco,PAC-0004,2026-09-11 00:00:00,336.96,326.85,219.02,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Pacheco,PAC-0004,2026-09-12 00:00:00,335.66,325.59,218.18,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Pacheco,PAC-0004,2026-09-13 00:00:00,338.59,328.43,220.08,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Pacheco,PAC-0004,2026-09-14 00:00:00,334.61,324.57,217.5,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Pacheco,PAC-0004,2026-09-15 00:00:00,335.77,325.7,218.25,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Pacheco,PAC-0004,2026-09-16 00:00:00,337.63,327.5,219.46,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Pacheco,PAC-0004,2026-09-17 00:00:00,336.22,326.13,218.54,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Pacheco,PAC-0004,2026-09-18 00:00:00,337.85,327.71,219.6,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Pacheco,PAC-0004,2026-09-19 00:00:00,335.94,325.86,218.36,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Venancio,VEN-0005,2026-09-10 00:00:00,336.79,326.69,218.91,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Venancio,VEN-0005,2026-09-11 00:00:00,332.37,322.4,216.04,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Venancio,VEN-0005,2026-09-12 00:00:00,333.59,323.58,216.83,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Venancio,VEN-0005,2026-09-13 00:00:00,334.01,323.99,217.11,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Venancio,VEN-0005,2026-09-14 00:00:00,332.6,322.62,216.19,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Venancio,VEN-0005,2026-09-15 00:00:00,333.63,323.62,216.86,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Venancio,VEN-0005,2026-09-16 00:00:00,332.74,322.76,216.28,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Venancio,VEN-0005,2026-09-17 00:00:00,333.93,323.91,217.05,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Venancio,VEN-0005,2026-09-18 00:00:00,336.33,326.24,218.61,Abraçar a Vida - Boehringer,1
+Boehringer Ingelheim,Trayenta,Trayenta 5mg,Linagliptina,1,,Venancio,VEN-0005,2026-09-19 00:00:00,334.51,324.47,217.43,Abraçar a Vida - Boehringer,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Araujo,ARA-0006,2026-09-10 00:00:00,198.38,178.54,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Araujo,ARA-0006,2026-09-11 00:00:00,197.74,177.97,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Araujo,ARA-0006,2026-09-12 00:00:00,197.97,178.17,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Araujo,ARA-0006,2026-09-13 00:00:00,200.64,180.58,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Araujo,ARA-0006,2026-09-14 00:00:00,199.49,179.54,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Araujo,ARA-0006,2026-09-15 00:00:00,199.33,179.4,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Araujo,ARA-0006,2026-09-16 00:00:00,197.59,177.83,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Araujo,ARA-0006,2026-09-17 00:00:00,199.81,179.83,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Araujo,ARA-0006,2026-09-18 00:00:00,197.56,177.8,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Araujo,ARA-0006,2026-09-19 00:00:00,198.42,178.58,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Drogasil,DRO-0007,2026-09-10 00:00:00,200.85,180.76,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Drogasil,DRO-0007,2026-09-11 00:00:00,199.46,179.51,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Drogasil,DRO-0007,2026-09-12 00:00:00,199.13,179.22,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Drogasil,DRO-0007,2026-09-13 00:00:00,199.63,179.67,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Drogasil,DRO-0007,2026-09-14 00:00:00,200.26,180.23,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Drogasil,DRO-0007,2026-09-15 00:00:00,200.0,180.0,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Drogasil,DRO-0007,2026-09-16 00:00:00,197.82,178.04,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Drogasil,DRO-0007,2026-09-17 00:00:00,197.04,177.34,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Drogasil,DRO-0007,2026-09-18 00:00:00,198.17,178.35,,,1
+EMS,EMS Genéricos,Linagliptina 5mg (genérico),Linagliptina,0,Trayenta 5mg,Drogasil,DRO-0007,2026-09-19 00:00:00,197.98,178.18,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Araujo,ARA-0008,2026-09-10 00:00:00,14.81,13.63,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Araujo,ARA-0008,2026-09-11 00:00:00,15.03,13.83,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Araujo,ARA-0008,2026-09-12 00:00:00,15.01,13.81,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Araujo,ARA-0008,2026-09-13 00:00:00,14.84,13.65,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Araujo,ARA-0008,2026-09-14 00:00:00,14.95,13.75,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Araujo,ARA-0008,2026-09-15 00:00:00,14.87,13.68,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Araujo,ARA-0008,2026-09-16 00:00:00,15.02,13.82,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Araujo,ARA-0008,2026-09-17 00:00:00,14.89,13.7,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Araujo,ARA-0008,2026-09-18 00:00:00,14.83,13.64,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Araujo,ARA-0008,2026-09-19 00:00:00,14.82,13.63,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Drogasil,DRO-0009,2026-09-10 00:00:00,14.92,13.73,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Drogasil,DRO-0009,2026-09-11 00:00:00,14.83,13.64,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Drogasil,DRO-0009,2026-09-12 00:00:00,14.93,13.74,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Drogasil,DRO-0009,2026-09-13 00:00:00,15.02,13.82,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Drogasil,DRO-0009,2026-09-14 00:00:00,14.87,13.68,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Drogasil,DRO-0009,2026-09-15 00:00:00,14.82,13.63,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Drogasil,DRO-0009,2026-09-16 00:00:00,15.05,13.85,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Drogasil,DRO-0009,2026-09-17 00:00:00,14.9,13.71,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Drogasil,DRO-0009,2026-09-18 00:00:00,14.78,13.6,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Drogasil,DRO-0009,2026-09-19 00:00:00,14.77,13.59,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Raia,RAI-0010,2026-09-10 00:00:00,14.78,13.6,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Raia,RAI-0010,2026-09-11 00:00:00,14.94,13.74,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Raia,RAI-0010,2026-09-12 00:00:00,14.99,13.79,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Raia,RAI-0010,2026-09-13 00:00:00,14.88,13.69,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Raia,RAI-0010,2026-09-14 00:00:00,14.77,13.59,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Raia,RAI-0010,2026-09-15 00:00:00,14.86,13.67,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Raia,RAI-0010,2026-09-16 00:00:00,15.05,13.85,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Raia,RAI-0010,2026-09-17 00:00:00,14.91,13.72,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Raia,RAI-0010,2026-09-18 00:00:00,15.04,13.84,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Raia,RAI-0010,2026-09-19 00:00:00,15.01,13.81,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Pacheco,PAC-0011,2026-09-10 00:00:00,14.75,13.57,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Pacheco,PAC-0011,2026-09-11 00:00:00,14.97,13.77,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Pacheco,PAC-0011,2026-09-12 00:00:00,14.95,13.75,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Pacheco,PAC-0011,2026-09-13 00:00:00,14.91,13.72,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Pacheco,PAC-0011,2026-09-14 00:00:00,14.83,13.64,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Pacheco,PAC-0011,2026-09-15 00:00:00,14.94,13.74,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Pacheco,PAC-0011,2026-09-16 00:00:00,14.78,13.6,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Pacheco,PAC-0011,2026-09-17 00:00:00,14.88,13.69,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Pacheco,PAC-0011,2026-09-18 00:00:00,14.89,13.7,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Pacheco,PAC-0011,2026-09-19 00:00:00,15.04,13.84,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Venancio,VEN-0012,2026-09-10 00:00:00,15.01,13.81,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Venancio,VEN-0012,2026-09-11 00:00:00,14.83,13.64,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Venancio,VEN-0012,2026-09-12 00:00:00,14.9,13.71,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Venancio,VEN-0012,2026-09-13 00:00:00,14.8,13.62,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Venancio,VEN-0012,2026-09-14 00:00:00,15.02,13.82,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Venancio,VEN-0012,2026-09-15 00:00:00,15.01,13.81,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Venancio,VEN-0012,2026-09-16 00:00:00,14.84,13.65,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Venancio,VEN-0012,2026-09-17 00:00:00,14.94,13.74,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Venancio,VEN-0012,2026-09-18 00:00:00,14.93,13.74,,,1
+Sanofi,Novalgina,Novalgina 500mg,Dipirona Monoidratada,1,,Venancio,VEN-0012,2026-09-19 00:00:00,14.8,13.62,,,1
+Novo Nordisk,Ozempic,Ozempic 1mg,Semaglutida,1,,Drogasil,DRO-0013,2026-09-10 00:00:00,1035.31,1014.6,,,1
+Novo Nordisk,Ozempic,Ozempic 1mg,Semaglutida,1,,Drogasil,DRO-0013,2026-09-11 00:00:00,1030.71,1010.1,,,1
+Novo Nordisk,Ozempic,Ozempic 1mg,Semaglutida,1,,Drogasil,DRO-0013,2026-09-12 00:00:00,1035.64,1014.93,,,1
+Novo Nordisk,Ozempic,Ozempic 1mg,Semaglutida,1,,Drogasil,DRO-0013,2026-09-13 00:00:00,1030.53,1009.92,,,1
+Novo Nordisk,Ozempic,Ozempic 1mg,Semaglutida,1,,Drogasil,DRO-0013,2026-09-14 00:00:00,1019.61,999.22,,,1
+Novo Nordisk,Ozempic,Ozempic 1mg,Semaglutida,1,,Drogasil,DRO-0013,2026-09-15 00:00:00,1026.28,1005.75,,,1
+Novo Nordisk,Ozempic,Ozempic 1mg,Semaglutida,1,,Drogasil,DRO-0013,2026-09-16 00:00:00,1020.0,999.6,,,0
+Novo Nordisk,Ozempic,Ozempic 1mg,Semaglutida,1,,Drogasil,DRO-0013,2026-09-17 00:00:00,1038.74,1017.97,,,0
+Novo Nordisk,Ozempic,Ozempic 1mg,Semaglutida,1,,Drogasil,DRO-0013,2026-09-18 00:00:00,1037.7,1016.95,,,0
+Novo Nordisk,Ozempic,Ozempic 1mg,Semaglutida,1,,Drogasil,DRO-0013,2026-09-19 00:00:00,1036.73,1016.0,,,0

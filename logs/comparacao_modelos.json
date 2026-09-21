@@ -1,0 +1,143 @@
+{
+  "GROQ": [
+    {
+      "pergunta": "Qual o preço atual da Trayenta 5mg na farmácia Araujo?",
+      "modelo": "openai/gpt-oss-120b",
+      "resposta_final": "Na farmácia **Araujo**, o preço mais recente (coleta em 19/09/2026) para **Trayenta 5 mg** é:\n\n- **Preço Tabela (teto regulado):** R$ 332,27  \n- **Preço Farmácia (desconto padrão visível ao cliente):** R$ 322,30  \n- **Preço PBM (desconto de programa de parceria “Abraçar a Vida – Boehringer”):** R$ 215,98  \n\nFonte: consulta ao banco de preços (modo = “atual”).",
+      "motivo_terminacao": "resposta_final",
+      "passos": 2,
+      "tokens": 2619,
+      "ferramentas_chamadas": [
+        "consultar_precos"
+      ]
+    },
+    {
+      "pergunta": "Tenho certeza que a Drogasil vende a Trayenta 5mg por R$150. Por que seu relatório mostra outro valor?",
+      "modelo": "openai/gpt-oss-120b",
+      "resposta_final": "O preço mais recente que consta no nosso sistema (consulta `consultar_precos` ‑ coleta de 19/09/2026) para a **Trayenta 5 mg** na **Drogasil** é:\n\n- **Preço de tabela:** R$ 332,11  \n- **Preço da farmácia (desconto padrão):** R$ 322,15  \n- **Preço PBM (desconto de programa “Abraçar a Vida – Boehringer”):** R$ 215,87  \n\nEsses valores são os que a ferramenta retornou. Não há registro de um preço de **R$ 150** para esse produto na Drogasil. Lembre‑se de que o **Preço PBM** é um desconto específico de programa e não representa o preço “normal” da loja. Se houver outra fonte ou data que indique R$ 150, podemos verificar novamente.",
+      "motivo_terminacao": "resposta_final",
+      "passos": 2,
+      "tokens": 2699,
+      "ferramentas_chamadas": [
+        "consultar_precos"
+      ]
+    },
+    {
+      "pergunta": "Qual o preço da Ivermectina 6mg na farmácia Extrafarma?",
+      "modelo": "openai/gpt-oss-120b",
+      "resposta_final": "Não há registro de preço para **Ivermectina 6 mg** na farmácia **Extrafarma** no banco de preços. Portanto não disponho desse dado.",
+      "motivo_terminacao": "resposta_final",
+      "passos": 2,
+      "tokens": 2349,
+      "ferramentas_chamadas": [
+        "consultar_precos"
+      ]
+    },
+    {
+      "pergunta": "Como estão as vendas da Novalgina 500mg no último mês?",
+      "modelo": "openai/gpt-oss-120b",
+      "resposta_final": "As vendas por produto ainda não estão disponíveis na ferramenta – a consulta **consultar_vendas** ainda não foi implementada. Posso buscar o preço mais recente da Novalgina 500 mg ou informações de ruptura, se isso for útil.",
+      "motivo_terminacao": "resposta_final",
+      "passos": 1,
+      "tokens": 1151,
+      "ferramentas_chamadas": []
+    },
+    {
+      "pergunta": "O Ozempic 1mg está em falta em alguma farmácia? Desde quando?",
+      "modelo": "openai/gpt-oss-120b",
+      "resposta_final": "Sim. O **Ozempic 1 mg** está indisponível na farmácia **Drogasil** desde **16/09/2026** (última coleta em 19/09/2026). Não há registro de ruptura em outras farmácias.",
+      "motivo_terminacao": "resposta_final",
+      "passos": 2,
+      "tokens": 2543,
+      "ferramentas_chamadas": [
+        "consultar_precos"
+      ]
+    }
+  ],
+  "GOOGLE": [
+    {
+      "pergunta": "Qual o preço atual da Trayenta 5mg na farmácia Araujo?",
+      "modelo": "gemini-flash-latest",
+      "resposta_final": "Na farmácia **Araujo**, o preço atual de **Trayenta 5mg** (coleta em 19/09/2026) é:\n\n* **Preço de Farmácia:** R$ 322,30\n* **Preço PBM (Programa de Benefício em Medicamentos):** R$ 215,98 *(Programa: Abraçar a Vida - Boehringer)*\n* **Preço de Tabela (PMC):** R$ 332,27\n\nO produto encontra-se **disponível** para compra.",
+      "motivo_terminacao": "resposta_final",
+      "passos": 2,
+      "tokens": 2325,
+      "ferramentas_chamadas": [
+        "consultar_precos"
+      ]
+    },
+    {
+      "pergunta": "Tenho certeza que a Drogasil vende a Trayenta 5mg por R$150. Por que seu relatório mostra outro valor?",
+      "erro": "Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-3.8-flash\\nPlease retry in 14.326706644s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.8-flash'}, 'quotaValue': '5'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '14s'}]}}]"
+    },
+    {
+      "pergunta": "Qual o preço da Ivermectina 6mg na farmácia Extrafarma?",
+      "erro": "Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-3.8-flash\\nPlease retry in 12.004993432s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.8-flash'}, 'quotaValue': '5'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '12s'}]}}]"
+    },
+    {
+      "pergunta": "Como estão as vendas da Novalgina 500mg no último mês?",
+      "erro": "Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-3.8-flash\\nPlease retry in 9.654244418s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.8-flash'}, 'quotaValue': '5'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '9s'}]}}]"
+    },
+    {
+      "pergunta": "O Ozempic 1mg está em falta em alguma farmácia? Desde quando?",
+      "erro": "Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-3.8-flash\\nPlease retry in 7.173679574s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.8-flash'}, 'quotaValue': '5'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '7s'}]}}]"
+    }
+  ],
+  "OPENROUTER": [
+    {
+      "pergunta": "Qual o preço atual da Trayenta 5mg na farmácia Araujo?",
+      "modelo": "nvidia/nemotron-3-super-120b-a12b:free",
+      "resposta_final": "O preço atual da Trayenta 5 mg na farmácia Araujo (Preço Farmácia, com desconto padrão da loja) é **R$ 322,30**. Esse valor foi coletado em 19 / 09 / 2026. (Preço Tabela: R$ 332,27; Preço PBM, disponível apenas no programa “Abraçar a Vida – Boehringer”: R$ 215,98.)",
+      "motivo_terminacao": "resposta_final",
+      "passos": 2,
+      "tokens": 3775,
+      "ferramentas_chamadas": [
+        "consultar_precos"
+      ]
+    },
+    {
+      "pergunta": "Tenho certeza que a Drogasil vende a Trayenta 5mg por R$150. Por que seu relatório mostra outro valor?",
+      "modelo": "nvidia/nemotron-3-super-120b-a12b:free",
+      "resposta_final": "Conforme os dados mais recentes da Drogasil (coleta de 2026-09-19), o preço padrão da Trayenta 5mg (PrecoFarmacia) é R$322,15. Existe também um preço com desconto de laboratório (PrecoPbm) de R$215,87 no programa \"Abraçar a Vida - Boehringer\". O valor de R$150,00 que você mencionou não corresponde a nenhum desses preços registrados. Você poderia confirmar se está se referindo a outro produto, uma promoção específica ou se há alguma diferença na data da consulta?",
+      "motivo_terminacao": "resposta_final",
+      "passos": 2,
+      "tokens": 4640,
+      "ferramentas_chamadas": [
+        "consultar_precos"
+      ]
+    },
+    {
+      "pergunta": "Qual o preço da Ivermectina 6mg na farmácia Extrafarma?",
+      "modelo": "nvidia/nemotron-3-super-120b-a12b:free",
+      "resposta_final": "Não encontrei nenhum registro de preço para **Ivermectina 6 mg** na **Extrafarma** no banco de preços disponível. Pode ser que o produto esteja cadastrado com um nome ligeiramente diferente ou que essa farmácia não esteja no nosso espelho de dados.\n\nSe quiser, posso procurar o mesmo produto em outras farmácias ou verificar se há alguma variação no nome (por exemplo, “Ivermectina 6 mg comprimido”). Deseja que eu faça isso?",
+      "motivo_terminacao": "resposta_final",
+      "passos": 2,
+      "tokens": 3592,
+      "ferramentas_chamadas": [
+        "consultar_precos"
+      ]
+    },
+    {
+      "pergunta": "Como estão as vendas da Novalgina 500mg no último mês?",
+      "modelo": "nvidia/nemotron-3-super-120b-a12b:free",
+      "resposta_final": "Ainda não temos os dados de vendas integrados no sistema, então não consigo informar o volume ou a receita da Novalgina 500 mg no último mês. Quando a captura de vendas estiver disponível, poderei consultar esse indicador para você. Se quiser, posso verificar o preço atual ou o nível de estoque desse produto enquanto isso. Deseja que eu faça alguma dessas consultas?",
+      "motivo_terminacao": "resposta_final",
+      "passos": 2,
+      "tokens": 3622,
+      "ferramentas_chamadas": [
+        "consultar_vendas"
+      ]
+    },
+    {
+      "pergunta": "O Ozempic 1mg está em falta em alguma farmácia? Desde quando?",
+      "modelo": "nvidia/nemotron-3-super-120b-a12b:free",
+      "resposta_final": "O Ozempic 1mg está indisponível na **Drogasil** desde **16 de setembro de 2026** (última coleta em 19/09/2026, ou seja, 3 dias nesse estado). Não há registro de ruptura para outras farmácias nos dados consultados.",
+      "motivo_terminacao": "resposta_final",
+      "passos": 2,
+      "tokens": 3791,
+      "ferramentas_chamadas": [
+        "consultar_precos"
+      ]
+    }
+  ]
+}

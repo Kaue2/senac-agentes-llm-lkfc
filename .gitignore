@@ -1,0 +1,14 @@
+# Segredos
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Banco de dados local (gerado por scripts/seed_mock_db.py, não versionado)
+dados/*.db
+
+# Atalhos locais do Windows (não fazem parte do projeto)
+*.lnk

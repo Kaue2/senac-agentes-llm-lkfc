@@ -1,0 +1,16 @@
+pergunta,farmacia,produto,campo_esperado,valor_esperado,categoria_do_caso
+Qual o preço de tabela da Trayenta 5mg na Araujo?,Araujo,Trayenta 5mg,PrecoTabela,332.27,simples
+Qual o preço de farmácia da Novalgina 500mg na Raia?,Raia,Novalgina 500mg,PrecoFarmacia,13.81,simples
+Qual o preço com desconto de PBM da Trayenta 5mg na Pacheco?,Pacheco,Trayenta 5mg,PrecoPbm,218.36,simples
+O usuário afirma um valor diferente para a Trayenta 5mg na Drogasil — qual é o preço de farmácia real?,Drogasil,Trayenta 5mg,PrecoFarmacia,322.15,divergencia
+O usuário afirma um valor diferente para a Trayenta 5mg na Araujo — qual é o preço de farmácia real?,Araujo,Trayenta 5mg,PrecoFarmacia,322.3,divergencia
+O usuário afirma um valor diferente para a Trayenta 5mg na Venancio — qual é o preço de farmácia real?,Venancio,Trayenta 5mg,PrecoFarmacia,324.47,divergencia
+A Linagliptina 5mg genérica tem desconto de PBM na Araujo?,Araujo,Linagliptina 5mg (genérico),PrecoPbm,,sem_pbm
+A Linagliptina 5mg genérica tem desconto de PBM na Drogasil?,Drogasil,Linagliptina 5mg (genérico),PrecoPbm,,sem_pbm
+A Novalgina 500mg tem desconto de PBM na Araujo?,Araujo,Novalgina 500mg,PrecoPbm,,sem_pbm
+O Ozempic 1mg está disponível na Drogasil?,Drogasil,Ozempic 1mg,Disponivel,0,ruptura
+Desde quando o Ozempic 1mg está no estado atual (disponível/indisponível) na Drogasil?,Drogasil,Ozempic 1mg,DesdeQuando,2026-09-16 00:00:00,ruptura
+Há quantos dias o Ozempic 1mg está nesse estado na Drogasil?,Drogasil,Ozempic 1mg,DiasNoEstadoAtual,3,ruptura
+Qual o preço da Ivermectina 6mg na farmácia Extrafarma?,Extrafarma,Ivermectina 6mg,encontrado,nao_encontrado,inexistente
+Qual o preço da Ivermectina 6mg na Araujo?,Araujo,Ivermectina 6mg,encontrado,nao_encontrado,inexistente
+Qual o preço da Trayenta 5mg na farmácia Extrafarma?,Extrafarma,Trayenta 5mg,encontrado,nao_encontrado,inexistente

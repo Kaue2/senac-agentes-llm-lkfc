@@ -1,0 +1,57 @@
+{
+  "timestamp_utc": "2026-09-20T22:23:28.328803+00:00",
+  "modelo": "openai/gpt-oss-120b",
+  "pergunta": "Qual o preço atual da Novalgina 500mg na farmácia Araujo?",
+  "motivo_terminacao": "resposta_final",
+  "resposta_final": "Na farmácia **Araujo**, o preço mais recente da **Novalgina 500 mg** (dados de coleta em 19/09/2026) é:\n\n- **Preço de tabela:** R$ 14,82  \n- **Preço da farmácia (desconto padrão):** **R$ 13,63**  \n\nNão há preço PBM registrado para esse produto.",
+  "orcamento": {
+    "passos_usados": 2,
+    "max_passos": 8,
+    "tokens_usados": 2515,
+    "max_tokens": 20000
+  },
+  "trajetoria": [
+    {
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Araujo",
+        "modo": "atual",
+        "produto": "Novalgina 500mg"
+      },
+      "resultado": {
+        "encontrado": true,
+        "fonte": "espelho_sqlite",
+        "resultados": [
+          {
+            "ProdutoFarmaciaId": 8,
+            "DataUltimaColeta": "2026-09-19 00:00:00",
+            "Farmacia": "Araujo",
+            "Produto": "Novalgina 500mg",
+            "PrincipioAtivo": "Dipirona Monoidratada",
+            "Marca": "Novalgina",
+            "Fabricante": "Sanofi",
+            "EanObservado": null,
+            "PrecoTabela": 14.82,
+            "PrecoFarmacia": 13.63,
+            "PrecoPbm": null,
+            "ProgramaPbmNome": null,
+            "Disponivel": 1
+          }
+        ]
+      },
+      "tokens": 1114
+    },
+    {
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Na farmácia **Araujo**, o preço mais recente da **Novalgina 500 mg** (dados de coleta em 19/09/2026) é:\n\n- **Preço de tabela:** R$ 14,82  \n- **Preço da farmácia (desconto padrão):** **R$ 13,63**  \n\nNão há preço PBM registrado para esse produto.",
+      "tokens": 1401
+    }
+  ],
+  "metadados": {
+    "fonte_dados": "espelho_sqlite",
+    "descricao_caso": "Caso simples — deve funcionar sem ambiguidade."
+  }
+}

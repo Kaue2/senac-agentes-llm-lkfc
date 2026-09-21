@@ -1,0 +1,41 @@
+{
+  "timestamp_utc": "2026-09-20T22:23:30.925440+00:00",
+  "modelo": "openai/gpt-oss-120b",
+  "pergunta": "Qual o preço da Ivermectina 6mg na farmácia Extrafarma?",
+  "motivo_terminacao": "resposta_final",
+  "resposta_final": "Não há registro de preço para **Ivermectina 6 mg** na farmácia **Extrafarma** no banco de preços. Portanto não disponho desse dado.",
+  "orcamento": {
+    "passos_usados": 2,
+    "max_passos": 8,
+    "tokens_usados": 2340,
+    "max_tokens": 20000
+  },
+  "trajetoria": [
+    {
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Extrafarma",
+        "modo": "atual",
+        "produto": "Ivermectina 6mg"
+      },
+      "resultado": {
+        "encontrado": false,
+        "fonte": "espelho_sqlite",
+        "mensagem": "Nenhum registro para produto='Ivermectina 6mg', farmacia='Extrafarma' no banco de preços. Pode ser um produto/farmácia fora do cadastro — não invente um preço, informe ao usuário que não há esse dado."
+      },
+      "tokens": 1121
+    },
+    {
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Não há registro de preço para **Ivermectina 6 mg** na farmácia **Extrafarma** no banco de preços. Portanto não disponho desse dado.",
+      "tokens": 1219
+    }
+  ],
+  "metadados": {
+    "fonte_dados": "espelho_sqlite",
+    "descricao_caso": "Registro inexistente — produto e farmácia fora do cadastro."
+  }
+}
