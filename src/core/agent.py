@@ -70,17 +70,19 @@ class Agente:
         self.ferramentas = ferramentas
         self.prompt_sistema = prompt_sistema
 
-    def _montar_mensagens(self, pergunta: str, estado: EstadoAgente) -> list[dict]:
-        mensagens = [
-            {"role": "system", "content": self.prompt_sistema},
-            {"role": "user", "content": pergunta},
-        ]
+    def _montar_mensagens(self, pergunta: str, estado: EstadoAgente, contexto_extra: str = "") -> list[dict]:
+        mensagens = [{"role": "system", "content": self.prompt_sistema}]
+        if contexto_extra:
+            # Memória de longo prazo (src/memoria/contexto.py): fonte própria, com teto próprio,
+            # entre o system prompt e a pergunta — não misturada ao texto do prompt versionado.
+            mensagens.append({"role": "system", "content": contexto_extra})
+        mensagens.append({"role": "user", "content": pergunta})
         contexto = estado.como_contexto()
         if contexto:
             mensagens.append({"role": "system", "content": contexto})
         return mensagens
 
-    def executar(self, pergunta: str, orcamento: Orcamento) -> ResultadoExecucao:
+    def executar(self, pergunta: str, orcamento: Orcamento, contexto_extra: str = "") -> ResultadoExecucao:
         estado = EstadoAgente(pergunta_original=pergunta)
         trajetoria: list[dict] = []
 
@@ -91,7 +93,7 @@ class Agente:
 
             resposta = self.cliente.chat.completions.create(
                 model=self.modelo,
-                messages=self._montar_mensagens(pergunta, estado),
+                messages=self._montar_mensagens(pergunta, estado, contexto_extra),
                 tools=self.ferramentas.schemas_para_modelo(),
             )
             escolha = resposta.choices[0]

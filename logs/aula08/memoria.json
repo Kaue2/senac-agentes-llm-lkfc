@@ -1,0 +1,54 @@
+{
+  "hoje": "2026-10-09",
+  "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+  "fronteira": {
+    "tokens_por_execucao_reais": [
+      657,
+      875,
+      458,
+      537,
+      686
+    ],
+    "n_execucoes": 30,
+    "arquivo_morto_tokens": 19278,
+    "memoria_tokens": 266
+  },
+  "contradicao": {
+    "sim_a": 0.8944321870803833,
+    "sim_b": 0.8892163038253784,
+    "vencedor": "Raia"
+  },
+  "esquecimento": {
+    "original": "farmácia padrão no contexto: nenhuma | o agente consultou: nada | resposta: Qual farmácia você gostaria de consultar?",
+    "com_registro": "farmácia padrão no contexto: Pacheco | o agente consultou: ['Pacheco'] | resposta: Preço atual da Trayenta 5 mg (Pacheco, 2026‑09‑19): **R$ 325,86**.",
+    "depois": "farmácia padrão no contexto: nenhuma | o agente consultou: nada | resposta: Em qual farmácia você gostaria de saber o preço atual da Trayenta 5mg?"
+  },
+  "nao_reprodutibilidade": {
+    "vazia": "Qual farmácia você quer saber o preço atual da Trayenta 5 mg?",
+    "cheia": "Raia, 2026‑09‑19: **R$326,04** (PreçoFarmácia)",
+    "checkpoint_vazia": "dados/memoria_demo/checkpoints/20261010T001411317726Z.json",
+    "checkpoint_cheia": "dados/memoria_demo/checkpoints/20261010T001435890193Z.json"
+  },
+  "remocao": {
+    "antes": [
+      "episodica.usuario_id: 15",
+      "semantica.chave: 3",
+      "descartes.jsonl",
+      "/home/caiocxs/Documentos/Github/senac-agentes-llm-lkfc/dados/memoria_demo/checkpoints/20261010T001411317726Z.json",
+      "/home/caiocxs/Documentos/Github/senac-agentes-llm-lkfc/dados/memoria_demo/checkpoints/20261010T001435890193Z.json",
+      "/home/caiocxs/Documentos/Github/senac-agentes-llm-lkfc/dados/memoria_demo/memoria.db",
+      "/home/caiocxs/Documentos/Github/senac-agentes-llm-lkfc/dados/memoria_demo/descartes.jsonl",
+      "/home/caiocxs/Documentos/Github/senac-agentes-llm-lkfc/dados/memoria_demo/checkpoints/20261010T001411317726Z.json",
+      "/home/caiocxs/Documentos/Github/senac-agentes-llm-lkfc/dados/memoria_demo/checkpoints/20261010T001435890193Z.json"
+    ],
+    "relatorio": {
+      "episodica": 15,
+      "semantica": 3,
+      "cache_embeddings": 15,
+      "procedural": 0,
+      "registro_de_descartes": 2,
+      "checkpoints_e_logs": 2
+    },
+    "depois": []
+  }
+}
