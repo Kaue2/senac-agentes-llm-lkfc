@@ -7,6 +7,8 @@ docs/01-primeira-entrega.md, item 4.3).
 
 from __future__ import annotations
 
+import re
+
 from .config import CAMINHO_PROMPT
 
 _MARCADOR = "## Prompt enviado ao modelo"
@@ -14,6 +16,8 @@ _MARCADOR = "## Prompt enviado ao modelo"
 
 def carregar_prompt_sistema() -> str:
     texto = CAMINHO_PROMPT.read_text(encoding="utf-8")
-    if _MARCADOR not in texto:
-        raise RuntimeError(f"{CAMINHO_PROMPT} não tem o heading '{_MARCADOR}'.")
-    return texto.split(_MARCADOR, 1)[1].strip()
+    # Heading de linha inteira, não a primeira ocorrência da frase (ver src/core/prompts.py).
+    partes = re.split(rf"^{re.escape(_MARCADOR)}[ \t]*$", texto, maxsplit=1, flags=re.MULTILINE)
+    if len(partes) != 2:
+        raise RuntimeError(f"{CAMINHO_PROMPT} não tem o heading '{_MARCADOR}' numa linha própria.")
+    return partes[1].strip()

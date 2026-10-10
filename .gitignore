@@ -12,3 +12,9 @@ dados/*.db
 
 # Atalhos locais do Windows (não fazem parte do projeto)
 *.lnk
+
+# Índices vetoriais e cache de embeddings (reconstruíveis a partir de dados/corpus/)
+dados/cache/
+dados/indices/
+dados/memoria/
+dados/memoria_demo/

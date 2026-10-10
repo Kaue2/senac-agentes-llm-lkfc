@@ -1,0 +1,71 @@
+CORPUS: 12 documentos, 4021 tokens (o200k_base)
+
+CONJUNTO: 20 perguntas
+  com exceção: 8   sem resposta no corpus: 4
+
+RECALL@k  (16 perguntas com resposta; modelo fastembed:intfloat/multilingual-e5-large)
+  estratégia             trechos      k=1      k=3      k=5      corpus na janela (k=3)
+  caracteres                  19    68.8%    93.8%   100.0%                       15.8%
+  caracteres+overlap          19    68.8%   100.0%   100.0%                       17.1%
+  estrutura                   68    87.5%    93.8%    93.8%                        5.2%
+  ESCOLHIDA: estrutura   k=3   porque tem o maior recall@1 (87.5%) e põe 5.2% do corpus na janela, contra 17.1% de 'caracteres+overlap' (recall@3 100.0%), cujo recall vem de blocos que misturam de 3 a 6 seções cada; k=5 não recupera nenhuma pergunta a mais
+
+PORTÃO  (distância 1 - cosseno do trecho mais próximo)
+  maior distância entre as COM resposta: 0.1637
+  menor distância entre as SEM resposta: 0.1688   folga: +0.0051
+  limiar escolhido: 0.1685 de distância
+  barra 4/4 das perguntas sem resposta
+  barra 0/16 das perguntas com resposta   <- tem que ser 0
+    U01 distância 0.1704  Qual é o prazo de pagamento negociado com a distribuidora Profarma?
+    U02 distância 0.2156  Qual a meta de faturamento da filial Centro para dezembro?
+    U03 distância 0.1951  Quanto custa o frete da Drogasil para entregar no interior de Minas?
+    U04 distância 0.1688  Qual é a política de troca e devolução de produtos para o cliente final?
+
+A PERGUNTA QUE FALHA
+  Q15 Dá para calcular a margem da Pague Menos no Ozempic?
+  esperado: «A margem de uma farmácia concorrente não é calculável» (posição 9)
+  recuperado: politica-precificacao-2026#s04 (0.1637), glossario-precos#s06 (0.1662), politica-precificacao-2026#s07 (0.1687)
+    reformulada: «Dá para calcular a margem de uma farmácia concorrente?» -> evidência na posição 1
+    reformulada: «Qual a margem bruta da farmácia Pague Menos?» -> evidência na posição 6
+    O documento fala em 'farmácia concorrente'; a pergunta nomeia a Pague Menos e o Ozempic. O vetor não sabe que Pague Menos é uma concorrente: com 'concorrente' na pergunta o trecho certo vem em 1º; com 'Pague Menos' continua fora do top-k. A pergunta não está mal feita — é assim que o gestor pergunta. Correção: mapear as 13 redes monitoradas para o conceito 'concorrente' antes da busca (expansão de consulta por cadastro, não por similaridade).
+  DIAGNÓSTICO: limitacao do vetor (entidade)
+
+SIMILARIDADE ≠ RELEVÂNCIA (desafio B)
+  Q07 1º lugar: sazonalidade#s01 (0.1345) — evidência na posição 2
+  Q15 1º lugar: politica-precificacao-2026#s04 (0.1637) — evidência na posição 9
+
+PORTÃO DESLIGADO — pergunta sem resposta
+  U01 Qual é o prazo de pagamento negociado com a distribuidora Profarma?
+    desligado -> recusou=True  A base de conhecimento não trata do prazo de pagamento com a distribuidora Profarma; o assunto mais próximo encontrado nos trechos é o cálculo de desconto praticado em farmácias.
+    ligado    -> A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Regras de ruptura e disponibilidade no monitoramento — Exceção: sem coleta recente» [regras-ruptura#s04], a uma distância de 0.1704 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI.
+  U02 Qual a meta de faturamento da filial Centro para dezembro?
+    desligado -> recusou=True  A base de conhecimento não trata da meta de faturamento da filial Centro para dezembro; o assunto mais próximo encontrado é a margem do mês.
+    ligado    -> A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Métricas de margem — definições oficiais — Margem do mês» [metricas-margem#s03], a uma distância de 0.2156 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI.
+  U03 Quanto custa o frete da Drogasil para entregar no interior de Minas?
+    desligado -> recusou=True  A base de conhecimento não trata do assunto de frete, mas aborda preços de produtos.
+    ligado    -> A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Perguntas frequentes dos gestores sobre o agente de BI — Por que Drogasil e Raia têm preços diferentes se são do mesmo grupo?» [faq-gestores#s01], a uma distância de 0.1951 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI.
+  U04 Qual é a política de troca e devolução de produtos para o cliente final?
+    desligado -> recusou=True  A base de conhecimento não trata da política de troca e devolução para clientes finais. O assunto mais próximo encontrado nos trechos é a devolução de itens ao fornecedor por acordo comercial de troca de vencidos.
+    ligado    -> A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Validade de estoque, FEFO e perda por vencimento — Exceção: devolução ao fornecedor» [fefo-validade#s04], a uma distância de 0.1688 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI.
+
+DESAFIO A — modelos de embedding (mesmas 20 perguntas)
+  modelo                                  estratégia              r@1    r@3    r@5  folga portão
+  paraphrase-multilingual-MiniLM-L12-v2   caracteres            37.5%  75.0%  93.8%       -0.1141
+  paraphrase-multilingual-MiniLM-L12-v2   caracteres+overlap    50.0%  87.5% 100.0%       -0.1380
+  paraphrase-multilingual-MiniLM-L12-v2   estrutura             62.5%  93.8% 100.0%       -0.0942
+  paraphrase-multilingual-mpnet-base-v2   caracteres            37.5%  87.5%  93.8%       -0.0990
+  paraphrase-multilingual-mpnet-base-v2   caracteres+overlap    37.5%  93.8% 100.0%       -0.0990
+  paraphrase-multilingual-mpnet-base-v2   estrutura             56.2%  93.8%  93.8%       -0.1515
+  multilingual-e5-large                   caracteres            68.8%  93.8% 100.0%       -0.0029
+  multilingual-e5-large                   caracteres+overlap    68.8% 100.0% 100.0%       -0.0029
+  multilingual-e5-large                   estrutura             87.5%  93.8%  93.8%       +0.0051
+
+CARIMBO
+  modelo de embedding ... fastembed:intfloat/multilingual-e5-large
+  chunking .............. estrutura (seção ##, herda título; alternativas medidas: 1200 caracteres, 1200+200 de overlap)
+  métrica ............... cosseno (distância = 1 - cosseno, vetores normalizados)
+  k ..................... 3
+  limiar do portão ...... 0.1685
+  conjunto de perguntas .. dados/avaliacao/perguntas_rag_v1.jsonl (v1)
+
+[índice salvo em dados/indices/estrutura.db; log em logs/aula06/buscador.json]

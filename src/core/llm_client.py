@@ -43,4 +43,19 @@ class ConfiguracaoModelo:
 
 
 def criar_cliente(config: ConfiguracaoModelo) -> OpenAI:
-    return OpenAI(base_url=config.base_url, api_key=config.api_key)
+    # max_retries=6: o tier gratuito responde 429 quando o limite por minuto estoura, com
+    # cabeçalho retry-after; a lib openai espera esse tempo com backoff exponencial antes de
+    # tentar de novo. O padrão (2) não basta para as rodadas de avaliação das Aulas 07 e 11,
+    # que fazem dezenas de chamadas seguidas.
+    return OpenAI(base_url=config.base_url, api_key=config.api_key, max_retries=6)
+
+
+def cliente_ativo_ou_none() -> tuple[OpenAI | None, str]:
+    """Cliente do modelo ATIVO, ou (None, motivo) se o .env não estiver preenchido. Usado pelos
+    scripts de exercício que têm partes sem LLM (busca, portão) e partes com LLM (geração):
+    sem chave, as primeiras rodam e as segundas declaram que não rodaram."""
+    try:
+        config = ConfiguracaoModelo.do_ambiente()
+    except RuntimeError as exc:
+        return None, str(exc)
+    return criar_cliente(config), config.modelo

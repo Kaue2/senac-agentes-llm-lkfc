@@ -1,0 +1,1839 @@
+{
+  "executado_em": "2026-10-09T23:31:21+00:00",
+  "recall": {
+    "caracteres": {
+      "n_trechos": 19,
+      "recall": {
+        "1": 0.6875,
+        "3": 0.9375,
+        "5": 1.0
+      },
+      "posicoes": {
+        "Q01": 2,
+        "Q02": 4,
+        "Q03": 1,
+        "Q04": 2,
+        "Q05": 1,
+        "Q06": 1,
+        "Q07": 1,
+        "Q08": 1,
+        "Q09": 1,
+        "Q10": 1,
+        "Q11": 1,
+        "Q12": 3,
+        "Q13": 1,
+        "Q14": 1,
+        "Q15": 2,
+        "Q16": 1
+      },
+      "fracao_corpus_na_janela": 0.15789473684210525
+    },
+    "caracteres+overlap": {
+      "n_trechos": 19,
+      "recall": {
+        "1": 0.6875,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "posicoes": {
+        "Q01": 2,
+        "Q02": 1,
+        "Q03": 1,
+        "Q04": 2,
+        "Q05": 1,
+        "Q06": 1,
+        "Q07": 1,
+        "Q08": 1,
+        "Q09": 1,
+        "Q10": 2,
+        "Q11": 1,
+        "Q12": 3,
+        "Q13": 1,
+        "Q14": 1,
+        "Q15": 2,
+        "Q16": 1
+      },
+      "fracao_corpus_na_janela": 0.17105576515711762
+    },
+    "estrutura": {
+      "n_trechos": 68,
+      "recall": {
+        "1": 0.875,
+        "3": 0.9375,
+        "5": 0.9375
+      },
+      "posicoes": {
+        "Q01": 1,
+        "Q02": 1,
+        "Q03": 1,
+        "Q04": 1,
+        "Q05": 1,
+        "Q06": 1,
+        "Q07": 2,
+        "Q08": 1,
+        "Q09": 1,
+        "Q10": 1,
+        "Q11": 1,
+        "Q12": 1,
+        "Q13": 1,
+        "Q14": 1,
+        "Q15": 9,
+        "Q16": 1
+      },
+      "fracao_corpus_na_janela": 0.05174814031352003
+    }
+  },
+  "portao": {
+    "limiar": 0.1685,
+    "barradas_sem_resposta": 4,
+    "barradas_com_resposta": 0,
+    "maior_distancia_com_resposta": 0.16374075412750244,
+    "menor_distancia_sem_resposta": 0.16879945993423462,
+    "menor_distancia_por_pergunta": {
+      "Q01": 0.08937108516693115,
+      "Q02": 0.12187755107879639,
+      "Q03": 0.10920608043670654,
+      "Q04": 0.1103893518447876,
+      "Q05": 0.10186266899108887,
+      "Q06": 0.08983063697814941,
+      "Q07": 0.13450372219085693,
+      "Q08": 0.09770309925079346,
+      "Q09": 0.08959364891052246,
+      "Q10": 0.09481477737426758,
+      "Q11": 0.1210666298866272,
+      "Q12": 0.1384798288345337,
+      "Q13": 0.10607492923736572,
+      "Q14": 0.07376199960708618,
+      "Q15": 0.16374075412750244,
+      "Q16": 0.13928180932998657,
+      "U01": 0.17037063837051392,
+      "U02": 0.21555519104003906,
+      "U03": 0.1951027512550354,
+      "U04": 0.16879945993423462
+    },
+    "curva": [
+      {
+        "limiar": 0.14,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1405,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.141,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1415,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.142,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1425,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.143,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1435,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.144,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1445,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.145,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1455,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.146,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1465,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.147,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1475,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.148,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1485,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.149,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1495,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.15,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1505,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.151,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1515,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.152,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1525,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.153,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1535,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.154,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1545,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.155,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1555,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.156,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1565,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.157,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1575,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.158,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1585,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.159,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1595,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.16,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1605,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.161,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1615,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.162,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1625,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.163,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1635,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 1,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.164,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1645,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.165,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1655,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.166,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1665,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.167,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1675,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.168,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1685,
+        "barradas_sem_resposta": 4,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.169,
+        "barradas_sem_resposta": 3,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1695,
+        "barradas_sem_resposta": 3,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.17,
+        "barradas_sem_resposta": 3,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1705,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.171,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1715,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.172,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1725,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.173,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1735,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.174,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1745,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.175,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1755,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.176,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1765,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.177,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1775,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.178,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1785,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.179,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1795,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.18,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1805,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.181,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1815,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.182,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1825,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.183,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1835,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.184,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1845,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.185,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1855,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.186,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1865,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.187,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1875,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.188,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1885,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.189,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1895,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.19,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1905,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.191,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1915,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.192,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1925,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.193,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1935,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.194,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1945,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.195,
+        "barradas_sem_resposta": 2,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1955,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.196,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1965,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.197,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1975,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.198,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1985,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.199,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.1995,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2005,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.201,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2015,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.202,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2025,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.203,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2035,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.204,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2045,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.205,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2055,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.206,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2065,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.207,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2075,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.208,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2085,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.209,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2095,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.21,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2105,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.211,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2115,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.212,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2125,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.213,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2135,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.214,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2145,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.215,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2155,
+        "barradas_sem_resposta": 1,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.216,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2165,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.217,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2175,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.218,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2185,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.219,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2195,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.22,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2205,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.221,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2215,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.222,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2225,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.223,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2235,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.224,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2245,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.225,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2255,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.226,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2265,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.227,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2275,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.228,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2285,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.229,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2295,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.23,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2305,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.231,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2315,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.232,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2325,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.233,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2335,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.234,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2345,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.235,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2355,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.236,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2365,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.237,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2375,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.238,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2385,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.239,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.2395,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      },
+      {
+        "limiar": 0.24,
+        "barradas_sem_resposta": 0,
+        "total_sem_resposta": 4,
+        "barradas_com_resposta": 0,
+        "total_com_resposta": 16
+      }
+    ]
+  },
+  "falhas": [
+    {
+      "id": "Q15",
+      "posicao": 9,
+      "recuperados": [
+        "politica-precificacao-2026#s04",
+        "glossario-precos#s06",
+        "politica-precificacao-2026#s07"
+      ],
+      "testes": [
+        {
+          "reformulacao": "Dá para calcular a margem de uma farmácia concorrente?",
+          "posicao_da_evidencia": 1
+        },
+        {
+          "reformulacao": "Qual a margem bruta da farmácia Pague Menos?",
+          "posicao_da_evidencia": 6
+        }
+      ],
+      "diagnostico": "limitacao do vetor (entidade)"
+    }
+  ],
+  "similar_nao_relevante": [
+    {
+      "id": "Q07",
+      "primeiro": "sazonalidade#s01",
+      "posicao_evidencia": 2
+    },
+    {
+      "id": "Q15",
+      "primeiro": "politica-precificacao-2026#s04",
+      "posicao_evidencia": 9
+    }
+  ],
+  "portao_desligado": {
+    "executado": true,
+    "casos": [
+      {
+        "id": "U01",
+        "desligado": "A base de conhecimento não trata do prazo de pagamento com a distribuidora Profarma; o assunto mais próximo encontrado nos trechos é o cálculo de desconto praticado em farmácias.",
+        "desligado_recusou": true,
+        "desligado_trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "desligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "regras-ruptura#s04",
+              "distancia": 0.1704
+            },
+            {
+              "posicao": 2,
+              "id": "glossario-precos#s05",
+              "distancia": 0.1841
+            },
+            {
+              "posicao": 3,
+              "id": "glossario-precos#s06",
+              "distancia": 0.1866
+            }
+          ],
+          "latencia_s": 1.598,
+          "finish_reason": "stop",
+          "tokens": 1060,
+          "saida_bruta": "{\"resposta\":\"A base de conhecimento não trata do prazo de pagamento com a distribuidora Profarma; o assunto mais próximo encontrado nos trechos é o cálculo de desconto praticado em farmácias.\",\"citacoes\":[],\"recusou\":true}",
+          "decisao": "recusou"
+        },
+        "ligado": "A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Regras de ruptura e disponibilidade no monitoramento — Exceção: sem coleta recente» [regras-ruptura#s04], a uma distância de 0.1704 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI."
+      },
+      {
+        "id": "U02",
+        "desligado": "A base de conhecimento não trata da meta de faturamento da filial Centro para dezembro; o assunto mais próximo encontrado é a margem do mês.",
+        "desligado_recusou": true,
+        "desligado_trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "desligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "metricas-margem#s03",
+              "distancia": 0.2156
+            },
+            {
+              "posicao": 2,
+              "id": "fefo-validade#s02",
+              "distancia": 0.2183
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2025#s04",
+              "distancia": 0.2189
+            }
+          ],
+          "latencia_s": 0.867,
+          "finish_reason": "stop",
+          "tokens": 1004,
+          "saida_bruta": "{\"resposta\":\"A base de conhecimento não trata da meta de faturamento da filial Centro para dezembro; o assunto mais próximo encontrado é a margem do mês.\",\"citacoes\":[],\"recusou\":true}",
+          "decisao": "recusou"
+        },
+        "ligado": "A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Métricas de margem — definições oficiais — Margem do mês» [metricas-margem#s03], a uma distância de 0.2156 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI."
+      },
+      {
+        "id": "U03",
+        "desligado": "A base de conhecimento não trata do assunto de frete, mas aborda preços de produtos.",
+        "desligado_recusou": true,
+        "desligado_trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "desligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "faq-gestores#s01",
+              "distancia": 0.1951
+            },
+            {
+              "posicao": 2,
+              "id": "dicionario-dados-fractal-precos#s03",
+              "distancia": 0.204
+            },
+            {
+              "posicao": 3,
+              "id": "faq-gestores#s03",
+              "distancia": 0.2056
+            }
+          ],
+          "latencia_s": 1.188,
+          "finish_reason": "stop",
+          "tokens": 1151,
+          "saida_bruta": "{\"resposta\":\"A base de conhecimento não trata do assunto de frete, mas aborda preços de produtos.\", \"citacoes\":[],\"recusou\":true}",
+          "decisao": "recusou"
+        },
+        "ligado": "A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Perguntas frequentes dos gestores sobre o agente de BI — Por que Drogasil e Raia têm preços diferentes se são do mesmo grupo?» [faq-gestores#s01], a uma distância de 0.1951 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI."
+      },
+      {
+        "id": "U04",
+        "desligado": "A base de conhecimento não trata da política de troca e devolução para clientes finais. O assunto mais próximo encontrado nos trechos é a devolução de itens ao fornecedor por acordo comercial de troca de vencidos.",
+        "desligado_recusou": true,
+        "desligado_trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "desligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "fefo-validade#s04",
+              "distancia": 0.1688
+            },
+            {
+              "posicao": 2,
+              "id": "fefo-validade#s02",
+              "distancia": 0.1758
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2025#s01",
+              "distancia": 0.185
+            }
+          ],
+          "latencia_s": 1.22,
+          "finish_reason": "stop",
+          "tokens": 1007,
+          "saida_bruta": "{\"resposta\":\"A base de conhecimento não trata da política de troca e devolução para clientes finais. O assunto mais próximo encontrado nos trechos é a devolução de itens ao fornecedor por acordo comercial de troca de vencidos.\",\"citacoes\":[],\"recusou\":true}",
+          "decisao": "recusou"
+        },
+        "ligado": "A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Validade de estoque, FEFO e perda por vencimento — Exceção: devolução ao fornecedor» [fefo-validade#s04], a uma distância de 0.1688 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI."
+      }
+    ]
+  },
+  "desafio_a": [
+    {
+      "modelo": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "estrategia": "caracteres",
+      "recall": {
+        "1": 0.375,
+        "3": 0.75,
+        "5": 0.9375
+      },
+      "folga": -0.11407577991485596
+    },
+    {
+      "modelo": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "estrategia": "caracteres+overlap",
+      "recall": {
+        "1": 0.5,
+        "3": 0.875,
+        "5": 1.0
+      },
+      "folga": -0.13799017667770386
+    },
+    {
+      "modelo": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "estrategia": "estrutura",
+      "recall": {
+        "1": 0.625,
+        "3": 0.9375,
+        "5": 1.0
+      },
+      "folga": -0.0942150354385376
+    },
+    {
+      "modelo": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+      "estrategia": "caracteres",
+      "recall": {
+        "1": 0.375,
+        "3": 0.875,
+        "5": 0.9375
+      },
+      "folga": -0.09899133443832397
+    },
+    {
+      "modelo": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+      "estrategia": "caracteres+overlap",
+      "recall": {
+        "1": 0.375,
+        "3": 0.9375,
+        "5": 1.0
+      },
+      "folga": -0.09899133443832397
+    },
+    {
+      "modelo": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+      "estrategia": "estrutura",
+      "recall": {
+        "1": 0.5625,
+        "3": 0.9375,
+        "5": 0.9375
+      },
+      "folga": -0.1515277624130249
+    },
+    {
+      "modelo": "intfloat/multilingual-e5-large",
+      "estrategia": "caracteres",
+      "recall": {
+        "1": 0.6875,
+        "3": 0.9375,
+        "5": 1.0
+      },
+      "folga": -0.002942383289337158
+    },
+    {
+      "modelo": "intfloat/multilingual-e5-large",
+      "estrategia": "caracteres+overlap",
+      "recall": {
+        "1": 0.6875,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "folga": -0.002942383289337158
+    },
+    {
+      "modelo": "intfloat/multilingual-e5-large",
+      "estrategia": "estrutura",
+      "recall": {
+        "1": 0.875,
+        "3": 0.9375,
+        "5": 0.9375
+      },
+      "folga": 0.005058705806732178
+    }
+  ],
+  "carimbo": {
+    "modelo de embedding": "fastembed:intfloat/multilingual-e5-large",
+    "chunking": "estrutura (seção ##, herda título; alternativas medidas: 1200 caracteres, 1200+200 de overlap)",
+    "métrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+    "k": "3",
+    "limiar do portão": "0.1685",
+    "conjunto de perguntas": "dados/avaliacao/perguntas_rag_v1.jsonl (v1)"
+  }
+}
