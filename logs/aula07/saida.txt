@@ -1,0 +1,86 @@
+PIPELINE
+  k=3   limiar=0.1685   prompt de resposta v1.0   juiz qwen/qwen3.8-27b (juiz_fidelidade_rag_v1@v1.0)
+
+MÉTRICAS (20 perguntas; índice sem curadoria)
+  recall@k ................. 93.8%  (15/16)
+  citações verificáveis .... 100.0%  (19/19)
+  fidelidade ............... 100.0%  (16/16; juiz NÃO validado — ver Aula 11)
+  recusas corretas ......... 4/4
+  recusas indevidas ........ 1/16
+
+DIAGNÓSTICO POR PERGUNTA
+  Q01  recall ok      fidelidade ok      -> ok
+  Q02  recall ok      fidelidade ok      -> ok
+  Q03  recall ok      fidelidade ok      -> ok
+  Q04  recall ok      fidelidade ok      -> ok
+  Q05  recall ok      fidelidade ok      -> ok
+  Q06  recall ok      fidelidade ok      -> ok
+  Q07  recall ok      fidelidade ok      -> ok
+  Q08  recall ok      fidelidade ok      -> ok
+  Q09  recall ok      fidelidade ok      -> ok
+  Q10  recall ok      fidelidade ok      -> ok
+  Q11  recall ok      fidelidade ok      -> corpus
+  Q12  recall ok      fidelidade ok      -> ok
+  Q13  recall ok      fidelidade ok      -> ok
+  Q14  recall ok      fidelidade ok      -> ok
+  Q15  recall falhou  fidelidade ok      -> índice
+  Q16  recall ok      fidelidade ok      -> ok
+  U01  sem resposta no corpus  recusou=True  -> ok (recusou)
+  U02  sem resposta no corpus  recusou=True  -> ok (recusou)
+  U03  sem resposta no corpus  recusou=True  -> ok (recusou)
+  U04  sem resposta no corpus  recusou=True  -> ok (recusou)
+
+CONTROLE DO JUIZ (respostas adulteradas de propósito)
+  Q01 número trocado                         esperado fiel=False correta=False | juiz fiel=False correta=False  ok
+  Q09 certa, com um fato a mais inventado    esperado fiel=False correta=True | juiz fiel=False correta=False  ERROU
+  Q12 controle positivo                      esperado fiel=True correta=True | juiz fiel=True correta=True  ok
+  o juiz acertou 2/3 controles
+
+LIMIAR — os dois erros (falso positivo: respondeu quando devia recusar; falso negativo: recusou podendo responder)
+    limiar   falso positivo   falso negativo
+    0.1600             0/4             1/16
+    0.1630             0/4             1/16
+    0.1655             0/4             0/16
+    0.1685             0/4             0/16   <- escolhido
+    0.1700             0/4             0/16
+    0.1750             0/4             0/16
+    0.2000             0/4             0/16
+  sem portão, o modelo recusou sozinho: U01=sim, U02=sim, U03=sim, U04=sim
+
+ORDEM DO CONTEXTO
+  Q01 relevância: correta | invertida: ERRADA  citações ['politica-precificacao-2025#s02', 'politica-precificacao-2026#s02']
+  Q02 relevância: correta | invertida: correta  citações ['politica-precificacao-2026#s06']
+  Q03 relevância: correta | invertida: correta  citações ['glossario-precos#s06', 'politica-precificacao-2026#s05']
+
+MODOS DE FALHA REPRODUZIDOS
+  não recuperou ......... Q15 «Dá para calcular a margem da Pague Menos no Ozempic?»
+      trace: ['politica-precificacao-2026#s04', 'glossario-precos#s06', 'politica-precificacao-2026#s07']
+  recuperou e ignorou ... não reproduzido em 6 tentativas (trecho certo na posição 5 de 9)
+  contradisse ........... não reproduzido na rodada principal
+  respondeu sem base .... não reproduzido: o modelo recusou mesmo sem portão
+
+CORPUS DESATUALIZADO
+  Q01 documento revogado no contexto: sim | sem curadoria: correta | com filtro somente_vigentes: correta
+      sem curadoria: O desconto máximo permitido sobre o preço de tabela para medicamentos de referência é de 15%.
+  Q10 documento revogado no contexto: sim | sem curadoria: correta | com filtro somente_vigentes: correta
+      sem curadoria: A política de 2026 permite até 14 dias de margem reduzida. A política de 2025 permite até 30 dias. Assim, há divergência entre as versões.
+  Q12 documento revogado no contexto: sim | sem curadoria: correta | com filtro somente_vigentes: correta
+      sem curadoria: A margem bruta mínima exigida pela política é de 18% sobre o preço líquido.
+  documento revogado: politica-precificacao-2025   o sistema detectou (sem o filtro de metadado)
+
+CARIMBO
+  modelo_llm .............. openai/gpt-oss-20b
+  temperatura ............. 0.0
+  max_tokens .............. 1500
+  prompt_resposta ......... resposta_rag_v1@v1.0
+  modelo_embedding ........ fastembed:intfloat/multilingual-e5-large
+  chunking ................ estrutura
+  metrica ................. cosseno (distância = 1 - cosseno, vetores normalizados)
+  k ....................... 3
+  limiar_portao ........... 0.1685
+  filtro_corpus ........... nenhum
+  modelo_juiz ............. qwen/qwen3.8-27b
+  rubrica_juiz ............ juiz_fidelidade_rag_v1@v1.0
+  filtro_corpus_producao .. somente_vigentes
+
+[log em logs/aula07/resposta_que_cita.json; saída em logs/aula07/saida.txt]

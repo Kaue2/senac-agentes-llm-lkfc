@@ -1,0 +1,2197 @@
+{
+  "executado_em": "2026-10-09T23:36:00+00:00",
+  "casos": {
+    "Q01": {
+      "pergunta": "Qual é o desconto máximo permitido sobre o preço de tabela para medicamentos de referência?",
+      "rodada_principal": {
+        "resposta": "O desconto máximo permitido sobre o preço de tabela para medicamentos de referência é de 15%.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2026#s02"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s02",
+              "distancia": 0.0894
+            },
+            {
+              "posicao": 2,
+              "id": "politica-precificacao-2025#s02",
+              "distancia": 0.0903
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2026#s03",
+              "distancia": 0.1139
+            }
+          ],
+          "latencia_s": 0.999,
+          "finish_reason": "stop",
+          "tokens": 831,
+          "saida_bruta": "{\"resposta\":\"O desconto máximo permitido sobre o preço de tabela para medicamentos de referência é de 15%.\",\"citacoes\":[\"[politica-precificacao-2026#s02]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta afirma o teto de 15%, que está presente nos trechos da política 2026 e é idêntico à informação da referência.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q02": {
+      "pergunta": "Um medicamento tarja preta pode entrar em campanha promocional?",
+      "rodada_principal": {
+        "resposta": "Não, medicamentos tarja preta não podem participar de campanhas promocionais.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2026#s06"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s06",
+              "distancia": 0.1219
+            },
+            {
+              "posicao": 2,
+              "id": "programas-pbm#s03",
+              "distancia": 0.1634
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2025#s02",
+              "distancia": 0.1673
+            }
+          ],
+          "latencia_s": 0.804,
+          "finish_reason": "stop",
+          "tokens": 876,
+          "saida_bruta": "{\"resposta\":\"Não, medicamentos tarja preta não podem participar de campanhas promocionais.\",\"citacoes\":[\"[politica-precificacao-2026#s06]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta afirma corretamente que medicamentos tarja preta não podem participar de campanhas promocionais, o que está explicitamente nos trechos e é consistente com a referência.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q03": {
+      "pergunta": "O desconto do PBM conta para o teto de desconto da rede?",
+      "rodada_principal": {
+        "resposta": "Não, o desconto do PBM não conta para o teto de desconto da rede.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2026#s05",
+          "glossario-precos#s06"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s05",
+              "distancia": 0.1092
+            },
+            {
+              "posicao": 2,
+              "id": "glossario-precos#s06",
+              "distancia": 0.1451
+            },
+            {
+              "posicao": 3,
+              "id": "coleta-precos#s05",
+              "distancia": 0.1469
+            }
+          ],
+          "latencia_s": 0.711,
+          "finish_reason": "stop",
+          "tokens": 899,
+          "saida_bruta": "{\"resposta\":\"Não, o desconto do PBM não conta para o teto de desconto da rede.\",\"citacoes\":[\"[politica-precificacao-2026#s05]\",\"[glossario-precos#s06]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta afirma corretamente que o desconto do PBM não conta para o teto, o que está explicitamente nos trechos e é consistente com a referência.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q04": {
+      "pergunta": "O que é o PrecoPbm e para quem ele vale?",
+      "rodada_principal": {
+        "resposta": "PrecoPbm é o preço com o desconto de um Programa de Benefício em Medicamentos (PBM) do laboratório. Ele só vale para o paciente cadastrado no programa e só existe quando a farmácia aderiu ao programa daquele produto.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "glossario-precos#s05"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "glossario-precos#s05",
+              "distancia": 0.1104
+            },
+            {
+              "posicao": 2,
+              "id": "programas-pbm#s05",
+              "distancia": 0.1519
+            },
+            {
+              "posicao": 3,
+              "id": "programas-pbm#s01",
+              "distancia": 0.1551
+            }
+          ],
+          "latencia_s": 0.823,
+          "finish_reason": "stop",
+          "tokens": 1185,
+          "saida_bruta": "{\"resposta\":\"PrecoPbm é o preço com o desconto de um Programa de Benefício em Medicamentos (PBM) do laboratório. Ele só vale para o paciente cadastrado no programa e só existe quando a farmácia aderiu ao programa daquele produto.\",\"citacoes\":[\"[glossario-precos#s05]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta repete fielmente as informações presentes nos trechos e está em total concordância com a referência quanto à definição e ao público-alvo do PrecoPbm.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q05": {
+      "pergunta": "Se o produto apareceu indisponível em só uma coleta, já posso dizer que está em ruptura?",
+      "rodada_principal": {
+        "resposta": "Não, com apenas uma coleta indisponível a situação é considerada ruptura a confirmar, não ruptura confirmada.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "regras-ruptura#s03"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "regras-ruptura#s03",
+              "distancia": 0.1019
+            },
+            {
+              "posicao": 2,
+              "id": "regras-ruptura#s04",
+              "distancia": 0.1214
+            },
+            {
+              "posicao": 3,
+              "id": "regras-ruptura#s01",
+              "distancia": 0.1344
+            }
+          ],
+          "latencia_s": 0.58,
+          "finish_reason": "stop",
+          "tokens": 848,
+          "saida_bruta": "{\"resposta\":\"Não, com apenas uma coleta indisponível a situação é considerada ruptura a confirmar, não ruptura confirmada.\",\"citacoes\":[\"[regras-ruptura#s03]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta está fiel aos trechos, que afirmam que uma única coleta resulta em 'ruptura a confirmar', e é correta em relação à referência, que confirma que não é ruptura confirmada com apenas uma coleta.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q06": {
+      "pergunta": "A última coleta do produto na farmácia foi há 5 dias e ele estava indisponível. Ele está em ruptura?",
+      "rodada_principal": {
+        "resposta": "Não, ele não está em ruptura. A última coleta foi há mais de 3 dias, o que a torna \"sem coleta recente\" e não se considera ruptura.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "regras-ruptura#s04"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "regras-ruptura#s04",
+              "distancia": 0.0898
+            },
+            {
+              "posicao": 2,
+              "id": "regras-ruptura#s02",
+              "distancia": 0.1098
+            },
+            {
+              "posicao": 3,
+              "id": "regras-ruptura#s01",
+              "distancia": 0.1169
+            }
+          ],
+          "latencia_s": 0.787,
+          "finish_reason": "stop",
+          "tokens": 1038,
+          "saida_bruta": "{\"resposta\":\"Não, ele não está em ruptura. A última coleta foi há mais de 3 dias, o que a torna \\\"sem coleta recente\\\" e não se considera ruptura.\",\"citacoes\":[\"[regras-ruptura#s04]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta está fiel aos trechos, que estabelecem que coletas com mais de 3 dias são classificadas como 'sem coleta recente' e não como ruptura, e é correta em relação à referência, que confirma a mesma classificação.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q07": {
+      "pergunta": "Como devo comparar as vendas de antigripais de julho?",
+      "rodada_principal": {
+        "resposta": "Para comparar as vendas de antigripais em julho, compare o volume de julho deste ano com o volume de julho do ano anterior, pois a categoria é sazonal.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "sazonalidade#s02",
+          "sazonalidade#s01"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "sazonalidade#s01",
+              "distancia": 0.1345
+            },
+            {
+              "posicao": 2,
+              "id": "sazonalidade#s02",
+              "distancia": 0.1449
+            },
+            {
+              "posicao": 3,
+              "id": "sazonalidade#s03",
+              "distancia": 0.1712
+            }
+          ],
+          "latencia_s": 0.766,
+          "finish_reason": "stop",
+          "tokens": 983,
+          "saida_bruta": "{\"resposta\":\"Para comparar as vendas de antigripais em julho, compare o volume de julho deste ano com o volume de julho do ano anterior, pois a categoria é sazonal.\",\"citacoes\":[\"[sazonalidade#s02]\",\"[sazonalidade#s01]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta está fiel aos trechos que indicam a sazonalidade dos antigripais e a regra de comparação com o mesmo período do ano anterior, e é correta pois alinha-se perfeitamente à referência.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q08": {
+      "pergunta": "Remédio vencido devolvido ao fornecedor entra na perda por vencimento?",
+      "rodada_principal": {
+        "resposta": "Não, remédios vencidos devolvidos ao fornecedor não contam como perda por vencimento, pois o custo é recuperado e são registrados em um indicador separado de devolução ao fornecedor.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "fefo-validade#s04"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "fefo-validade#s04",
+              "distancia": 0.0977
+            },
+            {
+              "posicao": 2,
+              "id": "fefo-validade#s03",
+              "distancia": 0.1358
+            },
+            {
+              "posicao": 3,
+              "id": "fefo-validade#s05",
+              "distancia": 0.1373
+            }
+          ],
+          "latencia_s": 0.596,
+          "finish_reason": "stop",
+          "tokens": 810,
+          "saida_bruta": "{\"resposta\":\"Não, remédios vencidos devolvidos ao fornecedor não contam como perda por vencimento, pois o custo é recuperado e são registrados em um indicador separado de devolução ao fornecedor.\",\"citacoes\":[\"[fefo-validade#s04]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta está totalmente alinhada com os trechos fornecidos e a referência, confirmando que a devolução ao fornecedor não é contabilizada como perda por vencimento.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q09": {
+      "pergunta": "Em que horário roda a coleta diária de preços?",
+      "rodada_principal": {
+        "resposta": "A coleta diária de preços roda entre 02:00 e 06:00, horário de Brasília.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "coleta-precos#s02"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "coleta-precos#s02",
+              "distancia": 0.0896
+            },
+            {
+              "posicao": 2,
+              "id": "dicionario-dados-fractal-precos#s09",
+              "distancia": 0.1219
+            },
+            {
+              "posicao": 3,
+              "id": "faq-gestores#s03",
+              "distancia": 0.1298
+            }
+          ],
+          "latencia_s": 0.564,
+          "finish_reason": "stop",
+          "tokens": 787,
+          "saida_bruta": "{\"resposta\":\"A coleta diária de preços roda entre 02:00 e 06:00, horário de Brasília.\",\"citacoes\":[\"[coleta-precos#s02]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta contém exatamente as informações presentes nos trechos e na referência, sem adicionar fatos externos nem contradizer as fontes.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q10": {
+      "pergunta": "Por quanto tempo um item de preço de combate pode ficar com margem reduzida?",
+      "rodada_principal": {
+        "resposta": "A política de 2026 permite até 14 dias de margem reduzida. A política de 2025 permite até 30 dias. Assim, há divergência entre as versões.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2026#s07",
+          "politica-precificacao-2025#s05"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s07",
+              "distancia": 0.0948
+            },
+            {
+              "posicao": 2,
+              "id": "politica-precificacao-2025#s05",
+              "distancia": 0.1084
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2025#s04",
+              "distancia": 0.149
+            }
+          ],
+          "latencia_s": 0.676,
+          "finish_reason": "stop",
+          "tokens": 1032,
+          "saida_bruta": "{\"resposta\":\"A política de 2026 permite até 14 dias de margem reduzida. A política de 2025 permite até 30 dias. Assim, há divergência entre as versões.\",\"citacoes\":[\"[politica-precificacao-2026#s07]\",\"[politica-precificacao-2025#s05]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta está fiel aos trechos pois cita corretamente os prazos de 14 dias (2026) e 30 dias (2025), e é correta em relação à referência pois fornece o prazo de 14 dias exigido pela política vigente (2026).",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q11": {
+      "pergunta": "Por que o PrecoPbm vem vazio para um produto que tem programa?",
+      "rodada_principal": {
+        "resposta": "O PrecoPbm fica vazio porque o site da farmácia só mostra o preço do PBM depois que o cliente faz login, então o campo fica nulo mesmo que o programa exista para aquele produto naquela farmácia. Isso acontece mesmo que a rede tenha aderido ao programa.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "coleta-precos#s05",
+          "glossario-precos#s05"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "programas-pbm#s03",
+              "distancia": 0.1211
+            },
+            {
+              "posicao": 2,
+              "id": "glossario-precos#s05",
+              "distancia": 0.1254
+            },
+            {
+              "posicao": 3,
+              "id": "coleta-precos#s05",
+              "distancia": 0.1348
+            }
+          ],
+          "latencia_s": 1.046,
+          "finish_reason": "stop",
+          "tokens": 1412,
+          "saida_bruta": "{\"resposta\":\"O PrecoPbm fica vazio porque o site da farmácia só mostra o preço do PBM depois que o cliente faz login, então o campo fica nulo mesmo que o programa exista para aquele produto naquela farmácia. Isso acontece mesmo que a rede tenha aderido ao programa.\",\"citacoes\":[\"[coleta-precos#s05]\",\"[glossario-precos#s05]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": false,
+        "justificativa": "A resposta é fiel aos trechos, mas incorreta em relação à referência pois omite a segunda causa possível (não adesão da rede) e afirma categoricamente que a rede aderiu, o que contradiz a possibilidade de ausência de adesão citada na referência.",
+        "erro": null
+      },
+      "diagnostico": "corpus"
+    },
+    "Q12": {
+      "pergunta": "Qual é a margem bruta mínima exigida pela política?",
+      "rodada_principal": {
+        "resposta": "A margem bruta mínima exigida pela política é de 18% sobre o preço líquido.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2026#s04"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s04",
+              "distancia": 0.1385
+            },
+            {
+              "posicao": 2,
+              "id": "politica-precificacao-2025#s04",
+              "distancia": 0.1395
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2026#s07",
+              "distancia": 0.1563
+            }
+          ],
+          "latencia_s": 1.807,
+          "finish_reason": "stop",
+          "tokens": 945,
+          "saida_bruta": "{\"resposta\":\"A margem bruta mínima exigida pela política é de 18% sobre o preço líquido.\",\"citacoes\":[\"[politica-precificacao-2026#s04]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta afirma exatamente o valor de 18% presente nos trechos da política 2026 e coincide com a referência fornecida.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q13": {
+      "pergunta": "Qual view devo usar para saber desde quando um produto está em falta?",
+      "rodada_principal": {
+        "resposta": "Use a view vw_Ruptura.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "dicionario-dados-fractal-precos#s08"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "dicionario-dados-fractal-precos#s08",
+              "distancia": 0.1061
+            },
+            {
+              "posicao": 2,
+              "id": "dicionario-dados-fractal-precos#s07",
+              "distancia": 0.1483
+            },
+            {
+              "posicao": 3,
+              "id": "regras-ruptura#s05",
+              "distancia": 0.1518
+            }
+          ],
+          "latencia_s": 9.019,
+          "finish_reason": "stop",
+          "tokens": 922,
+          "saida_bruta": "{\"resposta\":\"Use a view vw_Ruptura.\",\"citacoes\":[\"[dicionario-dados-fractal-precos#s08]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta identifica corretamente a view vw_Ruptura, que é a única mencionada nos trechos e na referência como a ferramenta para responder à pergunta sobre o tempo de falta do produto.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q14": {
+      "pergunta": "Por que a Raia e a Drogasil mostram preços diferentes para o mesmo remédio?",
+      "rodada_principal": {
+        "resposta": "Drogasil e Raia são bandeiras separadas com sites e preços próprios, e o monitoramento trata cada uma como farmácia distinta, portanto é esperado que o preço de um mesmo produto seja diferente entre elas.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "faq-gestores#s01"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "faq-gestores#s01",
+              "distancia": 0.0738
+            },
+            {
+              "posicao": 2,
+              "id": "dicionario-dados-fractal-precos#s03",
+              "distancia": 0.1516
+            },
+            {
+              "posicao": 3,
+              "id": "glossario-precos#s07",
+              "distancia": 0.1613
+            }
+          ],
+          "latencia_s": 5.901,
+          "finish_reason": "stop",
+          "tokens": 1029,
+          "saida_bruta": "{\"resposta\":\"Drogasil e Raia são bandeiras separadas com sites e preços próprios, e o monitoramento trata cada uma como farmácia distinta, portanto é esperado que o preço de um mesmo produto seja diferente entre elas.\",\"citacoes\":[\"[faq-gestores#s01]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta está totalmente fundamentada nos trechos fornecidos e transmite a mesma informação central da referência sobre a operação independente das bandeiras.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "Q15": {
+      "pergunta": "Dá para calcular a margem da Pague Menos no Ozempic?",
+      "rodada_principal": {
+        "resposta": "A base de conhecimento não trata do assunto. O assunto mais próximo encontrado é a política de precificação de balcão e e-commerce, que define margem bruta mínima.",
+        "recusou": true,
+        "barrado_pelo_portao": false,
+        "citacoes": [],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s04",
+              "distancia": 0.1637
+            },
+            {
+              "posicao": 2,
+              "id": "glossario-precos#s06",
+              "distancia": 0.1662
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2026#s07",
+              "distancia": 0.1687
+            }
+          ],
+          "latencia_s": 5.978,
+          "finish_reason": "stop",
+          "tokens": 961,
+          "saida_bruta": "{\"resposta\":\"A base de conhecimento não trata do assunto. O assunto mais próximo encontrado é a política de precificação de balcão e e-commerce, que define margem bruta mínima.\",\"citacoes\":[],\"recusou\":true}",
+          "decisao": "recusou"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": false,
+        "justificativa": "A resposta é fiel aos trechos pois não afirma fatos externos, mas é incorreta em relação à referência porque recusa responder (diz que a base não trata do assunto) enquanto a referência fornece uma explicação lógica para a impossibilidade do cálculo.",
+        "erro": null
+      },
+      "diagnostico": "índice"
+    },
+    "Q16": {
+      "pergunta": "O agente pode informar quantas caixas de clonazepam um paciente comprou?",
+      "rodada_principal": {
+        "resposta": "Não, o agente não pode informar quantas caixas de clonazepam um paciente comprou.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "controlados-sngpc#s03"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "controlados-sngpc#s03",
+              "distancia": 0.1393
+            },
+            {
+              "posicao": 2,
+              "id": "controlados-sngpc#s02",
+              "distancia": 0.147
+            },
+            {
+              "posicao": 3,
+              "id": "programas-pbm#s02",
+              "distancia": 0.1562
+            }
+          ],
+          "latencia_s": 6.946,
+          "finish_reason": "stop",
+          "tokens": 1047,
+          "saida_bruta": "{\"resposta\":\"Não, o agente não pode informar quantas caixas de clonazepam um paciente comprou.\",\"citacoes\":[\"[controlados-sngpc#s03]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta nega corretamente a possibilidade de informar o volume por paciente, alinhando-se tanto aos trechos que proíbem essa ação quanto à referência que confirma a proibição.",
+        "erro": null
+      },
+      "diagnostico": "ok"
+    },
+    "U01": {
+      "pergunta": "Qual é o prazo de pagamento negociado com a distribuidora Profarma?",
+      "rodada_principal": {
+        "resposta": "A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Regras de ruptura e disponibilidade no monitoramento — Exceção: sem coleta recente» [regras-ruptura#s04], a uma distância de 0.1704 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI.",
+        "recusou": true,
+        "barrado_pelo_portao": true,
+        "citacoes": [],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "regras-ruptura#s04",
+              "distancia": 0.1704
+            },
+            {
+              "posicao": 2,
+              "id": "glossario-precos#s05",
+              "distancia": 0.1841
+            },
+            {
+              "posicao": 3,
+              "id": "glossario-precos#s06",
+              "distancia": 0.1866
+            }
+          ],
+          "decisao": "barrado_pelo_portao"
+        }
+      },
+      "diagnostico": "ok (recusou)",
+      "portao_desligado": {
+        "resposta": "A base de conhecimento não trata do prazo de pagamento com a distribuidora Profarma; o assunto mais próximo encontrado nos trechos é o cálculo de desconto praticado em farmácias.",
+        "recusou": true,
+        "barrado_pelo_portao": false,
+        "citacoes": [],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "desligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "regras-ruptura#s04",
+              "distancia": 0.1704
+            },
+            {
+              "posicao": 2,
+              "id": "glossario-precos#s05",
+              "distancia": 0.1841
+            },
+            {
+              "posicao": 3,
+              "id": "glossario-precos#s06",
+              "distancia": 0.1866
+            }
+          ],
+          "latencia_s": 9.706,
+          "finish_reason": "stop",
+          "tokens": 1060,
+          "saida_bruta": "{\"resposta\":\"A base de conhecimento não trata do prazo de pagamento com a distribuidora Profarma; o assunto mais próximo encontrado nos trechos é o cálculo de desconto praticado em farmácias.\",\"citacoes\":[],\"recusou\":true}",
+          "decisao": "recusou"
+        }
+      }
+    },
+    "U02": {
+      "pergunta": "Qual a meta de faturamento da filial Centro para dezembro?",
+      "rodada_principal": {
+        "resposta": "A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Métricas de margem — definições oficiais — Margem do mês» [metricas-margem#s03], a uma distância de 0.2156 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI.",
+        "recusou": true,
+        "barrado_pelo_portao": true,
+        "citacoes": [],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "metricas-margem#s03",
+              "distancia": 0.2156
+            },
+            {
+              "posicao": 2,
+              "id": "fefo-validade#s02",
+              "distancia": 0.2183
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2025#s04",
+              "distancia": 0.2189
+            }
+          ],
+          "decisao": "barrado_pelo_portao"
+        }
+      },
+      "diagnostico": "ok (recusou)",
+      "portao_desligado": {
+        "resposta": "A base de conhecimento não trata da meta de faturamento da filial Centro para dezembro; o assunto mais próximo encontrado é a margem do mês.",
+        "recusou": true,
+        "barrado_pelo_portao": false,
+        "citacoes": [],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "desligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "metricas-margem#s03",
+              "distancia": 0.2156
+            },
+            {
+              "posicao": 2,
+              "id": "fefo-validade#s02",
+              "distancia": 0.2183
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2025#s04",
+              "distancia": 0.2189
+            }
+          ],
+          "latencia_s": 6.074,
+          "finish_reason": "stop",
+          "tokens": 1004,
+          "saida_bruta": "{\"resposta\":\"A base de conhecimento não trata da meta de faturamento da filial Centro para dezembro; o assunto mais próximo encontrado é a margem do mês.\",\"citacoes\":[],\"recusou\":true}",
+          "decisao": "recusou"
+        }
+      }
+    },
+    "U03": {
+      "pergunta": "Quanto custa o frete da Drogasil para entregar no interior de Minas?",
+      "rodada_principal": {
+        "resposta": "A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Perguntas frequentes dos gestores sobre o agente de BI — Por que Drogasil e Raia têm preços diferentes se são do mesmo grupo?» [faq-gestores#s01], a uma distância de 0.1951 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI.",
+        "recusou": true,
+        "barrado_pelo_portao": true,
+        "citacoes": [],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "faq-gestores#s01",
+              "distancia": 0.1951
+            },
+            {
+              "posicao": 2,
+              "id": "dicionario-dados-fractal-precos#s03",
+              "distancia": 0.204
+            },
+            {
+              "posicao": 3,
+              "id": "faq-gestores#s03",
+              "distancia": 0.2056
+            }
+          ],
+          "decisao": "barrado_pelo_portao"
+        }
+      },
+      "diagnostico": "ok (recusou)",
+      "portao_desligado": {
+        "resposta": "A base de conhecimento não trata do assunto de frete, mas aborda preços de produtos.",
+        "recusou": true,
+        "barrado_pelo_portao": false,
+        "citacoes": [],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "desligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "faq-gestores#s01",
+              "distancia": 0.1951
+            },
+            {
+              "posicao": 2,
+              "id": "dicionario-dados-fractal-precos#s03",
+              "distancia": 0.204
+            },
+            {
+              "posicao": 3,
+              "id": "faq-gestores#s03",
+              "distancia": 0.2056
+            }
+          ],
+          "latencia_s": 8.162,
+          "finish_reason": "stop",
+          "tokens": 1151,
+          "saida_bruta": "{\"resposta\":\"A base de conhecimento não trata do assunto de frete, mas aborda preços de produtos.\", \"citacoes\":[],\"recusou\":true}",
+          "decisao": "recusou"
+        }
+      }
+    },
+    "U04": {
+      "pergunta": "Qual é a política de troca e devolução de produtos para o cliente final?",
+      "rodada_principal": {
+        "resposta": "A base de conhecimento não trata deste assunto. O trecho mais próximo que encontrei foi «Validade de estoque, FEFO e perda por vencimento — Exceção: devolução ao fornecedor» [fefo-validade#s04], a uma distância de 0.1688 (o limite para responder é 0.1685). Se a pergunta é sobre esse tema, reformule; se não é, ela precisa ir para o time de Dados e BI.",
+        "recusou": true,
+        "barrado_pelo_portao": true,
+        "citacoes": [],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "fefo-validade#s04",
+              "distancia": 0.1688
+            },
+            {
+              "posicao": 2,
+              "id": "fefo-validade#s02",
+              "distancia": 0.1758
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2025#s01",
+              "distancia": 0.185
+            }
+          ],
+          "decisao": "barrado_pelo_portao"
+        }
+      },
+      "diagnostico": "ok (recusou)",
+      "portao_desligado": {
+        "resposta": "A base de conhecimento não trata da política de troca e devolução para clientes finais. O assunto mais próximo encontrado nos trechos é a política de validade de estoque, FEFO e perda por vencimento.",
+        "recusou": true,
+        "barrado_pelo_portao": false,
+        "citacoes": [],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "desligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "fefo-validade#s04",
+              "distancia": 0.1688
+            },
+            {
+              "posicao": 2,
+              "id": "fefo-validade#s02",
+              "distancia": 0.1758
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2025#s01",
+              "distancia": 0.185
+            }
+          ],
+          "latencia_s": 7.215,
+          "finish_reason": "stop",
+          "tokens": 961,
+          "saida_bruta": "{\"resposta\":\"A base de conhecimento não trata da política de troca e devolução para clientes finais. O assunto mais próximo encontrado nos trechos é a política de validade de estoque, FEFO e perda por vencimento.\",\"citacoes\":[],\"recusou\":true}",
+          "decisao": "recusou"
+        }
+      }
+    }
+  },
+  "controle_juiz": [
+    {
+      "id": "Q01",
+      "resposta": "O teto é de 25% sobre o PrecoTabela, aprovado pela diretoria [politica-precificacao-2026#s02].",
+      "juiz": {
+        "fiel": false,
+        "correta": false,
+        "justificativa": "A resposta afirma um teto de 25% e aprovação pela diretoria, o que contradiz os trechos (que indicam 15% e gerente comercial na versão 2026) e a referência (15% e gerente comercial).",
+        "erro": null
+      },
+      "ok": true
+    },
+    {
+      "id": "Q09",
+      "resposta": "A coleta roda entre 02:00 e 06:00, horário de Brasília, e de novo às 14:00 aos sábados.",
+      "juiz": {
+        "fiel": false,
+        "correta": false,
+        "justificativa": "A resposta afirma um horário extra (14:00 aos sábados) que não consta nos trechos e contradiz a referência que indica apenas a janela de 02:00 a 06:00.",
+        "erro": null
+      },
+      "ok": false
+    },
+    {
+      "id": "Q12",
+      "resposta": "18% sobre o preço líquido.",
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta afirma exatamente o valor e a base de cálculo presentes nos trechos da política 2026 e na referência, sem adicionar informações externas ou contraditórias.",
+        "erro": null
+      },
+      "ok": true
+    }
+  ],
+  "ordem": [
+    {
+      "id": "Q01",
+      "invertida": {
+        "resposta": "O desconto máximo permitido sobre o preço de tabela para medicamentos de referência é de 10% (versão 2025) e 15% (versão 2026).",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2025#s02",
+          "politica-precificacao-2026#s02"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "invertida"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s02",
+              "distancia": 0.0894
+            },
+            {
+              "posicao": 2,
+              "id": "politica-precificacao-2025#s02",
+              "distancia": 0.0903
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2026#s03",
+              "distancia": 0.1139
+            }
+          ],
+          "latencia_s": 6.014,
+          "finish_reason": "stop",
+          "tokens": 1124,
+          "saida_bruta": "{\"resposta\":\"O desconto máximo permitido sobre o preço de tabela para medicamentos de referência é de 10% (versão 2025) e 15% (versão 2026).\",\"citacoes\":[\"[politica-precificacao-2025#s02]\",\"[politica-precificacao-2026#s02]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": false,
+        "justificativa": "A resposta é fiel aos trechos pois cita os valores de ambas as versões presentes no texto, mas é incorreta em relação à referência, que estabelece o teto atual (2026) como 15%, enquanto a resposta apresenta o valor de 10% (2025) como parte da resposta direta, gerando ambiguidade ou contradição com a regra vigente indicada na referência.",
+        "erro": null
+      }
+    },
+    {
+      "id": "Q02",
+      "invertida": {
+        "resposta": "Não, um medicamento tarja preta não pode participar de campanhas promocionais.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2026#s06"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "invertida"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s06",
+              "distancia": 0.1219
+            },
+            {
+              "posicao": 2,
+              "id": "programas-pbm#s03",
+              "distancia": 0.1634
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2025#s02",
+              "distancia": 0.1673
+            }
+          ],
+          "latencia_s": 8.802,
+          "finish_reason": "stop",
+          "tokens": 852,
+          "saida_bruta": "{\"resposta\":\"Não, um medicamento tarja preta não pode participar de campanhas promocionais.\",\"citacoes\":[\"[politica-precificacao-2026#s06]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta afirma corretamente que medicamentos tarja preta não podem participar de campanhas promocionais, o que está explicitamente nos trechos e é consistente com a referência.",
+        "erro": null
+      }
+    },
+    {
+      "id": "Q03",
+      "invertida": {
+        "resposta": "Não, o desconto do PBM não conta para o teto de desconto da rede.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "glossario-precos#s06",
+          "politica-precificacao-2026#s05"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "ligado",
+            "ordem_contexto": "invertida"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s05",
+              "distancia": 0.1092
+            },
+            {
+              "posicao": 2,
+              "id": "glossario-precos#s06",
+              "distancia": 0.1451
+            },
+            {
+              "posicao": 3,
+              "id": "coleta-precos#s05",
+              "distancia": 0.1469
+            }
+          ],
+          "latencia_s": 5.194,
+          "finish_reason": "stop",
+          "tokens": 1005,
+          "saida_bruta": "{\"resposta\":\"Não, o desconto do PBM não conta para o teto de desconto da rede.\",\"citacoes\":[\"[glossario-precos#s06]\",\"[politica-precificacao-2026#s05]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta afirma corretamente que o desconto do PBM não conta para o teto, o que está explicitamente nos trechos e é consistente com a referência.",
+        "erro": null
+      }
+    }
+  ],
+  "ignorou_tentativas": [
+    {
+      "id": "Q01",
+      "resultado": {
+        "resposta": "O desconto máximo permitido sobre o PreçoTabela para medicamentos de referência é de 15% (2026). No entanto, a política de 2025 estabelece 10%.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2026#s02",
+          "politica-precificacao-2025#s02"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "não aplicado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2025#s02",
+              "distancia": 0.0903
+            },
+            {
+              "posicao": 2,
+              "id": "politica-precificacao-2026#s03",
+              "distancia": 0.1139
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2025#s03",
+              "distancia": 0.1139
+            },
+            {
+              "posicao": 4,
+              "id": "politica-precificacao-2026#s06",
+              "distancia": 0.1243
+            },
+            {
+              "posicao": 5,
+              "id": "politica-precificacao-2026#s02",
+              "distancia": 0.0894
+            },
+            {
+              "posicao": 6,
+              "id": "glossario-precos#s06",
+              "distancia": 0.1489
+            },
+            {
+              "posicao": 7,
+              "id": "glossario-precos#s02",
+              "distancia": 0.1574
+            },
+            {
+              "posicao": 8,
+              "id": "politica-precificacao-2026#s05",
+              "distancia": 0.1614
+            },
+            {
+              "posicao": 9,
+              "id": "glossario-precos#s05",
+              "distancia": 0.1622
+            }
+          ],
+          "latencia_s": 16.653,
+          "finish_reason": "stop",
+          "tokens": 1750,
+          "saida_bruta": "{\"resposta\":\"O desconto máximo permitido sobre o PreçoTabela para medicamentos de referência é de 15% (2026). No entanto, a política de 2025 estabelece 10%.\",\"citacoes\":[\"politica-precificacao-2026#s02\",\"politica-precificacao-2025#s02\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta afirma corretamente o teto de 15% conforme a política de 2026 (referência) e menciona o teto de 10% da política de 2025, ambos fatos presentes nos trechos fornecidos.",
+        "erro": null
+      }
+    },
+    {
+      "id": "Q02",
+      "resultado": {
+        "resposta": "Não, medicamentos tarja preta não podem participar de campanhas promocionais, pois têm desconto máximo de 5% sobre o PrecoTabela e não podem participar de campanhas promocionais, qual seja o canal.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2026#s06"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "não aplicado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "programas-pbm#s03",
+              "distancia": 0.1634
+            },
+            {
+              "posicao": 2,
+              "id": "politica-precificacao-2025#s02",
+              "distancia": 0.1673
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2026#s02",
+              "distancia": 0.1675
+            },
+            {
+              "posicao": 4,
+              "id": "programas-pbm#s05",
+              "distancia": 0.1689
+            },
+            {
+              "posicao": 5,
+              "id": "politica-precificacao-2026#s06",
+              "distancia": 0.1219
+            },
+            {
+              "posicao": 6,
+              "id": "glossario-precos#s05",
+              "distancia": 0.1693
+            },
+            {
+              "posicao": 7,
+              "id": "politica-precificacao-2026#s05",
+              "distancia": 0.1698
+            },
+            {
+              "posicao": 8,
+              "id": "programas-pbm#s01",
+              "distancia": 0.1745
+            },
+            {
+              "posicao": 9,
+              "id": "politica-precificacao-2026#s03",
+              "distancia": 0.1747
+            }
+          ],
+          "latencia_s": 0.639,
+          "finish_reason": "stop",
+          "tokens": 1482,
+          "saida_bruta": "{\"resposta\":\"Não, medicamentos tarja preta não podem participar de campanhas promocionais, pois têm desconto máximo de 5% sobre o PrecoTabela e não podem participar de campanhas promocionais, qual seja o canal.\",\"citacoes\":[\"[politica-precificacao-2026#s06]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta está fiel aos trechos (que afirmam a proibição e o teto de 5%) e correta em relação à referência (que confirma a proibição).",
+        "erro": null
+      }
+    },
+    {
+      "id": "Q03",
+      "resultado": {
+        "resposta": "Não, o desconto do PBM não conta para o teto de desconto da rede. O desconto do PBM é concedido e reembolsado pelo laboratório, não sendo considerado no cálculo de desconto praticado pela rede. Assim, produtos com PBM ativo não entram no teto de desconto dos artigos 1 e 2.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "glossario-precos#s06",
+          "politica-precificacao-2026#s05"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "não aplicado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "glossario-precos#s06",
+              "distancia": 0.1451
+            },
+            {
+              "posicao": 2,
+              "id": "coleta-precos#s05",
+              "distancia": 0.1469
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2026#s02",
+              "distancia": 0.1476
+            },
+            {
+              "posicao": 4,
+              "id": "politica-precificacao-2025#s02",
+              "distancia": 0.1507
+            },
+            {
+              "posicao": 5,
+              "id": "politica-precificacao-2026#s05",
+              "distancia": 0.1092
+            },
+            {
+              "posicao": 6,
+              "id": "programas-pbm#s03",
+              "distancia": 0.1551
+            },
+            {
+              "posicao": 7,
+              "id": "politica-precificacao-2025#s03",
+              "distancia": 0.1553
+            },
+            {
+              "posicao": 8,
+              "id": "politica-precificacao-2026#s03",
+              "distancia": 0.1554
+            },
+            {
+              "posicao": 9,
+              "id": "politica-precificacao-2026#s06",
+              "distancia": 0.1555
+            }
+          ],
+          "latencia_s": 0.877,
+          "finish_reason": "stop",
+          "tokens": 1573,
+          "saida_bruta": "{\"resposta\":\"Não, o desconto do PBM não conta para o teto de desconto da rede. O desconto do PBM é concedido e reembolsado pelo laboratório, não sendo considerado no cálculo de desconto praticado pela rede. Assim, produtos com PBM ativo não entram no teto de desconto dos artigos 1 e 2.\",\"citacoes\":[\"[glossario-precos#s06]\",\"[politica-precificacao-2026#s05]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta está totalmente alinhada com os trechos fornecidos (especialmente o Art. 4 da política 2026 e o glossário) e confirma a mesma conclusão da referência de que o desconto PBM não conta para o teto da rede.",
+        "erro": null
+      }
+    },
+    {
+      "id": "Q04",
+      "resultado": {
+        "resposta": "O PrecoPbm é o preço com o desconto de um Programa de Benefício em Medicamentos (PBM) do laboratório. Ele só vale para o paciente cadastrado no programa e só existe quando a farmácia aderiu ao programa daquele produto.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "glossario-precos#s05"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "não aplicado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "programas-pbm#s05",
+              "distancia": 0.1519
+            },
+            {
+              "posicao": 2,
+              "id": "programas-pbm#s01",
+              "distancia": 0.1551
+            },
+            {
+              "posicao": 3,
+              "id": "coleta-precos#s05",
+              "distancia": 0.1598
+            },
+            {
+              "posicao": 4,
+              "id": "dicionario-dados-fractal-precos#s05",
+              "distancia": 0.1613
+            },
+            {
+              "posicao": 5,
+              "id": "glossario-precos#s05",
+              "distancia": 0.1104
+            },
+            {
+              "posicao": 6,
+              "id": "politica-precificacao-2026#s05",
+              "distancia": 0.1625
+            },
+            {
+              "posicao": 7,
+              "id": "programas-pbm#s03",
+              "distancia": 0.1641
+            },
+            {
+              "posicao": 8,
+              "id": "programas-pbm#s04",
+              "distancia": 0.1668
+            },
+            {
+              "posicao": 9,
+              "id": "glossario-precos#s06",
+              "distancia": 0.1673
+            }
+          ],
+          "latencia_s": 10.709,
+          "finish_reason": "stop",
+          "tokens": 2166,
+          "saida_bruta": "{\"resposta\":\"O PrecoPbm é o preço com o desconto de um Programa de Benefício em Medicamentos (PBM) do laboratório. Ele só vale para o paciente cadastrado no programa e só existe quando a farmácia aderiu ao programa daquele produto.\",\"citacoes\":[\"[glossario-precos#s05]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta replica exatamente a definição presente nos trechos e está alinhada com a referência, sem adicionar fatos externos ou contradizer as fontes.",
+        "erro": null
+      }
+    },
+    {
+      "id": "Q05",
+      "resultado": {
+        "resposta": "Não. Se o produto ficou indisponível apenas em uma coleta, a situação deve ser reportada como ruptura a confirmar, pois a ruptura só é confirmada após pelo menos duas coletas consecutivas.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "regras-ruptura#s03"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "não aplicado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "regras-ruptura#s04",
+              "distancia": 0.1214
+            },
+            {
+              "posicao": 2,
+              "id": "regras-ruptura#s01",
+              "distancia": 0.1344
+            },
+            {
+              "posicao": 3,
+              "id": "regras-ruptura#s02",
+              "distancia": 0.1355
+            },
+            {
+              "posicao": 4,
+              "id": "regras-ruptura#s05",
+              "distancia": 0.1384
+            },
+            {
+              "posicao": 5,
+              "id": "regras-ruptura#s03",
+              "distancia": 0.1019
+            },
+            {
+              "posicao": 6,
+              "id": "coleta-precos#s06",
+              "distancia": 0.1405
+            },
+            {
+              "posicao": 7,
+              "id": "regras-ruptura#s06",
+              "distancia": 0.1421
+            },
+            {
+              "posicao": 8,
+              "id": "dicionario-dados-fractal-precos#s08",
+              "distancia": 0.1484
+            },
+            {
+              "posicao": 9,
+              "id": "dicionario-dados-fractal-precos#s05",
+              "distancia": 0.1658
+            }
+          ],
+          "latencia_s": 14.796,
+          "finish_reason": "stop",
+          "tokens": 1604,
+          "saida_bruta": "{\"resposta\":\"Não. Se o produto ficou indisponível apenas em uma coleta, a situação deve ser reportada como ruptura a confirmar, pois a ruptura só é confirmada após pelo menos duas coletas consecutivas.\",\"citacoes\":[\"[regras-ruptura#s03]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta está fiel aos trechos (que especificam a necessidade de 2 coletas para confirmação) e correta em relação à referência (que define a distinção entre ruptura a confirmar e confirmada).",
+        "erro": null
+      }
+    },
+    {
+      "id": "Q06",
+      "resultado": {
+        "resposta": "Não, não está em ruptura; é sem coleta recente.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "regras-ruptura#s04"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "nenhum",
+            "portao": "não aplicado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "regras-ruptura#s02",
+              "distancia": 0.1098
+            },
+            {
+              "posicao": 2,
+              "id": "regras-ruptura#s01",
+              "distancia": 0.1169
+            },
+            {
+              "posicao": 3,
+              "id": "regras-ruptura#s06",
+              "distancia": 0.1198
+            },
+            {
+              "posicao": 4,
+              "id": "regras-ruptura#s05",
+              "distancia": 0.125
+            },
+            {
+              "posicao": 5,
+              "id": "regras-ruptura#s04",
+              "distancia": 0.0898
+            },
+            {
+              "posicao": 6,
+              "id": "regras-ruptura#s03",
+              "distancia": 0.1258
+            },
+            {
+              "posicao": 7,
+              "id": "dicionario-dados-fractal-precos#s08",
+              "distancia": 0.1338
+            },
+            {
+              "posicao": 8,
+              "id": "coleta-precos#s06",
+              "distancia": 0.1452
+            },
+            {
+              "posicao": 9,
+              "id": "dicionario-dados-fractal-precos#s04",
+              "distancia": 0.1569
+            }
+          ],
+          "latencia_s": 0.595,
+          "finish_reason": "stop",
+          "tokens": 1469,
+          "saida_bruta": "{\"resposta\":\"Não, não está em ruptura; é sem coleta recente.\",\"citacoes\":[\"[regras-ruptura#s04]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta está fiel aos trechos (que definem que mais de 3 dias sem coleta não é ruptura) e correta em relação à referência (que confirma que não é ruptura).",
+        "erro": null
+      }
+    }
+  ],
+  "corpus_desatualizado": [
+    {
+      "id": "Q01",
+      "revogado_no_contexto": true,
+      "correta_sem_curadoria": true,
+      "com_curadoria": {
+        "resposta": "O desconto máximo permitido sobre o preço de tabela para medicamentos de referência é de 15%.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2026#s02"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "somente_vigentes",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s02",
+              "distancia": 0.0894
+            },
+            {
+              "posicao": 2,
+              "id": "politica-precificacao-2026#s03",
+              "distancia": 0.1139
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2026#s06",
+              "distancia": 0.1243
+            }
+          ],
+          "latencia_s": 0.634,
+          "finish_reason": "stop",
+          "tokens": 845,
+          "saida_bruta": "{\"resposta\":\"O desconto máximo permitido sobre o preço de tabela para medicamentos de referência é de 15%.\",\"citacoes\":[\"[politica-precificacao-2026#s02]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz_com_curadoria": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta afirma corretamente o teto de 15% presente nos trechos e na referência, sem adicionar fatos não suportados ou contraditórios.",
+        "erro": null
+      }
+    },
+    {
+      "id": "Q10",
+      "revogado_no_contexto": true,
+      "correta_sem_curadoria": true,
+      "com_curadoria": {
+        "resposta": "Um item de preço de combate pode operar com margem bruta mínima de 8% por até 14 dias corridos.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2026#s07"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "somente_vigentes",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s07",
+              "distancia": 0.0948
+            },
+            {
+              "posicao": 2,
+              "id": "politica-precificacao-2026#s04",
+              "distancia": 0.151
+            },
+            {
+              "posicao": 3,
+              "id": "politica-precificacao-2026#s01",
+              "distancia": 0.1664
+            }
+          ],
+          "latencia_s": 0.756,
+          "finish_reason": "stop",
+          "tokens": 868,
+          "saida_bruta": "{\"resposta\":\"Um item de preço de combate pode operar com margem bruta mínima de 8% por até 14 dias corridos.\",\"citacoes\":[\"[politica-precificacao-2026#s07]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz_com_curadoria": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta está totalmente alinhada com os trechos fornecidos e a referência, citando corretamente o prazo de 14 dias corridos e a margem de 8%.",
+        "erro": null
+      }
+    },
+    {
+      "id": "Q12",
+      "revogado_no_contexto": true,
+      "correta_sem_curadoria": true,
+      "com_curadoria": {
+        "resposta": "A política exige uma margem bruta mínima de 18% sobre o preço líquido para todos os itens vendidos.",
+        "recusou": false,
+        "barrado_pelo_portao": false,
+        "citacoes": [
+          "politica-precificacao-2026#s04"
+        ],
+        "citacoes_invalidas": [],
+        "trace": {
+          "carimbo": {
+            "modelo_llm": "openai/gpt-oss-20b",
+            "temperatura": "0.0",
+            "max_tokens": "1500",
+            "prompt_resposta": "resposta_rag_v1@v1.0",
+            "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+            "chunking": "estrutura",
+            "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+            "k": "3",
+            "limiar_portao": "0.1685",
+            "filtro_corpus": "somente_vigentes",
+            "portao": "ligado",
+            "ordem_contexto": "relevancia"
+          },
+          "recuperados": [
+            {
+              "posicao": 1,
+              "id": "politica-precificacao-2026#s04",
+              "distancia": 0.1385
+            },
+            {
+              "posicao": 2,
+              "id": "politica-precificacao-2026#s07",
+              "distancia": 0.1563
+            },
+            {
+              "posicao": 3,
+              "id": "metricas-margem#s03",
+              "distancia": 0.17
+            }
+          ],
+          "latencia_s": 0.659,
+          "finish_reason": "stop",
+          "tokens": 917,
+          "saida_bruta": "{\"resposta\":\"A política exige uma margem bruta mínima de 18% sobre o preço líquido para todos os itens vendidos.\",\"citacoes\":[\"[politica-precificacao-2026#s04]\"],\"recusou\":false}",
+          "decisao": "respondeu"
+        }
+      },
+      "juiz_com_curadoria": {
+        "fiel": true,
+        "correta": true,
+        "justificativa": "A resposta afirma exatamente o mesmo número (18%) e base de cálculo (preço líquido) presentes nos trechos e na referência, sem adicionar informações externas ou contraditórias.",
+        "erro": null
+      }
+    }
+  ],
+  "carimbo": {
+    "modelo_llm": "openai/gpt-oss-20b",
+    "temperatura": "0.0",
+    "max_tokens": "1500",
+    "prompt_resposta": "resposta_rag_v1@v1.0",
+    "modelo_embedding": "fastembed:intfloat/multilingual-e5-large",
+    "chunking": "estrutura",
+    "metrica": "cosseno (distância = 1 - cosseno, vetores normalizados)",
+    "k": "3",
+    "limiar_portao": "0.1685",
+    "filtro_corpus": "nenhum",
+    "modelo_juiz": "qwen/qwen3.8-27b",
+    "rubrica_juiz": "juiz_fidelidade_rag_v1@v1.0",
+    "filtro_corpus_producao": "somente_vigentes"
+  }
+}
