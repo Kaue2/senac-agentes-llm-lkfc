@@ -1,0 +1,201 @@
+{
+  "carimbo": {
+    "commit": "b3c8fbf+alteracoes-locais-em-src",
+    "data_utc": "2026-10-19T03:14:27+00:00",
+    "modelo": "openai/gpt-oss-120b",
+    "prompt_agente": "analista_bi_v3@v3.0",
+    "prompt_triagem": "triagem_v1@v1.0",
+    "fonte_dados": "espelho_sqlite",
+    "memoria": "ativa",
+    "tetos": "passos=8 tokens=20000 segundos=90 repeticao=2 prazo_aprovacao_h=24",
+    "rag": "indice=dados/indices/estrutura.db k=3 limiar=0.1685 somente_vigentes",
+    "langgraph": "1.2.16",
+    "recursion_limit": "50",
+    "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
+  },
+  "tipo": "turno",
+  "thread_id": "G-CA04:c04-20261019T001352",
+  "checkpoint_id": "1f1cb6b3-196d-6347-8008-4df4bfbaec4a",
+  "pedido": {
+    "texto": "O Ozempic 1mg está em falta em alguma farmácia? Desde quando?",
+    "usuario_id": "G-CA04",
+    "sessao_id": "c04-20261019T001352"
+  },
+  "saida": {
+    "resultado": "Sim. O Ozempic 1 mg está indisponível na farmácia **Drogasil**. A ruptura foi detectada a partir de **16 / 09 / 2026** (última coleta em 19 / 09 / 2026).  \n\n*Período não especificado – considerei o intervalo padrão de 30 dias para a consulta de rupturas.*",
+    "fontes": [
+      {
+        "tipo": "banco_precos",
+        "referencia": "vw_Ruptura(produto='Ozempic 1mg')",
+        "detalhe": "1 linha(s), fonte=espelho_sqlite, coleta mais recente 2026-09-19 00:00:00"
+      }
+    ],
+    "suficiencia": "suficiente",
+    "motivo_insuficiencia": null,
+    "suposicoes": [
+      "Período não especificado; assume padrão de 30 dias para histórico de falta"
+    ],
+    "pergunta_esclarecimento": null,
+    "acoes_executadas": [],
+    "alertas": [],
+    "motivo_terminacao": "resposta_final",
+    "thread_id": "G-CA04:c04-20261019T001352",
+    "turno": 1
+  },
+  "interrupcao": null,
+  "medicoes": {
+    "chamadas_recuperacao_rag": 0,
+    "chamadas_modelo_laco": 2,
+    "tokens_turno": 4841,
+    "paralelo": {
+      "memoria_ms": 1.9,
+      "triagem_ms": 1861.8,
+      "soma_ms": 1863.7,
+      "maior_ms": 1861.8,
+      "decorrido_ms": 1862.0
+    }
+  },
+  "triagem": {
+    "rota": "atender",
+    "pilar": "preco",
+    "pergunta_reescrita": "O Ozempic 1mg está em falta em alguma farmácia monitorada? Desde quando?",
+    "faltando": [],
+    "pergunta_esclarecimento": null,
+    "suposicoes": [
+      "Período não especificado; assume padrão de 30 dias para histórico de falta"
+    ],
+    "justificativa": "Produto informado e consulta de falta/ruptura solicitada; farmácia não precisa ser especificada pois a pergunta cobre todas as farmácias monitoradas.",
+    "erros": []
+  },
+  "memoria_usada": {
+    "ativa": true,
+    "tokens": 0,
+    "fatos": {},
+    "episodios": [],
+    "descartados_por_teto": 0,
+    "descartes_por_contradicao": 0
+  },
+  "gravacoes_memoria": [
+    {
+      "tipo": "episodica",
+      "id": "296bbff56e43f09e",
+      "ja_existia": false
+    }
+  ],
+  "decisao_humana": null,
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "preco",
+      "suposicoes": [
+        "Período não especificado; assume padrão de 30 dias para histórico de falta"
+      ],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1575
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "modo": "ruptura",
+        "produto": "Ozempic 1mg"
+      },
+      "resultado": {
+        "encontrado": true,
+        "fonte": "espelho_sqlite",
+        "resultados": [
+          {
+            "ProdutoFarmaciaId": 13,
+            "Farmacia": "Drogasil",
+            "Produto": "Ozempic 1mg",
+            "Disponivel": 0,
+            "DesdeQuando": "2026-09-16 00:00:00",
+            "UltimaColeta": "2026-09-19 00:00:00",
+            "DiasNoEstadoAtual": 3,
+            "QtdColetasNesseEstado": 4
+          }
+        ]
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Sim. O Ozempic 1 mg está indisponível na farmácia **Drogasil**. A ruptura foi detectada a partir de **16 / 09 / 2026** (última coleta em 19 / 09 / 2026).  \n\n*Período não especificado – considerei o intervalo padrão de 30 dias para a consulta de rupturas.*"
+    }
+  ],
+  "eventos": [
+    {
+      "no": "receber_entrada",
+      "inicio": 1792379664.4201,
+      "fim": 1792379664.4202,
+      "ms": 0.0
+    },
+    {
+      "no": "carregar_memoria",
+      "inicio": 1792379664.4212,
+      "fim": 1792379664.4231,
+      "ms": 1.9
+    },
+    {
+      "no": "triagem",
+      "inicio": 1792379664.4214,
+      "fim": 1792379666.2832,
+      "ms": 1861.8
+    },
+    {
+      "no": "portao",
+      "inicio": 1792379666.2838,
+      "fim": 1792379666.2838,
+      "ms": 0.0
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379666.2842,
+      "fim": 1792379666.8656,
+      "ms": 581.4,
+      "passo": 1
+    },
+    {
+      "no": "ferramentas",
+      "inicio": 1792379666.8663,
+      "fim": 1792379666.8677,
+      "ms": 1.4
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379666.8683,
+      "fim": 1792379667.7538,
+      "ms": 885.5,
+      "passo": 2
+    },
+    {
+      "no": "montar_saida",
+      "inicio": 1792379667.7544,
+      "fim": 1792379667.7544,
+      "ms": 0.0
+    },
+    {
+      "no": "gravar_memoria",
+      "inicio": 1792379667.7548,
+      "fim": 1792379667.9101,
+      "ms": 155.3
+    }
+  ]
+}

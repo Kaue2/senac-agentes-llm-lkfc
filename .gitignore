@@ -18,3 +18,9 @@ dados/cache/
 dados/indices/
 dados/memoria/
 dados/memoria_demo/
+
+# Parte 2: checkpoints do grafo, memória da rodada de demonstração e exportações do agente
+dados/checkpoints/
+dados/memoria_parte2/
+dados/exports/
+logs/execucoes/

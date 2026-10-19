@@ -1,5 +1,11 @@
 # A memória do agente de BI de farmácia
 
+> **Parte 2:** a seção "Parte 2 — a memória dentro do grafo", no fim deste documento, é o
+> que vale para o sistema entregue (§5 do enunciado: a fronteira com o checkpoint e com o RAG, a
+> ordem de descarte implementada, o volume medido, a cobertura da remoção com o checkpointer do
+> LangGraph e a conversa). As Decisões 1 e 2 abaixo são o projeto do Exercício 8, que a Parte 2
+> implementou; onde a Parte 2 mudou algo, a seção final diz.
+
 Exercício 8 (rascunho do §4 da Parte 2). As decisões abaixo estão implementadas em `src/memoria/` e
 medidas em `scripts/aula08_memoria.py` (saída em `logs/aula08/saida.txt`; relatório do exercício de
 código em [`exercicios/aula-08-memoria-do-case.md`](../exercicios/aula-08-memoria-do-case.md)).
@@ -215,3 +221,166 @@ Como a Aula 11 convive com isso: **a suíte roda com a memória vazia**, congela
 (`estado da memória: vazia`), e o checkpoint de cada execução guarda o contexto de memória que ela viu.
 Avaliar o agente **com** memória exige outra suíte, com memória-fixture versionada junto do dataset. É
 pendência registrada para a Parte 3.
+
+
+---
+
+## Parte 2 — a memória dentro do grafo
+
+O que o Exercício 8 projetou, ligado ao grafo (`src/grafo/nos.py::carregar_memoria` e
+`gravar_memoria`) e medido na rodada de `logs/parte2/`.
+
+### 5.1 Os dois níveis e as três estruturas, no case
+
+| | curto prazo | longo prazo |
+|---|---|---|
+| **o que ocupa, no case** | o prompt `analista_bi_v3`, a interpretação da triagem (pergunta reescrita + suposições), a janela da conversa, a mensagem atual, o protocolo de ferramentas do turno (pedido do modelo + retorno de cada ferramenta, ≤ 2.000 caracteres cada), os trechos do corpus que a ferramenta devolveu | episódica (recorte das consultas passadas do gestor), semântica (farmácia padrão declarada), procedural (regras do time de BI) |
+| **persistido como** | **checkpoint do LangGraph** (`SqliteSaver`, `dados/checkpoints/grafo.db`), um por superstep, endereçado por `thread_id` | `memoria.db` (SQLite) e `procedural.md` |
+| **ciclo de vida** | a thread vive enquanto a conversa vive; o estado do turno é zerado no turno seguinte | acumula até contradição, decaimento ou remoção |
+
+**O que precisa estar no checkpoint para retomar sem reaplicar efeito colateral.** Com o LangGraph,
+o checkpoint é o `EstadoGrafo` inteiro a cada superstep; os campos que tornam a retomada segura são:
+
+| Campo | Por que a retomada precisa dele |
+|---|---|
+| `aprovacao` (com `prazo_expira_em` e `chave_idempotencia`) | a pausa é retomada horas depois, em outro processo; o prazo **tem** de estar gravado, ou seria recalculado na retomada (`humano.md` §3) |
+| `acao_pendente` (com `tool_call_id`) | o modelo pediu a exportação naquele passo; a retomada responde àquele pedido, não a um novo |
+| `efeitos_aplicados` | o que já foi escrito neste turno; e a escrita em si é idempotente pelo conteúdo, então reexecutar `exportar` a partir do checkpoint da pausa não duplica (demonstrado no caso 6) |
+| `trajetoria`, `mensagens_modelo`, `passos`, `tokens`, `inicio_turno` | o laço continua de onde parou, com os tetos contando o que já foi gasto |
+| `contexto_memoria` | o estado da memória que este turno viu — sem ele, um turno defeituoso não se reproduz amanhã |
+
+**A ordem de descarte entre as fontes que disputam a janela** (implementada; antes só a da memória estava):
+
+| Ordem | Fonte | Teto | Como sai | Onde está no código |
+|---|---|---|---|---|
+| 1º a sair | memória de longo prazo | 600 tokens | o episódio menos relevante primeiro; fato semântico e regra procedural ficam | `src/memoria/contexto.py` |
+| 2º | conversa anterior | 800 tokens | **trunca o início**: anda do fim para o começo e para quando o próximo turno estouraria | `src/grafo/nos.py::janela_da_conversa` |
+| 3º | retorno de ferramenta | 2.000 caracteres por chamada | truncado no fim, com marca `…(truncado)` | `nos.py::_mensagem_ferramenta` |
+| 4º | trechos do corpus | k = 3 (~65 tokens cada) | o portão devolve 0 trechos quando o mais próximo está longe | `tools_conhecimento.py` |
+| **nunca sai** | system prompt, interpretação da triagem, mensagem atual | prompt ~700 tokens; mensagem ≤ 800 caracteres | acima do teto, a mensagem é recusada (`entrada_longa`) antes de qualquer chamada | `receber_entrada` |
+
+O que o sistema não faz: truncar no fim da janela. O mais recente (a mensagem atual e os retornos
+deste turno) nunca é o que sai.
+
+**A fronteira entre as três estruturas, no case:**
+
+| | checkpoint | memória | RAG |
+|---|---|---|---|
+| **no case** | o estado de **uma conversa** (`thread_id = gestor:sessão`): o que o gestor perguntou nesta aba, o que o agente consultou neste turno, a aprovação pendente | o que **este gestor** costuma consultar e o que ele declarou preferir, de todas as conversas | a política de precificação, o glossário, as regras de ruptura — o que a **rede** escreveu |
+| **propósito** | retomar a pausa; continuar a conversa ("e na Raia?") | lembrar o recorte e a preferência | consultar a regra |
+| **quem escreve** | o grafo, a cada superstep | `gravar_memoria`, por regra em código | ninguém do sistema: o dono de cada documento (curadoria) |
+| **leitura** | uma vez, no início de cada invocação da thread | a cada turno, por relevância (episódica) e por chave (semântica) | quando o modelo chama a ferramenta |
+
+**O que a recuperação por relevância traz que a serialização não traria.** O checkpointer já guarda
+todas as conversas de todos os gestores, inteiras. Ler esse arquivo morto para "lembrar" exigiria
+carregar centenas de threads e escolher o que importa — é a memória que faz essa escolha, com teto:
+3 episódios do **mesmo gestor**, os mais próximos da pergunta atual, e só o recorte (produto,
+farmácia, modo). O que ela deixa para trás, por desenho: os números (preço de ontem é dado velho, e
+é reconsultado), as respostas do agente (texto não verificado) e os episódios de outros gestores.
+
+### 5.2 As três memórias
+
+Sem mudança em relação à Decisão 1 (§1.3): episódica por similaridade (SQLite + vetor e5-large na
+linha, filtrada pelo gestor antes do cosseno), semântica por chave com `valido_desde`, procedural
+como texto anexado ao prompt. Ligadas ao grafo no nó `carregar_memoria`, que roda **em paralelo**
+com a triagem (`grafo.md` §5). O exemplo `io-07-memoria` mostra a semântica atravessando sessões: o
+gestor `G-IO07` declara "minha farmácia padrão é a Raia" na sessão `io7a`; na sessão `io7b`, "qual o
+preço atual da Trayenta 5mg?" (sem farmácia) é respondido com a Raia, e a resposta diz que usou a
+preferência.
+
+### 5.3 A política de escrita, e o volume medido
+
+**Política: o código extrai por regra** (nunca o agente decide), e o humano corrige a semântica; só
+o time de BI escreve a procedural. Duas mudanças na Parte 2:
+
+- **execução recusada não grava** — a pendência do Exercício 8 ("episódios de execuções que
+  terminaram em recusa por dado de paciente não deveriam ser gravados") foi fechada: `gravar_memoria`
+  só grava quando o turno terminou em `resposta_final` e a rota não foi `fora_escopo`. No
+  `io-03-fora-do-escopo` (CPF e clonazepam na pergunta), o log mostra
+  `gravacoes_memoria: [{"pulado": "turno terminou por 'fora_do_escopo' ..."}]`;
+- **pergunta de esclarecimento não grava** — o turno que só perguntou "qual produto?" não tem recorte.
+
+**Volume medido** (15 execuções de `logs/parte2/`, campo `gravacoes_memoria`):
+
+| | registros | tamanho |
+|---|---|---|
+| episódica | 1 por turno atendido (12 gravações em 15 execuções, uma delas `ja_existia`); 0 na pausa, no esclarecimento e na recusa | 66 a 171 caracteres, **17 a 47 tokens** |
+| semântica | 1 em 15 (só no `io-07`, quando o gestor declarou a preferência) | 1 linha: chave, valor, data, origem |
+| procedural | 0 | — |
+
+**A escrita de memória é escrita: idempotente pelo conteúdo.** A segunda aprovação do caso 6
+reexecutou o turno a partir do checkpoint da pausa e tentou gravar o mesmo episódio: o log mostra
+`{"tipo": "episodica", "id": "49af47864e2ef209", "ja_existia": true}`. A chave é
+`sha256(gestor, data, texto do episódio)`.
+
+**Observação da rodada:** no `io-01` (2º turno), o episódio gravou "Pergunta: a trayenta 5mg" — o
+texto do turno, e não a pergunta completa que a triagem reescreveu ("Quanto está a Trayenta 5mg na
+Drogasil?"). O recorte (produto, farmácia, modo) está certo, porque vem dos argumentos da
+ferramenta; o texto ficou pobre para a busca por similaridade. Gravar `pergunta_reescrita` é a
+correção — fica para a Parte 3, porque muda o texto que vai para o vetor e exige reavaliar a busca.
+
+### 5.4 Como o agente perde a memória — as três causas, todas implementadas
+
+| Causa | No case | O que faz |
+|---|---|---|
+| **contradição** | o gestor muda a farmácia padrão | na leitura, `max(valido_desde)`; o perdedor fica e o descarte é registrado |
+| **decaimento** | episódio com mais de **90 dias** | removido em rotina (`Memoria.decair`); a justificativa (portfólio e campanhas mudam por trimestre) está em §2.2 |
+| **remoção** | o gestor sai da empresa ou pede exclusão (LGPD) | `src/grafo/execucao.py::remover_titular` |
+
+**Por que as três:** privacidade (a matrícula do gestor e o que ele consultou são dado pessoal de
+funcionário), custo (a episódica cresce 1 registro por turno, monotonicamente) e recuperação de
+incidente (um episódio envenenado sai com um `DELETE`, sem reconstruir índice).
+
+**A cobertura da remoção, atualizada para o grafo.** A lista do §2.3 tinha 10 estruturas; o
+LangGraph acrescentou duas, e o teste de cobertura achou uma terceira:
+
+| # | Estrutura | Como sai |
+|---|---|---|
+| 1–10 | as do §2.3 (episódica, vetor, cache de embeddings, semântica, descartes, procedural, checkpoints em JSON da Parte 1, logs, páginas livres do SQLite, histórico do git) | como no §2.3 |
+| 11 | **checkpoints do LangGraph** (`dados/checkpoints/grafo.db`): cada superstep guarda o estado inteiro — a entrada com `usuario_id`, os argumentos de cada ferramenta, a aprovação | `checkpointer.delete_thread` para toda thread `"<matrícula>:*"` + `VACUUM` |
+| 12 | **o arquivo WAL do checkpointer** (`grafo.db-wal`): o `SqliteSaver` usa WAL, e as páginas apagadas continuam nele até um checkpoint do WAL | `PRAGMA wal_checkpoint(TRUNCATE)`. **Achado pelo teste**, não pela lista: a primeira versão de `remover_titular` apagava as threads, rodava `VACUUM`, e a varredura por bytes ainda encontrava a matrícula no `-wal` |
+| 13 | **logs do grafo** (`logs/execucoes/`, `logs/parte2/`): gravam `thread_id`, a entrada e a trajetória | redigidos (`[titular-removido]`), como os da Parte 1 |
+
+**A verificação é independente da remoção** (`tests/test_grafo.py::test_remocao_por_titular_alcanca_memoria_checkpoint_e_log`):
+grava a preferência → confere que o turno seguinte a usou → remove → varre os bytes de todos os
+arquivos da memória, dos logs e do checkpointer procurando a matrícula (lista vazia) → confere que
+um turno novo voltou ao comportamento sem memória.
+
+**O que a remoção não alcança, declarado:** as **exportações** (`dados/exports/`) não contêm a
+matrícula (só pergunta, dados e explicação), mas contêm a pergunta que o gestor fez; se ela tiver
+dado pessoal, a remoção por matrícula não a encontra. E os logs **versionados** no git (`logs/parte2/`)
+saem do arquivo mas não do histórico — por isso eles só contêm gestores fictícios (`G-CA01`...).
+
+### 5.5 A conversa, e o que sobra dela
+
+**O que identifica uma conversa.** `thread_id = "<usuario_id>:<sessao_id>"` (`Entrada.thread_id`):
+a matrícula do gestor (da sessão do sistema interno) e o identificador da aba de chat. Mesma chave,
+mesma conversa; chave nova, histórico vazio — mas a **memória de longo prazo** continua (ela é por
+gestor, não por thread). **Duas conversas ao mesmo tempo** da mesma pessoa são duas abas, duas
+`sessao_id`, duas threads independentes: uma não vê o "e na Raia?" da outra, e as duas leem e
+escrevem a mesma memória de longo prazo (a escrita é idempotente e por acréscimo, então não há
+corrida destrutiva; a pior consequência é um episódio de uma aba aparecer na outra no turno seguinte).
+
+**Onde o checkpoint é gravado.** Em **arquivo**: `SqliteSaver` em `dados/checkpoints/grafo.db`
+(fora do git). A conversa e a aprovação pendente sobrevivem ao fim do processo. Limitação declarada:
+arquivo local, um processo de cada vez escrevendo bem; com mais de um servidor, o checkpointer
+seria `PostgresSaver`.
+
+**O que acontece quando a janela enche.** Política: **truncar o início** da conversa, com teto de
+800 tokens (`janela_da_conversa`), e **descartar os retornos de ferramenta já usados** — eles nunca
+entram na conversa, só no protocolo do turno corrente. O que se perde em cada uma:
+
+| Política | Escolhida? | O que se perde |
+|---|---|---|
+| truncar o início | **sim** | a pergunta original de uma conversa longa ("a gente estava falando da Trayenta, lembra?" depois de 15 turnos) |
+| descartar retornos de ferramenta usados | **sim** | o número exato de um turno anterior: "e quanto era na Drogasil?" é **reconsultado**, não lembrado — o que, com coleta diária, é o comportamento certo |
+| sumarizar o trecho antigo | não | evitaria a perda do início, ao custo de uma chamada ao modelo por turno e de um resumo **não verificado** dentro do contexto — o mesmo motivo por que a resposta do agente não entra na memória |
+
+Na prática as conversas do case são curtas (o caso feliz é pergunta e resposta; com esclarecimento,
+dois turnos), e 800 tokens cabem ~10 turnos.
+
+**O que passa da conversa para a memória de longo prazo.** Quase nada, por desenho: do turno
+atendido, o **recorte** (produto, farmácia, modo, ferramentas) vira episódio; uma preferência
+**declarada** ("minha farmácia padrão é...") vira fato semântico. O texto da conversa, as respostas
+do agente, os números e as suposições da triagem **não** passam. Quando a thread acaba, o que
+sobrevive dela é isso — e o checkpoint inteiro, para auditoria, até a remoção.

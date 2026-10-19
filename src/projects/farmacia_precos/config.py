@@ -7,7 +7,7 @@ from pathlib import Path
 
 NOME_PROJETO = "farmacia_precos"
 PASTA_RAIZ = Path(__file__).resolve().parents[3]
-CAMINHO_PROMPT = PASTA_RAIZ / "prompts" / "analista_bi_v1.md"
+CAMINHO_PROMPT = PASTA_RAIZ / "src" / "prompts" / "analista_bi_v1.md"
 PASTA_LOGS = PASTA_RAIZ / "logs"
 
 

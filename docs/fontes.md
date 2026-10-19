@@ -43,3 +43,17 @@ Três casos de agentes de BI conversacional (pergunta em linguagem natural → a
 ## Observação transversal
 
 Nenhum dos três casos divulga a métrica que mais importaria para o verificador do nosso trabalho: **taxa de acerto da consulta gerada** (quantas vezes o agente consulta a fonte certa e devolve a resposta certa, sem verificação humana). Se prometermos esse eixo na seção de ganhos, teremos que medi-lo nós mesmos — nenhum desses três cases dá um número de referência para comparar.
+
+---
+
+## Parte 2 — o que foi consultado para o grafo
+
+| Fonte | Para quê |
+|---|---|
+| [LangGraph — documentação oficial](https://langchain-ai.github.io/langgraph/) | `StateGraph`, reducers com `Annotated`, arestas condicionais e de junção, `context_schema`/`Runtime` |
+| [LangGraph — Human-in-the-loop (`interrupt`, `Command`)](https://langchain-ai.github.io/langgraph/concepts/human_in_the_loop/) | a pausa, a retomada, e o aviso de que o nó roda de novo desde o início na retomada |
+| [LangGraph — Persistence / checkpointers](https://langchain-ai.github.io/langgraph/concepts/persistence/) | `thread_id`, `checkpoint_id` (retomar de um checkpoint específico), `SqliteSaver` |
+| Código-fonte instalado do LangGraph 1.2.16 (`langgraph/_internal/_config.py`) | o valor real de `DEFAULT_RECURSION_LIMIT` (10007, sobrescrevível por `LANGGRAPH_DEFAULT_RECURSION_LIMIT`) — conferido na biblioteca, não na documentação |
+| [SQLite — Write-Ahead Logging](https://www.sqlite.org/wal.html) e [`PRAGMA secure_delete`](https://www.sqlite.org/pragma.html#pragma_secure_delete) | por que a matrícula apagada continuava no arquivo `-wal` do checkpointer, e o `wal_checkpoint(TRUNCATE)` que resolve |
+| [Groq — Structured outputs / JSON mode](https://console.groq.com/docs/structured-outputs) | `response_format` na triagem com `openai/gpt-oss-120b` |
+| Notas das Aulas 05 a 09 da disciplina | padrões de workflow, os quatro tetos, as três memórias, as cinco formas de recuperar |

@@ -1,4 +1,4 @@
-"""Carrega o prompt de sistema versionado de prompts/analista_bi_v1.md.
+"""Carrega o prompt de sistema versionado de src/prompts/analista_bi_v1.md.
 
 Só o texto depois do heading "## Prompt enviado ao modelo" vai para a API — o resto do
 arquivo é documentação (carimbo de versão, técnica usada, contrato de saída — ver

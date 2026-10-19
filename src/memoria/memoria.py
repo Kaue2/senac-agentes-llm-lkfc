@@ -88,7 +88,9 @@ class Memoria:
         self.caminho_db = pasta / "memoria.db"
         self.caminho_procedural = pasta / "procedural.md"
         self.caminho_descartes = pasta / "descartes.jsonl"
-        self.conn = sqlite3.connect(self.caminho_db)
+        # check_same_thread=False: `carregar_memoria` roda numa thread do LangGraph (em paralelo com a
+        # triagem) e `gravar_memoria` em outra; os dois nunca rodam no mesmo superstep.
+        self.conn = sqlite3.connect(self.caminho_db, check_same_thread=False)
         # Sem secure_delete, o texto de um episódio apagado continua nos bytes do arquivo até a
         # página ser reutilizada — a varredura por bytes de `varrer` encontraria o titular.
         self.conn.execute("PRAGMA secure_delete = ON")

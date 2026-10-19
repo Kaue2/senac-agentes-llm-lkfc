@@ -1,0 +1,185 @@
+{
+  "carimbo": {
+    "commit": "b3c8fbf+alteracoes-locais-em-src",
+    "data_utc": "2026-10-19T03:14:16+00:00",
+    "modelo": "openai/gpt-oss-120b",
+    "prompt_agente": "analista_bi_v3@v3.0",
+    "prompt_triagem": "triagem_v1@v1.0",
+    "fonte_dados": "espelho_sqlite",
+    "memoria": "ativa",
+    "tetos": "passos=8 tokens=20000 segundos=90 repeticao=2 prazo_aprovacao_h=24",
+    "rag": "indice=dados/indices/estrutura.db k=3 limiar=0.1685 somente_vigentes",
+    "langgraph": "1.2.16",
+    "recursion_limit": "50",
+    "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
+  },
+  "tipo": "turno",
+  "thread_id": "G-CA03:c03-20261019T001352",
+  "checkpoint_id": "1f1cb6b2-aafc-6d20-8008-5ea0995d526e",
+  "pedido": {
+    "texto": "Qual o preço da Ivermectina 6mg na farmácia Extrafarma?",
+    "usuario_id": "G-CA03",
+    "sessao_id": "c03-20261019T001352"
+  },
+  "saida": {
+    "resultado": "Assumi que “preço” se refere ao **PreçoFarmácia** (preço da loja, sem PBM).  \n\nA consulta ao banco de preços não encontrou registro para **Ivermectina 6 mg** na farmácia **Extrafarma**. Portanto, não há dado disponível para responder a pergunta.",
+    "fontes": [],
+    "suficiencia": "insuficiente",
+    "motivo_insuficiencia": "nenhum registro em vw_PrecoAtual(produto='Ivermectina 6mg', farmacia='Extrafarma')",
+    "suposicoes": [
+      "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+    ],
+    "pergunta_esclarecimento": null,
+    "acoes_executadas": [],
+    "alertas": [],
+    "motivo_terminacao": "resposta_final",
+    "thread_id": "G-CA03:c03-20261019T001352",
+    "turno": 1
+  },
+  "interrupcao": null,
+  "medicoes": {
+    "chamadas_recuperacao_rag": 0,
+    "chamadas_modelo_laco": 2,
+    "tokens_turno": 4536,
+    "paralelo": {
+      "memoria_ms": 1.7,
+      "triagem_ms": 1004.1,
+      "soma_ms": 1005.8,
+      "maior_ms": 1004.1,
+      "decorrido_ms": 1004.4
+    }
+  },
+  "triagem": {
+    "rota": "atender",
+    "pilar": "preco",
+    "pergunta_reescrita": "Qual o preço da Ivermectina 6mg na farmácia Extrafarma?",
+    "faltando": [],
+    "pergunta_esclarecimento": null,
+    "suposicoes": [
+      "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+    ],
+    "justificativa": "Produto e farmácia informados.",
+    "erros": []
+  },
+  "memoria_usada": {
+    "ativa": true,
+    "tokens": 0,
+    "fatos": {},
+    "episodios": [],
+    "descartados_por_teto": 0,
+    "descartes_por_contradicao": 0
+  },
+  "gravacoes_memoria": [
+    {
+      "tipo": "episodica",
+      "id": "d21369a1a19b5491",
+      "ja_existia": false
+    }
+  ],
+  "decisao_humana": null,
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "preco",
+      "suposicoes": [
+        "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+      ],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1393
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Extrafarma",
+        "modo": "atual",
+        "produto": "Ivermectina 6mg"
+      },
+      "resultado": {
+        "encontrado": false,
+        "fonte": "espelho_sqlite",
+        "mensagem": "Nenhum registro para produto='Ivermectina 6mg', farmacia='Extrafarma' no banco de preços. Pode ser um produto/farmácia fora do cadastro — não invente um preço, informe ao usuário que não há esse dado."
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Assumi que “preço” se refere ao **PreçoFarmácia** (preço da loja, sem PBM).  \n\nA consulta ao banco de preços não encontrou registro para **Ivermectina 6 mg** na farmácia **Extrafarma**. Portanto, não há dado disponível para responder a pergunta."
+    }
+  ],
+  "eventos": [
+    {
+      "no": "receber_entrada",
+      "inicio": 1792379654.1329,
+      "fim": 1792379654.1329,
+      "ms": 0.0
+    },
+    {
+      "no": "carregar_memoria",
+      "inicio": 1792379654.1367,
+      "fim": 1792379654.1384,
+      "ms": 1.7
+    },
+    {
+      "no": "triagem",
+      "inicio": 1792379654.137,
+      "fim": 1792379655.1411,
+      "ms": 1004.1
+    },
+    {
+      "no": "portao",
+      "inicio": 1792379655.1417,
+      "fim": 1792379655.1417,
+      "ms": 0.0
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379655.1421,
+      "fim": 1792379655.6852,
+      "ms": 543.1,
+      "passo": 1
+    },
+    {
+      "no": "ferramentas",
+      "inicio": 1792379655.6859,
+      "fim": 1792379655.6866,
+      "ms": 0.7
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379655.6872,
+      "fim": 1792379656.2475,
+      "ms": 560.3,
+      "passo": 2
+    },
+    {
+      "no": "montar_saida",
+      "inicio": 1792379656.248,
+      "fim": 1792379656.2481,
+      "ms": 0.0
+    },
+    {
+      "no": "gravar_memoria",
+      "inicio": 1792379656.2484,
+      "fim": 1792379656.3297,
+      "ms": 81.3
+    }
+  ]
+}

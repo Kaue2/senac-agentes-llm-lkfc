@@ -102,7 +102,9 @@ class BancoPrecos:
                     "Espelho local não encontrado. Rode: "
                     "python scripts/gerar_dados_sinteticos.py && python scripts/seed_mock_db.py"
                 )
-            self._conn = sqlite3.connect(CAMINHO_ESPELHO_SQLITE)
+            # check_same_thread=False: o LangGraph roda nós num pool de threads; o grafo nunca usa o
+            # banco em dois nós ao mesmo tempo (só o nó `ferramentas` o consulta).
+            self._conn = sqlite3.connect(CAMINHO_ESPELHO_SQLITE, check_same_thread=False)
             self.fonte = "espelho_sqlite"
 
     def close(self) -> None:

@@ -1,0 +1,144 @@
+{
+  "carimbo": {
+    "commit": "b3c8fbf+alteracoes-locais-em-src",
+    "data_utc": "2026-10-19T03:14:46+00:00",
+    "modelo": "openai/gpt-oss-120b",
+    "prompt_agente": "analista_bi_v3@v3.0",
+    "prompt_triagem": "triagem_v1@v1.0",
+    "fonte_dados": "espelho_sqlite",
+    "memoria": "ativa",
+    "tetos": "passos=8 tokens=20000 segundos=90 repeticao=2 prazo_aprovacao_h=24",
+    "rag": "indice=dados/indices/estrutura.db k=3 limiar=0.1685 somente_vigentes",
+    "langgraph": "1.2.16",
+    "recursion_limit": "50",
+    "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
+  },
+  "tipo": "turno",
+  "thread_id": "G-IO01:io1-20261019T001352",
+  "checkpoint_id": "1f1cb6b3-cb51-61dc-8006-8a3fde4878d8",
+  "pedido": {
+    "texto": "quanto ta o remedio na drogasil?",
+    "usuario_id": "G-IO01",
+    "sessao_id": "io1-20261019T001352"
+  },
+  "saida": {
+    "resultado": "Qual produto você quer consultar na Drogasil?",
+    "fontes": [],
+    "suficiencia": "aguardando_esclarecimento",
+    "motivo_insuficiencia": "falta: produto",
+    "suposicoes": [],
+    "pergunta_esclarecimento": "Qual produto você quer consultar na Drogasil?",
+    "acoes_executadas": [],
+    "alertas": [],
+    "motivo_terminacao": "esclarecimento_pedido",
+    "thread_id": "G-IO01:io1-20261019T001352",
+    "turno": 1
+  },
+  "interrupcao": null,
+  "medicoes": {
+    "chamadas_recuperacao_rag": 0,
+    "chamadas_modelo_laco": 0,
+    "tokens_turno": 1267,
+    "paralelo": {
+      "memoria_ms": 2.4,
+      "triagem_ms": 694.6,
+      "soma_ms": 697.0,
+      "maior_ms": 694.6,
+      "decorrido_ms": 694.9
+    }
+  },
+  "triagem": {
+    "rota": "esclarecer",
+    "pilar": "preco",
+    "pergunta_reescrita": "Quanto está [produto?] na Drogasil?",
+    "faltando": [
+      "produto"
+    ],
+    "pergunta_esclarecimento": "Qual produto você quer consultar na Drogasil?",
+    "suposicoes": [],
+    "justificativa": "Sem produto não há consulta de preço.",
+    "erros": []
+  },
+  "memoria_usada": {
+    "ativa": true,
+    "tokens": 0,
+    "fatos": {},
+    "episodios": [],
+    "descartados_por_teto": 0,
+    "descartes_por_contradicao": 0
+  },
+  "gravacoes_memoria": [
+    {
+      "pulado": "turno terminou por 'esclarecimento_pedido' (rota esclarecer): nada a lembrar"
+    }
+  ],
+  "decisao_humana": null,
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "esclarecer",
+      "pilar": "preco",
+      "suposicoes": [],
+      "faltando": [
+        "produto"
+      ],
+      "erros": [],
+      "tokens": 1267
+    }
+  ],
+  "eventos": [
+    {
+      "no": "receber_entrada",
+      "inicio": 1792379685.8648,
+      "fim": 1792379685.8649,
+      "ms": 0.0
+    },
+    {
+      "no": "carregar_memoria",
+      "inicio": 1792379685.8659,
+      "fim": 1792379685.8684,
+      "ms": 2.4
+    },
+    {
+      "no": "triagem",
+      "inicio": 1792379685.8662,
+      "fim": 1792379686.5608,
+      "ms": 694.6
+    },
+    {
+      "no": "portao",
+      "inicio": 1792379686.5615,
+      "fim": 1792379686.5615,
+      "ms": 0.0
+    },
+    {
+      "no": "esclarecer",
+      "inicio": 1792379686.562,
+      "fim": 1792379686.562,
+      "ms": 0.0
+    },
+    {
+      "no": "montar_saida",
+      "inicio": 1792379686.5624,
+      "fim": 1792379686.5625,
+      "ms": 0.0
+    },
+    {
+      "no": "gravar_memoria",
+      "inicio": 1792379686.5628,
+      "fim": 1792379686.5628,
+      "ms": 0.0
+    }
+  ]
+}

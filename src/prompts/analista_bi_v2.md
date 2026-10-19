@@ -7,7 +7,7 @@ src/core/prompts.py envia só o texto depois dele (role=system).
 
 **Versão:** v2.0
 
-**Diferença para a v1** (`prompts/analista_bi_v1.md`, mantida intacta — os logs da Parte 1
+**Diferença para a v1** (`src/prompts/analista_bi_v1.md`, mantida intacta — os logs da Parte 1
 descrevem a v1, e editá-la por cima faria esses logs descreverem um programa que não existe mais):
 acrescenta a ferramenta `consultar_base_conhecimento` (RAG do Exercício 7 como ferramenta) e
 **uma** regra de condução — consultar a base antes de responder sobre regra ou definição, e citar

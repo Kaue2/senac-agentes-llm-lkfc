@@ -108,7 +108,7 @@ class EmbeddingComCache(ModeloEmbedding):
         self._modelo = modelo
         self._caminho_cache = caminho
         caminho.parent.mkdir(parents=True, exist_ok=True)
-        self._conn = sqlite3.connect(caminho)
+        self._conn = sqlite3.connect(caminho, check_same_thread=False)  # nós do LangGraph rodam em threads
         # secure_delete: DELETE no SQLite só marca a página como livre, e o conteúdo apagado
         # continua legível no arquivo. A remoção por titular (Exercício 8) precisa que ele suma.
         self._conn.execute("PRAGMA secure_delete = ON")

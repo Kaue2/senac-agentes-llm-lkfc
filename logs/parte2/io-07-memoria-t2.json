@@ -1,0 +1,215 @@
+{
+  "carimbo": {
+    "commit": "b3c8fbf+alteracoes-locais-em-src",
+    "data_utc": "2026-10-19T03:15:53+00:00",
+    "modelo": "openai/gpt-oss-120b",
+    "prompt_agente": "analista_bi_v3@v3.0",
+    "prompt_triagem": "triagem_v1@v1.0",
+    "fonte_dados": "espelho_sqlite",
+    "memoria": "ativa",
+    "tetos": "passos=8 tokens=20000 segundos=90 repeticao=2 prazo_aprovacao_h=24",
+    "rag": "indice=dados/indices/estrutura.db k=3 limiar=0.1685 somente_vigentes",
+    "langgraph": "1.2.16",
+    "recursion_limit": "50",
+    "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
+  },
+  "tipo": "turno",
+  "thread_id": "G-IO07:io7b-20261019T001352",
+  "checkpoint_id": "1f1cb6b6-4952-6716-8008-e39075005567",
+  "pedido": {
+    "texto": "qual o preço atual da Trayenta 5mg?",
+    "usuario_id": "G-IO07",
+    "sessao_id": "io7b-20261019T001352"
+  },
+  "saida": {
+    "resultado": "Usei a preferência da farmácia Raia.  \nNa coleta mais recente (19/09/2026) o **PreçoFarmácia** da Trayenta 5 mg foi **R$ 326,04**.",
+    "fontes": [
+      {
+        "tipo": "banco_precos",
+        "referencia": "vw_PrecoAtual(produto='Trayenta 5mg', farmacia='Raia')",
+        "detalhe": "1 linha(s), fonte=espelho_sqlite, coleta mais recente 2026-09-19 00:00:00"
+      }
+    ],
+    "suficiencia": "suficiente",
+    "motivo_insuficiencia": null,
+    "suposicoes": [
+      "'preço atual' interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+    ],
+    "pergunta_esclarecimento": null,
+    "acoes_executadas": [],
+    "alertas": [],
+    "motivo_terminacao": "resposta_final",
+    "thread_id": "G-IO07:io7b-20261019T001352",
+    "turno": 1
+  },
+  "interrupcao": null,
+  "medicoes": {
+    "chamadas_recuperacao_rag": 0,
+    "chamadas_modelo_laco": 2,
+    "tokens_turno": 4963,
+    "paralelo": {
+      "memoria_ms": 3.6,
+      "triagem_ms": 1087.1,
+      "soma_ms": 1090.7,
+      "maior_ms": 1087.1,
+      "decorrido_ms": 1087.4
+    }
+  },
+  "triagem": {
+    "rota": "atender",
+    "pilar": "preco",
+    "pergunta_reescrita": "Qual o preço atual da Trayenta 5mg?",
+    "faltando": [],
+    "pergunta_esclarecimento": null,
+    "suposicoes": [
+      "'preço atual' interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+    ],
+    "justificativa": "Produto informado; farmácia omitida, será consultada em todas as lojas.",
+    "erros": []
+  },
+  "memoria_usada": {
+    "ativa": true,
+    "tokens": 112,
+    "fatos": {
+      "usuario:G-IO07:farmacia_padrao": "Raia"
+    },
+    "episodios": [
+      "b4cf3b92ca2980fd"
+    ],
+    "descartados_por_teto": 0,
+    "descartes_por_contradicao": 0
+  },
+  "gravacoes_memoria": [
+    {
+      "tipo": "episodica",
+      "id": "7259173fcf342fa8",
+      "ja_existia": false
+    }
+  ],
+  "decisao_humana": null,
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 112,
+      "fatos": {
+        "usuario:G-IO07:farmacia_padrao": "Raia"
+      },
+      "episodios": [
+        "b4cf3b92ca2980fd"
+      ],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "preco",
+      "suposicoes": [
+        "'preço atual' interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+      ],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1451
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Raia",
+        "modo": "atual",
+        "produto": "Trayenta 5mg"
+      },
+      "resultado": {
+        "encontrado": true,
+        "fonte": "espelho_sqlite",
+        "resultados": [
+          {
+            "ProdutoFarmaciaId": 3,
+            "DataUltimaColeta": "2026-09-19 00:00:00",
+            "Farmacia": "Raia",
+            "Produto": "Trayenta 5mg",
+            "PrincipioAtivo": "Linagliptina",
+            "Marca": "Trayenta",
+            "Fabricante": "Boehringer Ingelheim",
+            "EanObservado": null,
+            "PrecoTabela": 336.12,
+            "PrecoFarmacia": 326.04,
+            "PrecoPbm": 218.48,
+            "ProgramaPbmNome": "Abraçar a Vida - Boehringer",
+            "Disponivel": 1
+          }
+        ]
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Usei a preferência da farmácia Raia.  \nNa coleta mais recente (19/09/2026) o **PreçoFarmácia** da Trayenta 5 mg foi **R$ 326,04**."
+    }
+  ],
+  "eventos": [
+    {
+      "no": "receber_entrada",
+      "inicio": 1792379746.6055,
+      "fim": 1792379746.6055,
+      "ms": 0.0
+    },
+    {
+      "no": "carregar_memoria",
+      "inicio": 1792379746.6069,
+      "fim": 1792379746.6105,
+      "ms": 3.6
+    },
+    {
+      "no": "triagem",
+      "inicio": 1792379746.6072,
+      "fim": 1792379747.6943,
+      "ms": 1087.1
+    },
+    {
+      "no": "portao",
+      "inicio": 1792379747.6949,
+      "fim": 1792379747.6949,
+      "ms": 0.0
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379747.6955,
+      "fim": 1792379748.7131,
+      "ms": 1017.6,
+      "passo": 1
+    },
+    {
+      "no": "ferramentas",
+      "inicio": 1792379748.7137,
+      "fim": 1792379748.7145,
+      "ms": 0.7
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379748.715,
+      "fim": 1792379753.4557,
+      "ms": 4740.7,
+      "passo": 2
+    },
+    {
+      "no": "montar_saida",
+      "inicio": 1792379753.4563,
+      "fim": 1792379753.4563,
+      "ms": 0.0
+    },
+    {
+      "no": "gravar_memoria",
+      "inicio": 1792379753.4568,
+      "fim": 1792379753.4629,
+      "ms": 6.1
+    }
+  ]
+}

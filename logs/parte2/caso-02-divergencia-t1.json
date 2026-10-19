@@ -1,0 +1,207 @@
+{
+  "carimbo": {
+    "commit": "b3c8fbf+alteracoes-locais-em-src",
+    "data_utc": "2026-10-19T03:14:06+00:00",
+    "modelo": "openai/gpt-oss-120b",
+    "prompt_agente": "analista_bi_v3@v3.0",
+    "prompt_triagem": "triagem_v1@v1.0",
+    "fonte_dados": "espelho_sqlite",
+    "memoria": "ativa",
+    "tetos": "passos=8 tokens=20000 segundos=90 repeticao=2 prazo_aprovacao_h=24",
+    "rag": "indice=dados/indices/estrutura.db k=3 limiar=0.1685 somente_vigentes",
+    "langgraph": "1.2.16",
+    "recursion_limit": "50",
+    "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
+  },
+  "tipo": "turno",
+  "thread_id": "G-CA02:c02-20261019T001352",
+  "checkpoint_id": "1f1cb6b2-48e3-60bc-8008-92952b311400",
+  "pedido": {
+    "texto": "Tenho certeza que a Drogasil vende a Trayenta 5mg por R$150. Por que seu relatório mostra outro valor?",
+    "usuario_id": "G-CA02",
+    "sessao_id": "c02-20261019T001352"
+  },
+  "saida": {
+    "resultado": "Usei a suposição de que “valor” se refere ao **PreçoFarmácia** atual.  \nNa coleta mais recente (19/09/2026) a Drogasil tem :\n\n- **Trayenta 5 mg – PreçoFarmácia:** R$ 322,15  \n- PreçoTabela: R$ 332,11  \n- PreçoPbm (programa “Abraçar a Vida – Boehringer”): R$ 215,87  \n\nPortanto, o relatório reflete o preço de R$ 322,15, que é o preço de loja mais recente registrado pela ferramenta `consultar_precos`. O valor que você mencionou (R$ 150) não consta nos dados atuais.",
+    "fontes": [
+      {
+        "tipo": "banco_precos",
+        "referencia": "vw_PrecoAtual(produto='Trayenta 5mg', farmacia='Drogasil')",
+        "detalhe": "1 linha(s), fonte=espelho_sqlite, coleta mais recente 2026-09-19 00:00:00"
+      }
+    ],
+    "suficiencia": "suficiente",
+    "motivo_insuficiencia": null,
+    "suposicoes": [
+      "'valor' interpretado como preço atual (PrecoFarmacia)"
+    ],
+    "pergunta_esclarecimento": null,
+    "acoes_executadas": [],
+    "alertas": [],
+    "motivo_terminacao": "resposta_final",
+    "thread_id": "G-CA02:c02-20261019T001352",
+    "turno": 1
+  },
+  "interrupcao": null,
+  "medicoes": {
+    "chamadas_recuperacao_rag": 0,
+    "chamadas_modelo_laco": 2,
+    "tokens_turno": 5021,
+    "paralelo": {
+      "memoria_ms": 2.4,
+      "triagem_ms": 1147.9,
+      "soma_ms": 1150.3,
+      "maior_ms": 1147.9,
+      "decorrido_ms": 1148.3
+    }
+  },
+  "triagem": {
+    "rota": "atender",
+    "pilar": "preco",
+    "pergunta_reescrita": "Por que o relatório mostra um preço diferente da Trayenta 5mg na Drogasil?",
+    "faltando": [],
+    "pergunta_esclarecimento": null,
+    "suposicoes": [
+      "'valor' interpretado como preço atual (PrecoFarmacia)"
+    ],
+    "justificativa": "Produto e farmácia informados; pergunta sobre discrepância de preço.",
+    "erros": []
+  },
+  "memoria_usada": {
+    "ativa": true,
+    "tokens": 0,
+    "fatos": {},
+    "episodios": [],
+    "descartados_por_teto": 0,
+    "descartes_por_contradicao": 0
+  },
+  "gravacoes_memoria": [
+    {
+      "tipo": "episodica",
+      "id": "aacfd7675cddabfe",
+      "ja_existia": false
+    }
+  ],
+  "decisao_humana": null,
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "preco",
+      "suposicoes": [
+        "'valor' interpretado como preço atual (PrecoFarmacia)"
+      ],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1476
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Drogasil",
+        "modo": "atual",
+        "produto": "Trayenta 5mg"
+      },
+      "resultado": {
+        "encontrado": true,
+        "fonte": "espelho_sqlite",
+        "resultados": [
+          {
+            "ProdutoFarmaciaId": 2,
+            "DataUltimaColeta": "2026-09-19 00:00:00",
+            "Farmacia": "Drogasil",
+            "Produto": "Trayenta 5mg",
+            "PrincipioAtivo": "Linagliptina",
+            "Marca": "Trayenta",
+            "Fabricante": "Boehringer Ingelheim",
+            "EanObservado": null,
+            "PrecoTabela": 332.11,
+            "PrecoFarmacia": 322.15,
+            "PrecoPbm": 215.87,
+            "ProgramaPbmNome": "Abraçar a Vida - Boehringer",
+            "Disponivel": 1
+          }
+        ]
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Usei a suposição de que “valor” se refere ao **PreçoFarmácia** atual.  \nNa coleta mais recente (19/09/2026) a Drogasil tem :\n\n- **Trayenta 5 mg – PreçoFarmácia:** R$ 322,15  \n- PreçoTabela: R$ 332,11  \n- PreçoPbm (programa “Abraçar a Vida – Boehringer”): R$ 215,87  \n\nPortanto, o relatório reflete o preço de R$ 322,15, que é o preço de loja mais recente registrado pela ferramenta `consultar_precos`. O valor que você mencionou (R$ 150) não consta nos dados atuais."
+    }
+  ],
+  "eventos": [
+    {
+      "no": "receber_entrada",
+      "inicio": 1792379643.0383,
+      "fim": 1792379643.0384,
+      "ms": 0.0
+    },
+    {
+      "no": "carregar_memoria",
+      "inicio": 1792379643.0398,
+      "fim": 1792379643.0423,
+      "ms": 2.4
+    },
+    {
+      "no": "triagem",
+      "inicio": 1792379643.0402,
+      "fim": 1792379644.1881,
+      "ms": 1147.9
+    },
+    {
+      "no": "portao",
+      "inicio": 1792379644.1887,
+      "fim": 1792379644.1887,
+      "ms": 0.0
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379644.1891,
+      "fim": 1792379645.2045,
+      "ms": 1015.4,
+      "passo": 1
+    },
+    {
+      "no": "ferramentas",
+      "inicio": 1792379645.2053,
+      "fim": 1792379645.2059,
+      "ms": 0.6
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379645.2065,
+      "fim": 1792379646.0287,
+      "ms": 822.3,
+      "passo": 2
+    },
+    {
+      "no": "montar_saida",
+      "inicio": 1792379646.0293,
+      "fim": 1792379646.0294,
+      "ms": 0.1
+    },
+    {
+      "no": "gravar_memoria",
+      "inicio": 1792379646.0297,
+      "fim": 1792379646.0431,
+      "ms": 13.4
+    }
+  ]
+}

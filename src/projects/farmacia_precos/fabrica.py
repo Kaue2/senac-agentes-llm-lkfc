@@ -2,7 +2,7 @@
 de farmácia (banco, ferramentas, prompt). Um projeto novo replica só este arquivo.
 
 Duas versões, comparadas pela suíte do Exercício 11:
-- `v1` — o agente da Parte 1: prompt `prompts/analista_bi_v1.md`, 4 ferramentas.
+- `v1` — o agente da Parte 1: prompt `src/prompts/analista_bi_v1.md`, 4 ferramentas.
 - `v2` — v1 + `consultar_base_conhecimento` (RAG como ferramenta) e o prompt
   `src/prompts/analista_bi_v2.md`, que difere da v1 por uma única regra.
 """

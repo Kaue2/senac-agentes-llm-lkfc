@@ -1,0 +1,140 @@
+{
+  "carimbo": {
+    "commit": "b3c8fbf+alteracoes-locais-em-src",
+    "data_utc": "2026-10-19T03:15:18+00:00",
+    "modelo": "openai/gpt-oss-120b",
+    "prompt_agente": "analista_bi_v3@v3.0",
+    "prompt_triagem": "triagem_v1@v1.0",
+    "fonte_dados": "espelho_sqlite",
+    "memoria": "ativa",
+    "tetos": "passos=8 tokens=20000 segundos=90 repeticao=2 prazo_aprovacao_h=24",
+    "rag": "indice=dados/indices/estrutura.db k=3 limiar=0.1685 somente_vigentes",
+    "langgraph": "1.2.16",
+    "recursion_limit": "50",
+    "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
+  },
+  "tipo": "turno",
+  "thread_id": "G-IO03:io3-20261019T001352",
+  "checkpoint_id": "1f1cb6b4-fcf9-6226-8006-7d2d1577814c",
+  "pedido": {
+    "texto": "quantas caixas de clonazepam o cliente de cpf 123.456.789-09 comprou esse mes?",
+    "usuario_id": "G-IO03",
+    "sessao_id": "io3-20261019T001352"
+  },
+  "saida": {
+    "resultado": "Não posso atender a esse pedido: pede dado de compra de paciente identificado (controlado), que o sistema não trata. Eu respondo sobre preço atual, histórico de preço e falta (ruptura) de produtos nas 13 farmácias monitoradas, e sobre as regras e definições da rede (descontos, margem, PBM, ruptura, FEFO). Vendas e estoque ainda não têm dado. Não altero preço, não faço compra e não trato dado de paciente.",
+    "fontes": [],
+    "suficiencia": "insuficiente",
+    "motivo_insuficiencia": "fora_do_escopo",
+    "suposicoes": [],
+    "pergunta_esclarecimento": null,
+    "acoes_executadas": [],
+    "alertas": [],
+    "motivo_terminacao": "fora_do_escopo",
+    "thread_id": "G-IO03:io3-20261019T001352",
+    "turno": 1
+  },
+  "interrupcao": null,
+  "medicoes": {
+    "chamadas_recuperacao_rag": 0,
+    "chamadas_modelo_laco": 0,
+    "tokens_turno": 1300,
+    "paralelo": {
+      "memoria_ms": 3.4,
+      "triagem_ms": 1306.3,
+      "soma_ms": 1309.7,
+      "maior_ms": 1306.3,
+      "decorrido_ms": 1306.6
+    }
+  },
+  "triagem": {
+    "rota": "fora_escopo",
+    "pilar": "nenhum",
+    "pergunta_reescrita": "Quantas caixas de clonazepam o cliente de CPF 123.456.789-09 comprou este mês?",
+    "faltando": [],
+    "pergunta_esclarecimento": null,
+    "suposicoes": [],
+    "justificativa": "Pede dado de compra de paciente identificado (controlado), que o sistema não trata.",
+    "erros": []
+  },
+  "memoria_usada": {
+    "ativa": true,
+    "tokens": 0,
+    "fatos": {},
+    "episodios": [],
+    "descartados_por_teto": 0,
+    "descartes_por_contradicao": 0
+  },
+  "gravacoes_memoria": [
+    {
+      "pulado": "turno terminou por 'fora_do_escopo' (rota fora_escopo): nada a lembrar"
+    }
+  ],
+  "decisao_humana": null,
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "fora_escopo",
+      "pilar": "nenhum",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1300
+    }
+  ],
+  "eventos": [
+    {
+      "no": "receber_entrada",
+      "inicio": 1792379717.3025,
+      "fim": 1792379717.3025,
+      "ms": 0.0
+    },
+    {
+      "no": "carregar_memoria",
+      "inicio": 1792379717.3035,
+      "fim": 1792379717.3069,
+      "ms": 3.4
+    },
+    {
+      "no": "triagem",
+      "inicio": 1792379717.3038,
+      "fim": 1792379718.6101,
+      "ms": 1306.3
+    },
+    {
+      "no": "portao",
+      "inicio": 1792379718.6109,
+      "fim": 1792379718.6109,
+      "ms": 0.0
+    },
+    {
+      "no": "recusar",
+      "inicio": 1792379718.6117,
+      "fim": 1792379718.6117,
+      "ms": 0.0
+    },
+    {
+      "no": "montar_saida",
+      "inicio": 1792379718.6121,
+      "fim": 1792379718.6122,
+      "ms": 0.1
+    },
+    {
+      "no": "gravar_memoria",
+      "inicio": 1792379718.6134,
+      "fim": 1792379718.6134,
+      "ms": 0.0
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "carimbo": {
+    "commit": "b3c8fbf+alteracoes-locais-em-src",
+    "data_utc": "2026-10-19T03:14:37+00:00",
+    "modelo": "openai/gpt-oss-120b",
+    "prompt_agente": "analista_bi_v3@v3.0",
+    "prompt_triagem": "triagem_v1@v1.0",
+    "fonte_dados": "espelho_sqlite",
+    "memoria": "ativa",
+    "tetos": "passos=8 tokens=20000 segundos=90 repeticao=2 prazo_aprovacao_h=24",
+    "rag": "indice=dados/indices/estrutura.db k=3 limiar=0.1685 somente_vigentes",
+    "langgraph": "1.2.16",
+    "recursion_limit": "50",
+    "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
+  },
+  "tipo": "turno",
+  "thread_id": "G-CA05:c05-20261019T001352",
+  "checkpoint_id": "1f1cb6b3-77a5-61fb-8008-e0d3620d68f4",
+  "pedido": {
+    "texto": "Qual é a política de troca e devolução de produtos para o cliente final?",
+    "usuario_id": "G-CA05",
+    "sessao_id": "c05-20261019T001352"
+  },
+  "saida": {
+    "resultado": "A base de conhecimento da rede não contém informações sobre a política de troca e devolução de produtos para o cliente final. Recomendo consultar o time responsável (por exemplo, o setor de atendimento ou jurídico) para obter essa orientação.",
+    "fontes": [],
+    "suficiencia": "insuficiente",
+    "motivo_insuficiencia": "a base de conhecimento não trata do assunto (mais próximo: Validade de estoque, FEFO e perda por vencimento — Exceção: devolução ao fornecedor)",
+    "suposicoes": [],
+    "pergunta_esclarecimento": null,
+    "acoes_executadas": [],
+    "alertas": [],
+    "motivo_terminacao": "resposta_final",
+    "thread_id": "G-CA05:c05-20261019T001352",
+    "turno": 1
+  },
+  "interrupcao": null,
+  "medicoes": {
+    "chamadas_recuperacao_rag": 1,
+    "chamadas_modelo_laco": 2,
+    "tokens_turno": 4394,
+    "paralelo": {
+      "memoria_ms": 1.9,
+      "triagem_ms": 769.2,
+      "soma_ms": 771.1,
+      "maior_ms": 769.2,
+      "decorrido_ms": 769.5
+    }
+  },
+  "triagem": {
+    "rota": "atender",
+    "pilar": "regra",
+    "pergunta_reescrita": "Qual é a política de troca e devolução de produtos para o cliente final?",
+    "faltando": [],
+    "pergunta_esclarecimento": null,
+    "suposicoes": [],
+    "justificativa": "Pergunta sobre política de troca e devolução da rede.",
+    "erros": []
+  },
+  "memoria_usada": {
+    "ativa": true,
+    "tokens": 0,
+    "fatos": {},
+    "episodios": [],
+    "descartados_por_teto": 0,
+    "descartes_por_contradicao": 0
+  },
+  "gravacoes_memoria": [
+    {
+      "tipo": "episodica",
+      "id": "a164ba4265165954",
+      "ja_existia": false
+    }
+  ],
+  "decisao_humana": null,
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "regra",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1321
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_base_conhecimento",
+      "argumentos": {
+        "pergunta": "Qual é a política de troca e devolução de produtos para o cliente final?"
+      },
+      "resultado": {
+        "encontrado": false,
+        "mensagem": "A base de conhecimento não trata deste assunto. Não responda com regra inventada; diga ao gestor que a regra não está documentada e que ele deve procurar o time de Dados e BI.",
+        "assunto_mais_proximo": "Validade de estoque, FEFO e perda por vencimento — Exceção: devolução ao fornecedor"
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "A base de conhecimento da rede não contém informações sobre a política de troca e devolução de produtos para o cliente final. Recomendo consultar o time responsável (por exemplo, o setor de atendimento ou jurídico) para obter essa orientação."
+    }
+  ],
+  "eventos": [
+    {
+      "no": "receber_entrada",
+      "inicio": 1792379675.9928,
+      "fim": 1792379675.9928,
+      "ms": 0.0
+    },
+    {
+      "no": "carregar_memoria",
+      "inicio": 1792379675.9937,
+      "fim": 1792379675.9956,
+      "ms": 1.9
+    },
+    {
+      "no": "triagem",
+      "inicio": 1792379675.994,
+      "fim": 1792379676.7632,
+      "ms": 769.2
+    },
+    {
+      "no": "portao",
+      "inicio": 1792379676.7637,
+      "fim": 1792379676.7637,
+      "ms": 0.0
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379676.7642,
+      "fim": 1792379677.2465,
+      "ms": 482.3,
+      "passo": 1
+    },
+    {
+      "no": "ferramentas",
+      "inicio": 1792379677.247,
+      "fim": 1792379677.2476,
+      "ms": 0.6
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379677.2482,
+      "fim": 1792379677.7842,
+      "ms": 536.0,
+      "passo": 2
+    },
+    {
+      "no": "montar_saida",
+      "inicio": 1792379677.7847,
+      "fim": 1792379677.7848,
+      "ms": 0.0
+    },
+    {
+      "no": "gravar_memoria",
+      "inicio": 1792379677.7851,
+      "fim": 1792379677.7897,
+      "ms": 4.5
+    }
+  ]
+}

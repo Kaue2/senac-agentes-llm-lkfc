@@ -1,0 +1,199 @@
+{
+  "carimbo": {
+    "commit": "b3c8fbf+alteracoes-locais-em-src",
+    "data_utc": "2026-10-19T03:15:28+00:00",
+    "modelo": "openai/gpt-oss-120b",
+    "prompt_agente": "analista_bi_v3@v3.0",
+    "prompt_triagem": "triagem_v1@v1.0",
+    "fonte_dados": "espelho_sqlite",
+    "memoria": "ativa",
+    "tetos": "passos=8 tokens=20000 segundos=90 repeticao=2 prazo_aprovacao_h=24",
+    "rag": "indice=dados/indices/estrutura.db k=3 limiar=0.1685 somente_vigentes",
+    "langgraph": "1.2.16",
+    "recursion_limit": "50",
+    "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
+  },
+  "tipo": "turno",
+  "thread_id": "G-IO04:io4-20261019T001352",
+  "checkpoint_id": "1f1cb6b5-5b0d-6a5c-8008-ede5ae59bc71",
+  "pedido": {
+    "texto": "O desconto do PBM conta para o teto de desconto da rede?",
+    "usuario_id": "G-IO04",
+    "sessao_id": "io4-20261019T001352"
+  },
+  "saida": {
+    "resultado": "O desconto do PBM **não** conta para o teto de desconto da rede. Conforme a política de precificação, produtos com programa de benefício (PBM) ativo são excluídos do cálculo do teto de desconto quando vendidos pelo programa, pois o desconto é concedido e reembolsado pelo laboratório, não pela rede【politica-precificacao-2026#s05】.",
+    "fontes": [
+      {
+        "tipo": "corpus",
+        "referencia": "politica-precificacao-2026#s05",
+        "detalhe": "Política de precificação de balcão e e-commerce — versão 2026"
+      }
+    ],
+    "suficiencia": "suficiente",
+    "motivo_insuficiencia": null,
+    "suposicoes": [],
+    "pergunta_esclarecimento": null,
+    "acoes_executadas": [],
+    "alertas": [],
+    "motivo_terminacao": "resposta_final",
+    "thread_id": "G-IO04:io4-20261019T001352",
+    "turno": 1
+  },
+  "interrupcao": null,
+  "medicoes": {
+    "chamadas_recuperacao_rag": 1,
+    "chamadas_modelo_laco": 2,
+    "tokens_turno": 4520,
+    "paralelo": {
+      "memoria_ms": 1.9,
+      "triagem_ms": 741.8,
+      "soma_ms": 743.7,
+      "maior_ms": 741.8,
+      "decorrido_ms": 742.1
+    }
+  },
+  "triagem": {
+    "rota": "atender",
+    "pilar": "regra",
+    "pergunta_reescrita": "O desconto do PBM conta para o teto de desconto da rede?",
+    "faltando": [],
+    "pergunta_esclarecimento": null,
+    "suposicoes": [],
+    "justificativa": "Pergunta sobre política de preço.",
+    "erros": []
+  },
+  "memoria_usada": {
+    "ativa": true,
+    "tokens": 0,
+    "fatos": {},
+    "episodios": [],
+    "descartados_por_teto": 0,
+    "descartes_por_contradicao": 0
+  },
+  "gravacoes_memoria": [
+    {
+      "tipo": "episodica",
+      "id": "89344996b7b88e0a",
+      "ja_existia": false
+    }
+  ],
+  "decisao_humana": null,
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "regra",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1317
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_base_conhecimento",
+      "argumentos": {
+        "pergunta": "O desconto do PBM conta para o teto de desconto da rede?"
+      },
+      "resultado": {
+        "encontrado": true,
+        "trechos": [
+          {
+            "id": "politica-precificacao-2026#s05",
+            "documento": "Política de precificação de balcão e e-commerce — versão 2026",
+            "texto": "Produtos com programa de benefício (PBM) ativo não entram no teto de desconto dos artigos 1 e 2\nquando vendidos pelo programa. O desconto do PBM é concedido e reembolsado pelo laboratório, e\nnão conta como desconto praticado pela rede."
+          },
+          {
+            "id": "glossario-precos#s06",
+            "documento": "Glossário de preços do monitoramento de concorrência",
+            "texto": "O desconto praticado de uma farmácia sobre um produto é calculado como\n1 − (PrecoFarmacia ÷ PrecoTabela). O desconto do PBM não entra nesse cálculo, porque é\nconcedido pelo laboratório e não pela farmácia."
+          },
+          {
+            "id": "coleta-precos#s05",
+            "documento": "Como a coleta de preços de concorrência funciona",
+            "texto": "Quando o site da farmácia só mostra o preço do PBM depois que o cliente faz login, o campo\nPrecoPbm fica nulo mesmo que o programa exista para aquele produto naquela farmácia."
+          }
+        ],
+        "instrucao": "Responda só com o que os trechos dizem e cite o id do trecho usado entre colchetes."
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "O desconto do PBM **não** conta para o teto de desconto da rede. Conforme a política de precificação, produtos com programa de benefício (PBM) ativo são excluídos do cálculo do teto de desconto quando vendidos pelo programa, pois o desconto é concedido e reembolsado pelo laboratório, não pela rede【politica-precificacao-2026#s05】."
+    }
+  ],
+  "eventos": [
+    {
+      "no": "receber_entrada",
+      "inicio": 1792379726.7128,
+      "fim": 1792379726.7129,
+      "ms": 0.0
+    },
+    {
+      "no": "carregar_memoria",
+      "inicio": 1792379726.7139,
+      "fim": 1792379726.7158,
+      "ms": 1.9
+    },
+    {
+      "no": "triagem",
+      "inicio": 1792379726.7142,
+      "fim": 1792379727.456,
+      "ms": 741.8
+    },
+    {
+      "no": "portao",
+      "inicio": 1792379727.4567,
+      "fim": 1792379727.4567,
+      "ms": 0.0
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379727.4572,
+      "fim": 1792379727.8651,
+      "ms": 407.9,
+      "passo": 1
+    },
+    {
+      "no": "ferramentas",
+      "inicio": 1792379727.8658,
+      "fim": 1792379727.8663,
+      "ms": 0.5
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379727.8668,
+      "fim": 1792379728.4643,
+      "ms": 597.5,
+      "passo": 2
+    },
+    {
+      "no": "montar_saida",
+      "inicio": 1792379728.4651,
+      "fim": 1792379728.4651,
+      "ms": 0.1
+    },
+    {
+      "no": "gravar_memoria",
+      "inicio": 1792379728.4656,
+      "fim": 1792379728.4786,
+      "ms": 12.9
+    }
+  ]
+}

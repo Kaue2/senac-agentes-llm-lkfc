@@ -1,0 +1,212 @@
+{
+  "carimbo": {
+    "commit": "b3c8fbf+alteracoes-locais-em-src",
+    "data_utc": "2026-10-19T03:15:38+00:00",
+    "modelo": "openai/gpt-oss-120b",
+    "prompt_agente": "analista_bi_v3@v3.0",
+    "prompt_triagem": "triagem_v1@v1.0",
+    "fonte_dados": "espelho_sqlite",
+    "memoria": "ativa",
+    "tetos": "passos=8 tokens=20000 segundos=90 repeticao=2 prazo_aprovacao_h=24",
+    "rag": "indice=dados/indices/estrutura.db k=3 limiar=0.1685 somente_vigentes",
+    "langgraph": "1.2.16",
+    "recursion_limit": "50",
+    "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
+  },
+  "tipo": "turno",
+  "thread_id": "G-IO07:io7a-20261019T001352",
+  "checkpoint_id": "1f1cb6b5-bad4-6ca3-8008-a135c2c11376",
+  "pedido": {
+    "texto": "Minha farmácia padrão é a Raia. Qual o preço da Novalgina 500mg lá?",
+    "usuario_id": "G-IO07",
+    "sessao_id": "io7a-20261019T001352"
+  },
+  "saida": {
+    "resultado": "Usei a farmácia padrão (Raia) como recorte.  \n- **Novalgina 500 mg – Preço da loja (PreçoFarmácia): R$ 13,81** (coleta em 19/09/2026)【fonte: espelho_sqlite】.",
+    "fontes": [
+      {
+        "tipo": "banco_precos",
+        "referencia": "vw_PrecoAtual(produto='Novalgina 500mg', farmacia='Raia')",
+        "detalhe": "1 linha(s), fonte=espelho_sqlite, coleta mais recente 2026-09-19 00:00:00"
+      }
+    ],
+    "suficiencia": "suficiente",
+    "motivo_insuficiencia": null,
+    "suposicoes": [
+      "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+    ],
+    "pergunta_esclarecimento": null,
+    "acoes_executadas": [],
+    "alertas": [],
+    "motivo_terminacao": "resposta_final",
+    "thread_id": "G-IO07:io7a-20261019T001352",
+    "turno": 1
+  },
+  "interrupcao": null,
+  "medicoes": {
+    "chamadas_recuperacao_rag": 0,
+    "chamadas_modelo_laco": 2,
+    "tokens_turno": 4587,
+    "paralelo": {
+      "memoria_ms": 2.0,
+      "triagem_ms": 743.8,
+      "soma_ms": 745.8,
+      "maior_ms": 743.8,
+      "decorrido_ms": 744.1
+    }
+  },
+  "triagem": {
+    "rota": "atender",
+    "pilar": "preco",
+    "pergunta_reescrita": "Qual o preço da Novalgina 500mg na Raia?",
+    "faltando": [],
+    "pergunta_esclarecimento": null,
+    "suposicoes": [
+      "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+    ],
+    "justificativa": "Produto e farmácia informados.",
+    "erros": []
+  },
+  "memoria_usada": {
+    "ativa": true,
+    "tokens": 0,
+    "fatos": {},
+    "episodios": [],
+    "descartados_por_teto": 0,
+    "descartes_por_contradicao": 0
+  },
+  "gravacoes_memoria": [
+    {
+      "tipo": "episodica",
+      "id": "b4cf3b92ca2980fd",
+      "ja_existia": false
+    },
+    {
+      "tipo": "semantica",
+      "id": "08be544d7432416f",
+      "ja_existia": false
+    }
+  ],
+  "decisao_humana": null,
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "preco",
+      "suposicoes": [
+        "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+      ],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1323
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Raia",
+        "modo": "atual",
+        "produto": "Novalgina 500mg"
+      },
+      "resultado": {
+        "encontrado": true,
+        "fonte": "espelho_sqlite",
+        "resultados": [
+          {
+            "ProdutoFarmaciaId": 10,
+            "DataUltimaColeta": "2026-09-19 00:00:00",
+            "Farmacia": "Raia",
+            "Produto": "Novalgina 500mg",
+            "PrincipioAtivo": "Dipirona Monoidratada",
+            "Marca": "Novalgina",
+            "Fabricante": "Sanofi",
+            "EanObservado": null,
+            "PrecoTabela": 15.01,
+            "PrecoFarmacia": 13.81,
+            "PrecoPbm": null,
+            "ProgramaPbmNome": null,
+            "Disponivel": 1
+          }
+        ]
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Usei a farmácia padrão (Raia) como recorte.  \n- **Novalgina 500 mg – Preço da loja (PreçoFarmácia): R$ 13,81** (coleta em 19/09/2026)【fonte: espelho_sqlite】."
+    }
+  ],
+  "eventos": [
+    {
+      "no": "receber_entrada",
+      "inicio": 1792379736.5715,
+      "fim": 1792379736.5715,
+      "ms": 0.0
+    },
+    {
+      "no": "carregar_memoria",
+      "inicio": 1792379736.5728,
+      "fim": 1792379736.5748,
+      "ms": 2.0
+    },
+    {
+      "no": "triagem",
+      "inicio": 1792379736.573,
+      "fim": 1792379737.3169,
+      "ms": 743.8
+    },
+    {
+      "no": "portao",
+      "inicio": 1792379737.3177,
+      "fim": 1792379737.3177,
+      "ms": 0.0
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379737.3183,
+      "fim": 1792379737.8998,
+      "ms": 581.5,
+      "passo": 1
+    },
+    {
+      "no": "ferramentas",
+      "inicio": 1792379737.9004,
+      "fim": 1792379737.9011,
+      "ms": 0.7
+    },
+    {
+      "no": "agente",
+      "inicio": 1792379737.9017,
+      "fim": 1792379738.501,
+      "ms": 599.3,
+      "passo": 2
+    },
+    {
+      "no": "montar_saida",
+      "inicio": 1792379738.5016,
+      "fim": 1792379738.5017,
+      "ms": 0.0
+    },
+    {
+      "no": "gravar_memoria",
+      "inicio": 1792379738.5021,
+      "fim": 1792379738.5216,
+      "ms": 19.6
+    }
+  ]
+}

@@ -4,11 +4,24 @@
 
 Permitir que gestores de uma rede de farmácias respondam, em linguagem natural, perguntas de negócio que hoje exigem cruzar vendas, estoque e preço regulado em múltiplos relatórios.
 
-A pesquisa completa do case está em [`docs/case.md`](docs/case.md), a análise de modelos em [`docs/modelos.md`](docs/modelos.md), e o desenho de arquitetura em [`docs/arquitetura-v1.md`](docs/arquitetura-v1.md).
+O case completo (com o que o domínio ensinou, §12) está em [`docs/case.md`](docs/case.md). A Parte 2
+está documentada em:
+
+| Documento | O quê |
+|---|---|
+| [`docs/io.md`](docs/io.md) | o contrato de entrada e saída, os exemplos reais e os 6 casos demonstrados |
+| [`docs/arquitetura.md`](docs/arquitetura.md) | o diagrama, as seis perguntas, a defesa do nível de autonomia, o grafo conferido contra o código |
+| [`docs/grafo.md`](docs/grafo.md) | os padrões, quem decide cada bifurcação, o estado e os reducers, o que o framework não deu |
+| [`docs/humano.md`](docs/humano.md) | onde o grafo para, o que a pessoa vê, o prazo, a idempotência |
+| [`docs/rag.md`](docs/rag.md) | as formas de recuperar, o corpus, o documento revogado, o corte e o `k`, a recuperação no laço |
+| [`docs/memoria.md`](docs/memoria.md) | as três memórias, a política de escrita, o esquecimento, a conversa |
+| [`docs/prompts.md`](docs/prompts.md) | o plano de prompt engineering e o experimento da regra da frase |
+| [`docs/modelos.md`](docs/modelos.md), [`docs/fontes.md`](docs/fontes.md) | a análise de modelos (Parte 1) e o que foi consultado |
 
 ## Como rodar
 
-Pré-requisitos: Python 3.11+.
+Pré-requisitos: Python 3.11+ e uma chave gratuita da Groq (ou de outro provedor compatível com a API
+da OpenAI — ver `docs/modelos.md`).
 
 ```bash
 git clone <url-do-repositorio>
@@ -17,76 +30,141 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Abra o `.env` e preencha pelo menos `LLM_BASE_URL`, `LLM_MODEL` e `OPENAI_API_KEY` (o
-modelo ativo — por padrão, um provedor gratuito; ver `docs/modelos.md` para os três
-candidatos avaliados e como conseguir uma chave gratuita de cada). Se você não tiver a
-connection string real do banco `fractal-precos`, deixe `FRACTALPRECOS_CONNECTION_STRING`
-vazio — o agente usa automaticamente um espelho local com o mesmo schema. **Se você tiver
-e colocar a connection string real, o banco tem dado de produção de um cliente real —
-não rode nada que grave log/exemplo destinado a este repositório com ela preenchida**
-(ver `docs/case.md` §9).
+No `.env`, preencha `OPENAI_API_KEY` (a chave da Groq; `LLM_BASE_URL` e `LLM_MODEL` já vêm com o
+modelo ativo). Deixe `FRACTALPRECOS_CONNECTION_STRING` **vazio**: o agente usa o espelho local com
+dados sintéticos. Se você tiver a connection string real, o banco é de um cliente real — não rode
+nada que grave log versionado com ela preenchida (`docs/case.md` §9).
 
 ```bash
 python scripts/gerar_dados_sinteticos.py
 python scripts/seed_mock_db.py
+python scripts/indexar_corpus.py
 ```
 
-Depois:
+O último comando baixa o modelo de embedding `multilingual-e5-large` (~2,2 GB, **só no primeiro
+uso**) e indexa o corpus. Com o download feito, os três comandos levam menos de um minuto; o download
+depende da sua rede — é o único passo que pode passar dos cinco minutos. Para máquina fraca, troque
+o modelo em `EMBEDDING_MODEL_LOCAL` (ver `.env.example`; exige recalibrar o limiar do RAG).
+
+Conferir que está tudo de pé, sem gastar chamada ao modelo:
 
 ```bash
-python -m src.main "qual o preço atual da Trayenta 5mg na Drogasil?"
+python -m pytest -q
+python conferir_grafo.py
 ```
 
 ## Como usar
 
-**O que você digita:** uma pergunta em português sobre preço, vendas ou estoque de um
-produto numa farmácia (ex.: `"a Novalgina está em falta em alguma farmácia?"`). Vendas e
-estoque ainda não têm dado real — o agente avisa a limitação em vez de inventar número
-(ver `docs/case.md` §4/§11).
+**O que você digita:** uma pergunta em português, em texto livre, sobre preço, falta (ruptura) ou
+regras da rede. A matrícula do gestor e a sessão vêm da sessão do sistema interno; na linha de
+comando, `--usuario` e `--sessao` (mesma sessão = mesma conversa).
 
-**O que o sistema faz:** interpreta a pergunta, identifica produto/farmácia/período,
-chama a ferramenta certa contra o banco de preços (real, via SQL Server, ou o espelho
-local em SQLite — a resposta sempre diz qual fonte foi usada), e responde citando de
-onde veio o número. Se faltar informação para responder com confiança, faz **uma**
-pergunta de volta antes de consultar.
-
-**O que você recebe:** uma resposta em texto no terminal, citando farmácia/produto/data
-usados, e o caminho do log da execução (`logs/execucao_<timestamp>.json`) com a
-trajetória completa (ferramentas chamadas, argumentos, resultado de cada passo).
-
-**Exemplo real** (copiado de uma execução de verdade, sem edição — ver `logs/`):
-
+```bash
+python -m src.main "Qual o preço atual da Novalgina 500mg na farmácia Araujo?" --usuario G-0042 --sessao s1
 ```
-$ python -m src.main "qual o preço atual da Trayenta 5mg na Drogasil?"
-[fonte de dados: espelho_sqlite]
-Na Drogasil, o preço mais recente do **Trayenta 5 mg** (coletado em 19/09/2026) é:
 
-- **Preço de tabela:** R$ 332,11
-- **Preço na farmácia (visível ao cliente):** R$ 322,15
-- **Preço PBM (programa de parceria):** R$ 215,87
+**O que volta:** um objeto validado (`SaidaAgente`) com o **resultado**, as **fontes** conferíveis e a
+**suficiência** — se o sistema teve base para responder. Exemplo real, copiado do log da execução:
 
-Esses valores vêm da consulta de preços (atual) da ferramenta.
-[log salvo em logs/execucao_20260920T193104.json]
+<!-- exemplo-principal:inicio -->
+Commit `b3c8fbf+alteracoes-locais-em-src`, 2026-10-19T03:13:55+00:00, modelo `openai/gpt-oss-120b` — log [`logs/parte2/caso-01-simples-t1.json`](logs/parte2/caso-01-simples-t1.json). Entrada: `Qual o preço atual da Novalgina 500mg na farmácia Araujo?`
+
+```json
+{
+  "resultado": "**Farmácia:** Araujo  \n**Produto:** Novalgina 500 mg  \n**Data da coleta:** 19/09/2026  \n\n- **Preço Tabela (teto regulado):** R$ 14,82  \n- **Preço Farmácia (preço com desconto padrão da loja):** R$ 13,63  \n\nNão há preço PBM cadastrado para este produto.",
+  "fontes": [
+    {
+      "tipo": "banco_precos",
+      "referencia": "vw_PrecoAtual(produto='Novalgina 500mg', farmacia='Araujo')",
+      "detalhe": "1 linha(s), fonte=espelho_sqlite, coleta mais recente 2026-09-19 00:00:00"
+    }
+  ],
+  "suficiencia": "suficiente",
+  "motivo_insuficiencia": null,
+  "suposicoes": [],
+  "pergunta_esclarecimento": null,
+  "acoes_executadas": [],
+  "alertas": [],
+  "motivo_terminacao": "resposta_final",
+  "thread_id": "G-CA01:c01-20261019T001352",
+  "turno": 1
+}
 ```
+
+A fonte diz de qual view e com qual filtro o número veio, e a data da coleta; `suficiencia` é decidida em código (há fonte do banco), não pelo modelo.
+<!-- exemplo-principal:fim -->
+
+Os outros exemplos — a recusa, a entrada incompleta, a ambígua e a fora do escopo — estão em
+[`docs/io.md`](docs/io.md).
+
+### Quando o grafo para e espera alguém
+
+Se você pede para **salvar ou exportar** a análise, o sistema não grava sozinho: ele para e mostra a
+ação exata, os argumentos, a consequência e o prazo, e espera um revisor (Administração ou você).
+
+<!-- exemplo-pausa:inicio -->
+Exemplo real ([`logs/parte2/caso-06-t1-pausa.json`](logs/parte2/caso-06-t1-pausa.json)) — entrada: `Qual o preço da Trayenta 5mg na Drogasil? Salva essa análise pra eu mandar pra diretoria.` A saída volta com `suficiencia: aguardando_aprovacao`, e o revisor recebe:
+
+```json
+{
+  "acao": "exportar_analise",
+  "argumentos": {
+    "dados_resumo": "Drogasil | Trayenta 5mg | PrecoFarmacia: 322.15 | Data da coleta: 2026-09-19",
+    "explicacao": "O preço atual da Trayenta 5mg na Drogasil, considerando a definição de 'preço' como PrecoFarmacia (preço da loja sem PBM), é R$ 322,15, conforme coleta mais recente em 19/09/2026.",
+    "pergunta": "Qual o preço da Trayenta 5mg na Drogasil?"
+  },
+  "consequencia": "Cria o arquivo dados/exports/analise_5330dc6ff90b4f4c.md com a pergunta, os dados e a explicação acima. Não altera preço, venda nem estoque. Para desfazer, apague o arquivo. Se o mesmo conteúdo já tiver sido exportado, nada novo é criado.",
+  "prazo_expira_em": "2026-10-20T03:16:11.268498+00:00",
+  "se_ninguem_responder": "a execução expira: nada é exportado e o turno termina com motivo 'aprovacao_expirada'"
+}
+```
+<!-- exemplo-pausa:fim -->
+
+Para responder (de outro terminal, ou horas depois — a pausa está gravada em `dados/checkpoints/`):
+
+```bash
+python -m src.main --pendentes
+python -m src.main --retomar G-0042:s1 --decisao aprovar
+python -m src.main --retomar G-0042:s1 --decisao editar --editar "{\"explicacao\": \"texto corrigido\"}" --revisor adm-01
+python -m src.main --retomar G-0042:s1 --decisao rejeitar --comentario "não precisa"
+```
+
+Se ninguém responder em 24 h, a execução **expira** e nada é exportado
+(`python -m src.main --expirar-pendentes`, para rodar de hora em hora). Aprovar duas vezes o mesmo
+conteúdo não cria um segundo arquivo (`docs/humano.md` §5).
 
 **O que o sistema não faz:**
 
-- Não responde perguntas de vendas ou estoque com um número real — essas integrações
-  ainda não existem (`docs/case.md` §10/§11); ele explica a limitação.
-- Não executa nenhuma ação sobre preço, venda ou estoque — é só leitura sobre esses
-  três pilares. A única escrita é salvar a própria análise em disco, se você pedir
-  (`exportar_analise`).
-- Não inventa um preço quando o produto ou a farmácia não estão cadastrados — responde
-  que não encontrou o dado.
+- Não responde vendas nem estoque com número: essas integrações não existem (`docs/case.md` §11).
+- Não altera preço, não compra, não repõe: é só leitura sobre o negócio. A única escrita é exportar a
+  própria análise, e ela passa por aprovação.
+- Não trata dado de paciente nem de cliente identificado: recusa na entrada.
+- Não inventa: sem registro no banco ou sem regra no corpus, a saída é `insuficiente` e diz por quê.
+
+## Reproduzir os casos da Parte 2
+
+```bash
+python scripts/run_casos_parte2.py     # os 6 casos + exemplos de I/O, logs em logs/parte2/ (~10 min, tier gratuito)
+python scripts/relatorio_parte2.py     # regenera docs/io.md e os exemplos deste README a partir dos logs
+python scripts/avaliar_triagem.py      # a avaliação da triagem (14 mensagens rotuladas)
+python scripts/demo_reducer.py         # o que acontece sem os reducers (sem rede, modelo falso)
+```
 
 ## Estrutura do repositório
 
 ```
-src/core/                    núcleo do agente — reutilizável em qualquer projeto de BI
-src/projects/farmacia_precos/  este case: banco, ferramentas, prompt
-prompts/                     prompts versionados
-scripts/                     geração de dados sintéticos, comparação de modelos, demonstrações, verificador
-dados/                       dados sintéticos (com os casos difíceis nomeados) e exports do agente
-logs/                        trajetória das execuções de demonstração e da comparação de modelos
-docs/                        pesquisa e documentação do case
+src/grafo/                     o sistema da Parte 2: contrato, estado, nós, rotas, grafo, execução
+src/prompts/                   os prompts, versionados, carregados em tempo de execução
+src/rag/                       corpus, corte, embeddings, índice vetorial, portão
+src/memoria/                   as três memórias, a política de escrita, o contexto com teto
+src/core/                      núcleo da Parte 1 (laço escrito à mão, ferramentas, orçamento)
+src/projects/farmacia_precos/  este case: banco de preços, ferramentas
+src/evals/                     a suíte de avaliação (Aula 11)
+conferir_grafo.py              imprime os nós e arestas do grafo que o sistema executa
+scripts/                       dados sintéticos, indexação, casos demonstrados, avaliações
+dados/                         corpus, conjuntos de avaliação (o resto é gerado e fica fora do git)
+logs/                          as execuções demonstradas (logs/parte2/) e as das partes anteriores
+docs/                          pesquisa e documentação
+mcp_cnpj/                      servidor MCP de CNPJ/CEP (Exercício 10)
+exercicios/                    os relatórios dos exercícios das aulas
 ```

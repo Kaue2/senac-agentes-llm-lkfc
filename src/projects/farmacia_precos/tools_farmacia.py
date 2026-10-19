@@ -14,6 +14,7 @@ estoque).
 
 from __future__ import annotations
 
+import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -72,21 +73,41 @@ def _consultar_estoque(produto: str = "", farmacia: str = "") -> dict:
     }
 
 
-def _exportar_analise(pergunta: str, dados_resumo: str, explicacao: str) -> dict:
-    PASTA_EXPORTS.mkdir(parents=True, exist_ok=True)
+def chave_exportacao(pergunta: str, dados_resumo: str, explicacao: str) -> str:
+    """Chave de idempotência derivada do CONTEÚDO (Parte 2, §8.5): o mesmo conteúdo dá a mesma
+    chave, e a segunda aprovação do mesmo pedido encontra o arquivo da primeira. Na Parte 1 o
+    arquivo era nomeado pelo horário, e uma retentativa gerava um segundo arquivo (docs/memoria.md
+    §1.1, "falha conhecida")."""
+    normalizado = "\x1f".join(" ".join(t.split()) for t in (pergunta, dados_resumo, explicacao))
+    return hashlib.sha256(normalizado.encode("utf-8")).hexdigest()[:16]
+
+
+def _exportar_analise(pergunta: str, dados_resumo: str, explicacao: str, pasta: Path | None = None) -> dict:
+    pasta = pasta or PASTA_EXPORTS
+    pasta.mkdir(parents=True, exist_ok=True)
+    chave = chave_exportacao(pergunta, dados_resumo, explicacao)
+    caminho = pasta / f"analise_{chave}.md"
+    arquivo = str(caminho.relative_to(PASTA_RAIZ)) if caminho.is_relative_to(PASTA_RAIZ) else str(caminho)
+    if caminho.exists():
+        return {"status": "ok", "arquivo": arquivo, "chave_idempotencia": chave, "ja_existia": True}
     agora = datetime.now(timezone.utc)
-    caminho = PASTA_EXPORTS / f"analise_{agora.strftime('%Y%m%dT%H%M%SZ')}.md"
     conteudo = (
-        f"# Análise exportada — {agora.isoformat()}\n\n"
+        f"# Análise exportada — {agora.isoformat(timespec='seconds')}\n\n"
+        f"Chave de idempotência: `{chave}`\n\n"
         f"## Pergunta\n{pergunta}\n\n"
         f"## Dados\n{dados_resumo}\n\n"
         f"## Explicação\n{explicacao}\n"
     )
-    caminho.write_text(conteudo, encoding="utf-8")
-    return {"status": "ok", "arquivo": str(caminho.relative_to(PASTA_RAIZ))}
+    # "x": cria só se não existir — duas aprovações simultâneas não sobrescrevem uma à outra.
+    try:
+        with caminho.open("x", encoding="utf-8") as f:
+            f.write(conteudo)
+    except FileExistsError:
+        return {"status": "ok", "arquivo": arquivo, "chave_idempotencia": chave, "ja_existia": True}
+    return {"status": "ok", "arquivo": arquivo, "chave_idempotencia": chave, "ja_existia": False}
 
 
-def registrar_ferramentas_farmacia(registro: RegistroFerramentas, banco: BancoPrecos) -> None:
+def registrar_ferramentas_farmacia(registro: RegistroFerramentas, banco: BancoPrecos, pasta_exports: Path | None = None) -> None:
     registro.registrar(
         Ferramenta(
             nome="consultar_precos",
@@ -174,7 +195,7 @@ def registrar_ferramentas_farmacia(registro: RegistroFerramentas, banco: BancoPr
                 },
                 "required": ["pergunta", "dados_resumo", "explicacao"],
             },
-            handler=_exportar_analise,
+            handler=lambda pergunta, dados_resumo, explicacao: _exportar_analise(pergunta, dados_resumo, explicacao, pasta_exports),
             leitura_ou_escrita="escrita",
             reversivel=True,
             conversa_com="Sistema de arquivos local (dados/exports/) — nunca dados de negócio",

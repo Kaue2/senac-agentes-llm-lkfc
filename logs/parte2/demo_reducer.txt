@@ -1,0 +1,28 @@
+Demonstração dos reducers — mesmo grafo, mesmo roteiro de 2 turnos, modelo falso.
+
+### A. estado do sistema (com reducers)
+  turno 'preço de A?': saída = 'A custa R$ 10,00.' (suficiente)
+    eventos registrados (9): ['receber_entrada', 'carregar_memoria', 'triagem', 'portao', 'agente', 'ferramentas', 'agente', 'montar_saida', 'gravar_memoria']
+    trajetória: ['memoria', 'triagem', 'chamada_ferramenta', 'resposta_final']
+    conversa no checkpoint: ['preço de A?', 'A custa R$ 10,00.']
+    o modelo viu de histórico: ['preço de A?']
+  turno 'e de B?': saída = 'B custa R$ 10,00.' (suficiente)
+    eventos registrados (9): ['receber_entrada', 'carregar_memoria', 'triagem', 'portao', 'agente', 'ferramentas', 'agente', 'montar_saida', 'gravar_memoria']
+    trajetória: ['memoria', 'triagem', 'chamada_ferramenta', 'resposta_final']
+    conversa no checkpoint: ['preço de A?', 'A custa R$ 10,00.', 'e de B?', 'B custa R$ 10,00.']
+    o modelo viu de histórico: ['preço de A?', 'A custa R$ 10,00.', 'e de B?']
+
+### B. eventos e trajetoria SEM reducer (escritos em paralelo)
+  turno 'preço de A?': EXCEÇÃO InvalidUpdateError: At key 'eventos': Can receive only one value per step. Use an Annotated key to handle multiple values.
+
+### C. mensagens SEM reducer (escrito em supersteps diferentes)
+  turno 'preço de A?': saída = 'A custa R$ 10,00.' (suficiente)
+    eventos registrados (9): ['receber_entrada', 'carregar_memoria', 'triagem', 'portao', 'agente', 'ferramentas', 'agente', 'montar_saida', 'gravar_memoria']
+    trajetória: ['memoria', 'triagem', 'chamada_ferramenta', 'resposta_final']
+    conversa no checkpoint: ['A custa R$ 10,00.']
+    o modelo viu de histórico: ['preço de A?']
+  turno 'e de B?': saída = 'B custa R$ 10,00.' (suficiente)
+    eventos registrados (9): ['receber_entrada', 'carregar_memoria', 'triagem', 'portao', 'agente', 'ferramentas', 'agente', 'montar_saida', 'gravar_memoria']
+    trajetória: ['memoria', 'triagem', 'chamada_ferramenta', 'resposta_final']
+    conversa no checkpoint: ['B custa R$ 10,00.']
+    o modelo viu de histórico: ['e de B?']

@@ -66,7 +66,7 @@ problema de confiabilidade que o rate limit do Google já mostrou.
 ## 3.3 A verificação mínima — 5 casos reais nos 3 candidatos
 
 As mesmas 5 perguntas de domínio (uma por caso difícil nomeado em `docs/case.md` §8)
-rodaram nos três candidatos, com o mesmo prompt (`prompts/analista_bi_v1.md`) e o mesmo
+rodaram nos três candidatos, com o mesmo prompt (`src/prompts/analista_bi_v1.md`) e o mesmo
 espelho de dados. Script: `scripts/compare_models.py`. Resultado bruto completo,
 sem edição, em `logs/comparacao_modelos.json`.
 

@@ -7,7 +7,7 @@ para essa etapa: técnica, contrato de saída, e o que cada escolha impede.
 - **Técnica:** ReAct simplificado com estado explícito, não few-shot nem CoT longo —
   a tarefa é "escolher ferramenta ou responder", não um raciocínio de vários passos que
   se beneficiasse de exemplos no prompt (esses ficam no prompt do PROJETO, ver
-  `prompts/analista_bi_v1.md`, que É few-shot). Em vez de acumular a lista de mensagens
+  `src/prompts/analista_bi_v1.md`, que É few-shot). Em vez de acumular a lista de mensagens
   crua (pergunta, resposta, chamada de ferramenta, resultado, resposta, ...) e reenviar
   tudo a cada passo, o agente reconstrói a mensagem enviada ao modelo a partir de um
   ESTADO compacto (`EstadoAgente`) a cada passo.

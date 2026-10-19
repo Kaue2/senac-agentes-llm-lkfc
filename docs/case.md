@@ -345,3 +345,92 @@ operacional, em nenhuma demonstração ou métrica de venda do sistema.
 | Dado que vocês não têm | Parcialmente resolvido: o pilar preço agora usa o schema **real** do fractal-precos (não mais hipotético), com dados sintéticos sobre essa estrutura real. Vendas e estoque continuam sem dado nem schema — é o risco declarado em §11, não escondido. |
 | Grande demais | Mitigado ao restringir o escopo desta Parte 1 a perguntas sobre o pilar preço de verdade, com vendas/estoque como ferramentas-placeholder — não "qualquer pergunta sobre o negócio". |
 | Produto de terceiro | Risco real — Cortex Analyst, ThoughtSpot Spotter e Looker/Gemini já fazem isso. O diferencial do grupo precisa estar em tratar os casos difíceis específicos de farmácia (ambiguidade de recorte, preço regulado, cruzamento vendas/estoque/validade), não em conectar um LLM a um banco de dados.
+
+---
+
+## 12. O que o domínio ensinou — complemento da Parte 2
+
+Esta seção é o que o grupo aprendeu **de dentro** do domínio, construindo o corpus (`dados/corpus/`),
+lendo o schema do fractal-precos e rodando o agente — e que não estava na descrição original do
+case. É o que falta para alguém de fora entender por que o sistema é como é. As seções 1 a 11
+acima continuam valendo; onde esta seção as corrige, ela diz.
+
+### 12.1 O vocabulário que ninguém de fora entende
+
+| Termo | O que quer dizer aqui | Por que importa para o sistema |
+|---|---|---|
+| **"preço"** | quatro coisas diferentes: **PMC** (teto regulado pela CMED, reajustado 1×/ano, *não* é coletado), **PrecoTabela** (o preço "de" da vitrine, perto do PMC mas escolhido pela farmácia), **PrecoFarmacia** (o preço "por", que qualquer cliente paga), **PrecoPbm** (só para paciente cadastrado no programa do laboratório) | "quanto custa a Trayenta?" tem três respostas certas no banco. O sistema escolhe **PrecoFarmacia** e **declara** a escolha (`suposicoes` da saída) — é a convenção do glossário: para comparar farmácias, sempre PrecoFarmacia |
+| **PBM × Farmácia Popular** | PBM é programa **do laboratório**; Farmácia Popular é programa **do governo**. O segundo não é coletado e nunca aparece em `PrecoPbm` | um gestor que pergunta "o preço do Farmácia Popular" está fora do que o banco tem |
+| **bandeira** | Drogasil e Raia são do **mesmo grupo**, com sites e preços próprios; o monitoramento trata cada bandeira como uma farmácia | "por que Raia e Drogasil têm preços diferentes?" não é erro de coleta — é a pergunta mais frequente do FAQ |
+| **referência × genérico** | Trayenta (referência) e Linagliptina (genérico) são a mesma molécula; o genérico **normalmente não tem PBM** | `PrecoPbm` vazio num genérico é o esperado, não falha |
+| **ruptura** | não é "estava indisponível": ver 12.4 | é o passo que parecia um e são quatro |
+| **controlado / tarja preta / SNGPC** | itens da Portaria 344/98; a venda retém receita e é escriturada no SNGPC | volume de controlado só agregado (filial × mês), **nunca** por paciente — é o que a triagem recusa |
+| **FEFO** | o primeiro a vencer é o primeiro a sair; perda por vencimento olha validade, não volume parado | só importa quando o pilar estoque existir |
+
+### 12.2 As regras que todo mundo da área conhece e nenhum documento registrava
+
+Estas o grupo só escreveu quando o agente errou sem elas:
+
+- **Farmácia omitida significa "todas".** Ninguém que trabalha com o monitoramento pergunta "quanto
+  custa a Trayenta?" querendo uma farmácia específica: quer a comparação. O modelo, sem essa regra,
+  pergunta "em qual farmácia?" — medido: removendo essa frase do prompt da triagem, a pergunta de volta
+  apareceu nas 2 repetições (`docs/prompts.md` §3).
+- **O preço de hoje é o de ontem.** A coleta roda de madrugada (02:00–06:00); um preço que a farmácia
+  mudou à tarde só aparece amanhã. "O site está mostrando outro preço agora" não é divergência do
+  banco — é a janela de coleta. É uma das explicações honestas do caso 2 (divergência).
+- **O preço coletado é o da capital paulista.** A coleta usa um CEP de referência fixo; o preço não
+  vale para outras regiões, e não inclui frete nem cupom.
+- **Margem de concorrente não existe.** A rede não sabe o custo de aquisição do concorrente: o que se
+  compara é preço praticado. Pedido de "margem da Pague Menos" é recusado com essa explicação.
+
+### 12.3 A exceção de um caso em vinte que decidiu a arquitetura
+
+- **O documento revogado.** A política de 2025 diz 10% onde a de 2026 diz 15%, e no índice vetorial
+  as duas ficam a **0,001** de distância (`docs/rag.md` §3.1). Nenhum ajuste de recuperação separa as
+  duas: foi isso que transformou "revogação" em **metadado do documento com filtro em código** — uma
+  decisão de curadoria, não de busca.
+- **O dado de paciente dentro da pergunta.** Um gestor que escreve "quantas caixas de clonazepam a
+  dona Maria comprou?" põe um nome próprio que o mascaramento de CPF/e-mail/telefone não pega. Foi o
+  que levou a **triagem para antes do laço** (a pergunta nunca chega às ferramentas) e a regra de que
+  **execução recusada não grava memória** (`docs/memoria.md` §5.3).
+- **"Salva essa análise pra eu mandar pra diretoria."** A exportação parecia um detalhe (é só um
+  arquivo, reversível). O pedido real mostrou para que ela serve: o arquivo **sai** do sistema e vira
+  base de decisão. É o único ponto em que o grafo para e espera uma pessoa (`docs/humano.md`).
+- **PBM que exige login.** Quando o site só mostra o PBM depois do login, `PrecoPbm` vem nulo **mesmo
+  com o programa ativo**. "Sem PBM" no banco não prova que o programa não existe — o agente não pode
+  afirmar ausência de programa a partir de campo vazio.
+
+### 12.4 O passo que parecia um e são quatro
+
+"O produto X está em falta na farmácia Y?" parecia uma consulta (`Disponivel = 0`). No domínio são
+quatro perguntas, em ordem (`dados/corpus/regras-ruptura.md`):
+
+1. **O produto é monitorado naquela farmácia?** Se não está em `ProdutoFarmacia`, a resposta é "não
+   monitorado ali", nunca "em falta".
+2. **A última coleta é recente?** Se tem mais de **3 dias**, a situação é "sem coleta recente", e o
+   sistema informa a data e não afirma nada sobre disponibilidade.
+3. **Quantas coletas seguidas indisponível?** Uma só é "ruptura **a confirmar**" (falha de
+   carregamento do site produz indisponibilidade falsa); duas ou mais, "ruptura **confirmada**".
+4. **Desde quando?** O `DesdeQuando` da `vw_Ruptura`, nunca um cálculo sobre o histórico parcial.
+
+**O que a Parte 2 descobriu rodando:** o espelho sintético parou na coleta de 19/09/2026, e as
+execuções são de outubro. Pela regra 2, toda pergunta de ruptura hoje deveria responder "sem coleta
+recente". O agente respondeu "em falta desde 16/09" (caso 4), porque não consultou a regra — e não
+tinha como saber que ela existe sem consultá-la. É o custo, medido, de a recuperação ser ferramenta
+(`docs/rag.md` §5); a correção é levar a regra 2 para dentro da ferramenta de preço, em código.
+
+### 12.5 O que mudou nas seções anteriores
+
+- **§2, "nenhum perfil tem alçada de aprovação":** deixou de valer. A exportação passa por um revisor
+  — **Administração** ou o gestor que pediu — com prazo de 24 h (`docs/humano.md`).
+- **§2, "o agente faz UMA pergunta de esclarecimento":** era instrução no prompt; agora é regra em
+  código no grafo (`src/grafo/rotas.py::rota_triagem`). Na segunda vez, o sistema recusa dizendo o
+  que falta.
+- **§3, o workflow:** virou o grafo de `docs/arquitetura.md` §1. A interpretação (passo 2) e o
+  esclarecimento (passo 3) saíram do laço e foram para a triagem.
+- **§10:** RAG feito (consulta estruturada + vetorial, `docs/rag.md`); LangChain → **LangGraph** feito
+  (`src/grafo/`); MCP: o Exercício 10 fez um servidor MCP de CNPJ/CEP (`mcp_cnpj/`), mas
+  `consultar_precos` continua sendo ferramenta local, não MCP — sem um segundo cliente que precise
+  dela, o servidor não se pagaria ainda.
+- **§11, o maior risco:** continua o mesmo. Vendas e estoque seguem sem dado, e as perguntas desses
+  pilares recebem a limitação (`consultar_vendas`/`consultar_estoque` devolvem "não implementado").
