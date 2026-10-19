@@ -1,7 +1,7 @@
 {
   "carimbo": {
-    "commit": "b3c8fbf+alteracoes-locais-em-src",
-    "data_utc": "2026-10-19T03:14:16+00:00",
+    "commit": "4af5edd",
+    "data_utc": "2026-10-19T05:01:29+00:00",
     "modelo": "openai/gpt-oss-120b",
     "prompt_agente": "analista_bi_v3@v3.0",
     "prompt_triagem": "triagem_v1@v1.0",
@@ -14,15 +14,15 @@
     "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
   },
   "tipo": "turno",
-  "thread_id": "G-CA03:c03-20261019T001352",
-  "checkpoint_id": "1f1cb6b2-aafc-6d20-8008-5ea0995d526e",
+  "thread_id": "G-CA03:c03-20261019T020102",
+  "checkpoint_id": "1f1cb7a2-4dae-6fe8-8008-4216ad1cbccb",
   "pedido": {
     "texto": "Qual o preço da Ivermectina 6mg na farmácia Extrafarma?",
     "usuario_id": "G-CA03",
-    "sessao_id": "c03-20261019T001352"
+    "sessao_id": "c03-20261019T020102"
   },
   "saida": {
-    "resultado": "Assumi que “preço” se refere ao **PreçoFarmácia** (preço da loja, sem PBM).  \n\nA consulta ao banco de preços não encontrou registro para **Ivermectina 6 mg** na farmácia **Extrafarma**. Portanto, não há dado disponível para responder a pergunta.",
+    "resultado": "Não há registro de **Ivermectina 6 mg** na farmácia **Extrafarma** no nosso banco de preços. Como a consulta não retornou nenhum preço, não disponho de um valor de **PreçoFarmácia** para esse produto.",
     "fontes": [],
     "suficiencia": "insuficiente",
     "motivo_insuficiencia": "nenhum registro em vw_PrecoAtual(produto='Ivermectina 6mg', farmacia='Extrafarma')",
@@ -33,20 +33,20 @@
     "acoes_executadas": [],
     "alertas": [],
     "motivo_terminacao": "resposta_final",
-    "thread_id": "G-CA03:c03-20261019T001352",
+    "thread_id": "G-CA03:c03-20261019T020102",
     "turno": 1
   },
   "interrupcao": null,
   "medicoes": {
     "chamadas_recuperacao_rag": 0,
     "chamadas_modelo_laco": 2,
-    "tokens_turno": 4536,
+    "tokens_turno": 4557,
     "paralelo": {
-      "memoria_ms": 1.7,
-      "triagem_ms": 1004.1,
-      "soma_ms": 1005.8,
-      "maior_ms": 1004.1,
-      "decorrido_ms": 1004.4
+      "memoria_ms": 1.8,
+      "triagem_ms": 1007.7,
+      "soma_ms": 1009.5,
+      "maior_ms": 1007.7,
+      "decorrido_ms": 1008.1
     }
   },
   "triagem": {
@@ -98,7 +98,7 @@
       ],
       "faltando": [],
       "erros": [],
-      "tokens": 1393
+      "tokens": 1392
     },
     {
       "no": "ferramentas",
@@ -121,65 +121,65 @@
       "no": "agente",
       "passo": 2,
       "tipo": "resposta_final",
-      "conteudo": "Assumi que “preço” se refere ao **PreçoFarmácia** (preço da loja, sem PBM).  \n\nA consulta ao banco de preços não encontrou registro para **Ivermectina 6 mg** na farmácia **Extrafarma**. Portanto, não há dado disponível para responder a pergunta."
+      "conteudo": "Não há registro de **Ivermectina 6 mg** na farmácia **Extrafarma** no nosso banco de preços. Como a consulta não retornou nenhum preço, não disponho de um valor de **PreçoFarmácia** para esse produto."
     }
   ],
   "eventos": [
     {
       "no": "receber_entrada",
-      "inicio": 1792379654.1329,
-      "fim": 1792379654.1329,
+      "inicio": 1792386086.1509,
+      "fim": 1792386086.1509,
       "ms": 0.0
     },
     {
       "no": "carregar_memoria",
-      "inicio": 1792379654.1367,
-      "fim": 1792379654.1384,
-      "ms": 1.7
+      "inicio": 1792386086.1549,
+      "fim": 1792386086.1567,
+      "ms": 1.8
     },
     {
       "no": "triagem",
-      "inicio": 1792379654.137,
-      "fim": 1792379655.1411,
-      "ms": 1004.1
+      "inicio": 1792386086.1552,
+      "fim": 1792386087.163,
+      "ms": 1007.7
     },
     {
       "no": "portao",
-      "inicio": 1792379655.1417,
-      "fim": 1792379655.1417,
+      "inicio": 1792386087.1637,
+      "fim": 1792386087.1637,
       "ms": 0.0
     },
     {
       "no": "agente",
-      "inicio": 1792379655.1421,
-      "fim": 1792379655.6852,
-      "ms": 543.1,
+      "inicio": 1792386087.1643,
+      "fim": 1792386088.2511,
+      "ms": 1086.7,
       "passo": 1
     },
     {
       "no": "ferramentas",
-      "inicio": 1792379655.6859,
-      "fim": 1792379655.6866,
+      "inicio": 1792386088.2516,
+      "fim": 1792386088.2523,
       "ms": 0.7
     },
     {
       "no": "agente",
-      "inicio": 1792379655.6872,
-      "fim": 1792379656.2475,
-      "ms": 560.3,
+      "inicio": 1792386088.2529,
+      "fim": 1792386088.9908,
+      "ms": 737.9,
       "passo": 2
     },
     {
       "no": "montar_saida",
-      "inicio": 1792379656.248,
-      "fim": 1792379656.2481,
+      "inicio": 1792386088.9914,
+      "fim": 1792386088.9915,
       "ms": 0.0
     },
     {
       "no": "gravar_memoria",
-      "inicio": 1792379656.2484,
-      "fim": 1792379656.3297,
-      "ms": 81.3
+      "inicio": 1792386088.9919,
+      "fim": 1792386088.997,
+      "ms": 5.1
     }
   ]
 }

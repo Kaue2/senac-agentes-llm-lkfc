@@ -1,7 +1,7 @@
 {
   "carimbo": {
-    "commit": "b3c8fbf+alteracoes-locais-em-src",
-    "data_utc": "2026-10-19T03:14:27+00:00",
+    "commit": "4af5edd",
+    "data_utc": "2026-10-19T05:01:40+00:00",
     "modelo": "openai/gpt-oss-120b",
     "prompt_agente": "analista_bi_v3@v3.0",
     "prompt_triagem": "triagem_v1@v1.0",
@@ -14,15 +14,15 @@
     "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
   },
   "tipo": "turno",
-  "thread_id": "G-CA04:c04-20261019T001352",
-  "checkpoint_id": "1f1cb6b3-196d-6347-8008-4df4bfbaec4a",
+  "thread_id": "G-CA04:c04-20261019T020102",
+  "checkpoint_id": "1f1cb7a2-b690-6ce1-8008-9876650e1864",
   "pedido": {
     "texto": "O Ozempic 1mg está em falta em alguma farmácia? Desde quando?",
     "usuario_id": "G-CA04",
-    "sessao_id": "c04-20261019T001352"
+    "sessao_id": "c04-20261019T020102"
   },
   "saida": {
-    "resultado": "Sim. O Ozempic 1 mg está indisponível na farmácia **Drogasil**. A ruptura foi detectada a partir de **16 / 09 / 2026** (última coleta em 19 / 09 / 2026).  \n\n*Período não especificado – considerei o intervalo padrão de 30 dias para a consulta de rupturas.*",
+    "resultado": "Sim. Ozempic 1 mg está indisponível na Drogasil. A ruptura começou em **16 de setembro de 2026** e, na última coleta (19 de setembro de 2026), o produto ainda permanecia fora de estoque. Não há registro de falta em outras farmácias.",
     "fontes": [
       {
         "tipo": "banco_precos",
@@ -33,38 +33,38 @@
     "suficiencia": "suficiente",
     "motivo_insuficiencia": null,
     "suposicoes": [
-      "Período não especificado; assume padrão de 30 dias para histórico de falta"
+      "Período padrão de 30 dias para histórico de falta, já que não foi especificado."
     ],
     "pergunta_esclarecimento": null,
     "acoes_executadas": [],
     "alertas": [],
     "motivo_terminacao": "resposta_final",
-    "thread_id": "G-CA04:c04-20261019T001352",
+    "thread_id": "G-CA04:c04-20261019T020102",
     "turno": 1
   },
   "interrupcao": null,
   "medicoes": {
     "chamadas_recuperacao_rag": 0,
     "chamadas_modelo_laco": 2,
-    "tokens_turno": 4841,
+    "tokens_turno": 4854,
     "paralelo": {
-      "memoria_ms": 1.9,
-      "triagem_ms": 1861.8,
-      "soma_ms": 1863.7,
-      "maior_ms": 1861.8,
-      "decorrido_ms": 1862.0
+      "memoria_ms": 2.1,
+      "triagem_ms": 1543.7,
+      "soma_ms": 1545.8,
+      "maior_ms": 1543.7,
+      "decorrido_ms": 1543.9
     }
   },
   "triagem": {
     "rota": "atender",
     "pilar": "preco",
-    "pergunta_reescrita": "O Ozempic 1mg está em falta em alguma farmácia monitorada? Desde quando?",
+    "pergunta_reescrita": "O Ozempic 1mg está em falta em alguma farmácia e, se sim, desde quando?",
     "faltando": [],
     "pergunta_esclarecimento": null,
     "suposicoes": [
-      "Período não especificado; assume padrão de 30 dias para histórico de falta"
+      "Período padrão de 30 dias para histórico de falta, já que não foi especificado."
     ],
-    "justificativa": "Produto informado e consulta de falta/ruptura solicitada; farmácia não precisa ser especificada pois a pergunta cobre todas as farmácias monitoradas.",
+    "justificativa": "Produto informado e recorte de farmácia implícito (todas).",
     "erros": []
   },
   "memoria_usada": {
@@ -100,11 +100,11 @@
       "rota": "atender",
       "pilar": "preco",
       "suposicoes": [
-        "Período não especificado; assume padrão de 30 dias para histórico de falta"
+        "Período padrão de 30 dias para histórico de falta, já que não foi especificado."
       ],
       "faltando": [],
       "erros": [],
-      "tokens": 1575
+      "tokens": 1592
     },
     {
       "no": "ferramentas",
@@ -137,65 +137,65 @@
       "no": "agente",
       "passo": 2,
       "tipo": "resposta_final",
-      "conteudo": "Sim. O Ozempic 1 mg está indisponível na farmácia **Drogasil**. A ruptura foi detectada a partir de **16 / 09 / 2026** (última coleta em 19 / 09 / 2026).  \n\n*Período não especificado – considerei o intervalo padrão de 30 dias para a consulta de rupturas.*"
+      "conteudo": "Sim. Ozempic 1 mg está indisponível na Drogasil. A ruptura começou em **16 de setembro de 2026** e, na última coleta (19 de setembro de 2026), o produto ainda permanecia fora de estoque. Não há registro de falta em outras farmácias."
     }
   ],
   "eventos": [
     {
       "no": "receber_entrada",
-      "inicio": 1792379664.4201,
-      "fim": 1792379664.4202,
+      "inicio": 1792386097.0846,
+      "fim": 1792386097.0847,
       "ms": 0.0
     },
     {
       "no": "carregar_memoria",
-      "inicio": 1792379664.4212,
-      "fim": 1792379664.4231,
-      "ms": 1.9
+      "inicio": 1792386097.0856,
+      "fim": 1792386097.0877,
+      "ms": 2.1
     },
     {
       "no": "triagem",
-      "inicio": 1792379664.4214,
-      "fim": 1792379666.2832,
-      "ms": 1861.8
+      "inicio": 1792386097.0858,
+      "fim": 1792386098.6295,
+      "ms": 1543.7
     },
     {
       "no": "portao",
-      "inicio": 1792379666.2838,
-      "fim": 1792379666.2838,
+      "inicio": 1792386098.6301,
+      "fim": 1792386098.6301,
       "ms": 0.0
     },
     {
       "no": "agente",
-      "inicio": 1792379666.2842,
-      "fim": 1792379666.8656,
-      "ms": 581.4,
+      "inicio": 1792386098.6306,
+      "fim": 1792386099.0566,
+      "ms": 426.0,
       "passo": 1
     },
     {
       "no": "ferramentas",
-      "inicio": 1792379666.8663,
-      "fim": 1792379666.8677,
-      "ms": 1.4
+      "inicio": 1792386099.0572,
+      "fim": 1792386099.0583,
+      "ms": 1.0
     },
     {
       "no": "agente",
-      "inicio": 1792379666.8683,
-      "fim": 1792379667.7538,
-      "ms": 885.5,
+      "inicio": 1792386099.0589,
+      "fim": 1792386099.9894,
+      "ms": 930.6,
       "passo": 2
     },
     {
       "no": "montar_saida",
-      "inicio": 1792379667.7544,
-      "fim": 1792379667.7544,
-      "ms": 0.0
+      "inicio": 1792386099.9901,
+      "fim": 1792386099.9901,
+      "ms": 0.1
     },
     {
       "no": "gravar_memoria",
-      "inicio": 1792379667.7548,
-      "fim": 1792379667.9101,
-      "ms": 155.3
+      "inicio": 1792386099.9905,
+      "fim": 1792386099.9948,
+      "ms": 4.3
     }
   ]
 }

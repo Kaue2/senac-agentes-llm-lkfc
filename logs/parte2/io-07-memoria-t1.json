@@ -1,7 +1,7 @@
 {
   "carimbo": {
-    "commit": "b3c8fbf+alteracoes-locais-em-src",
-    "data_utc": "2026-10-19T03:15:38+00:00",
+    "commit": "4af5edd",
+    "data_utc": "2026-10-19T05:03:07+00:00",
     "modelo": "openai/gpt-oss-120b",
     "prompt_agente": "analista_bi_v3@v3.0",
     "prompt_triagem": "triagem_v1@v1.0",
@@ -14,15 +14,15 @@
     "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
   },
   "tipo": "turno",
-  "thread_id": "G-IO07:io7a-20261019T001352",
-  "checkpoint_id": "1f1cb6b5-bad4-6ca3-8008-a135c2c11376",
+  "thread_id": "G-IO07:io7a-20261019T020102",
+  "checkpoint_id": "1f1cb7a5-f92c-6be7-8008-6f3e0a05a2ae",
   "pedido": {
     "texto": "Minha farmácia padrão é a Raia. Qual o preço da Novalgina 500mg lá?",
     "usuario_id": "G-IO07",
-    "sessao_id": "io7a-20261019T001352"
+    "sessao_id": "io7a-20261019T020102"
   },
   "saida": {
-    "resultado": "Usei a farmácia padrão (Raia) como recorte.  \n- **Novalgina 500 mg – Preço da loja (PreçoFarmácia): R$ 13,81** (coleta em 19/09/2026)【fonte: espelho_sqlite】.",
+    "resultado": "Usei a sua farmácia padrão (Raia).  \n- **Preço da Novalgina 500 mg (PreçoFarmácia)**: **R$ 13,81** – coleta em 19/09/2026.",
     "fontes": [
       {
         "tipo": "banco_precos",
@@ -39,20 +39,20 @@
     "acoes_executadas": [],
     "alertas": [],
     "motivo_terminacao": "resposta_final",
-    "thread_id": "G-IO07:io7a-20261019T001352",
+    "thread_id": "G-IO07:io7a-20261019T020102",
     "turno": 1
   },
   "interrupcao": null,
   "medicoes": {
     "chamadas_recuperacao_rag": 0,
     "chamadas_modelo_laco": 2,
-    "tokens_turno": 4587,
+    "tokens_turno": 4556,
     "paralelo": {
-      "memoria_ms": 2.0,
-      "triagem_ms": 743.8,
-      "soma_ms": 745.8,
-      "maior_ms": 743.8,
-      "decorrido_ms": 744.1
+      "memoria_ms": 1.6,
+      "triagem_ms": 1172.0,
+      "soma_ms": 1173.6,
+      "maior_ms": 1172.0,
+      "decorrido_ms": 1172.3
     }
   },
   "triagem": {
@@ -148,65 +148,65 @@
       "no": "agente",
       "passo": 2,
       "tipo": "resposta_final",
-      "conteudo": "Usei a farmácia padrão (Raia) como recorte.  \n- **Novalgina 500 mg – Preço da loja (PreçoFarmácia): R$ 13,81** (coleta em 19/09/2026)【fonte: espelho_sqlite】."
+      "conteudo": "Usei a sua farmácia padrão (Raia).  \n- **Preço da Novalgina 500 mg (PreçoFarmácia)**: **R$ 13,81** – coleta em 19/09/2026."
     }
   ],
   "eventos": [
     {
       "no": "receber_entrada",
-      "inicio": 1792379736.5715,
-      "fim": 1792379736.5715,
+      "inicio": 1792386172.1414,
+      "fim": 1792386172.1414,
       "ms": 0.0
     },
     {
       "no": "carregar_memoria",
-      "inicio": 1792379736.5728,
-      "fim": 1792379736.5748,
-      "ms": 2.0
+      "inicio": 1792386172.1423,
+      "fim": 1792386172.1439,
+      "ms": 1.6
     },
     {
       "no": "triagem",
-      "inicio": 1792379736.573,
-      "fim": 1792379737.3169,
-      "ms": 743.8
+      "inicio": 1792386172.1426,
+      "fim": 1792386173.3146,
+      "ms": 1172.0
     },
     {
       "no": "portao",
-      "inicio": 1792379737.3177,
-      "fim": 1792379737.3177,
+      "inicio": 1792386173.3151,
+      "fim": 1792386173.3151,
       "ms": 0.0
     },
     {
       "no": "agente",
-      "inicio": 1792379737.3183,
-      "fim": 1792379737.8998,
-      "ms": 581.5,
+      "inicio": 1792386173.3155,
+      "fim": 1792386183.9283,
+      "ms": 10612.8,
       "passo": 1
     },
     {
       "no": "ferramentas",
-      "inicio": 1792379737.9004,
-      "fim": 1792379737.9011,
-      "ms": 0.7
+      "inicio": 1792386183.9289,
+      "fim": 1792386183.9294,
+      "ms": 0.6
     },
     {
       "no": "agente",
-      "inicio": 1792379737.9017,
-      "fim": 1792379738.501,
-      "ms": 599.3,
+      "inicio": 1792386183.9299,
+      "fim": 1792386187.501,
+      "ms": 3571.0,
       "passo": 2
     },
     {
       "no": "montar_saida",
-      "inicio": 1792379738.5016,
-      "fim": 1792379738.5017,
-      "ms": 0.0
+      "inicio": 1792386187.5016,
+      "fim": 1792386187.5017,
+      "ms": 0.1
     },
     {
       "no": "gravar_memoria",
-      "inicio": 1792379738.5021,
-      "fim": 1792379738.5216,
-      "ms": 19.6
+      "inicio": 1792386187.502,
+      "fim": 1792386187.5098,
+      "ms": 7.8
     }
   ]
 }

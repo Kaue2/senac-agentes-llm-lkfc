@@ -1,7 +1,7 @@
 {
   "carimbo": {
-    "commit": "b3c8fbf+alteracoes-locais-em-src",
-    "data_utc": "2026-10-19T03:16:11+00:00",
+    "commit": "4af5edd",
+    "data_utc": "2026-10-19T05:03:45+00:00",
     "modelo": "openai/gpt-oss-120b",
     "prompt_agente": "analista_bi_v3@v3.0",
     "prompt_triagem": "triagem_v1@v1.0",
@@ -14,15 +14,15 @@
     "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
   },
   "tipo": "turno",
-  "thread_id": "G-CA06:c06-20261019T001352",
-  "checkpoint_id": "1f1cb6b6-f321-60d4-8008-3602ac786be0",
+  "thread_id": "G-CA06:c06-20261019T020102",
+  "checkpoint_id": "1f1cb7a7-640e-6a95-8008-89a7320c523e",
   "pedido": {
     "texto": "Qual o preço da Trayenta 5mg na Drogasil? Salva essa análise pra eu mandar pra diretoria.",
     "usuario_id": "G-CA06",
-    "sessao_id": "c06-20261019T001352"
+    "sessao_id": "c06-20261019T020102"
   },
   "saida": {
-    "resultado": "Aguardando aprovação para exportar_analise: Cria o arquivo dados/exports/analise_5330dc6ff90b4f4c.md com a pergunta, os dados e a explicação acima. Não altera preço, venda nem estoque. Para desfazer, apague o arquivo. Se o mesmo conteúdo já tiver sido exportado, nada novo é criado. Prazo: 2026-10-20T03:16:11.268498+00:00.",
+    "resultado": "Aguardando aprovação para exportar_analise: Cria o arquivo dados/exports/analise_309dca1a797db7fe.md com a pergunta, os dados e a explicação acima. Não altera preço, venda nem estoque. Para desfazer, apague o arquivo. Se o mesmo conteúdo já tiver sido exportado, nada novo é criado. Prazo: 2026-10-20T05:03:45.560845+00:00.",
     "fontes": [],
     "suficiencia": "aguardando_aprovacao",
     "motivo_insuficiencia": "ação de escrita aguardando revisor humano",
@@ -33,18 +33,18 @@
     "acoes_executadas": [],
     "alertas": [],
     "motivo_terminacao": "pausado_aguardando_humano",
-    "thread_id": "G-CA06:c06-20261019T001352",
+    "thread_id": "G-CA06:c06-20261019T020102",
     "turno": 1
   },
   "interrupcao": {
     "acao": "exportar_analise",
     "argumentos": {
       "dados_resumo": "Drogasil | Trayenta 5mg | PrecoFarmacia: 322.15 | Data da coleta: 2026-09-19",
-      "explicacao": "O preço atual da Trayenta 5mg na Drogasil, considerando a definição de 'preço' como PrecoFarmacia (preço da loja sem PBM), é R$ 322,15, conforme coleta mais recente em 19/09/2026.",
+      "explicacao": "O preço solicitado foi interpretado como PrecoFarmacia, conforme a suposição indicada. O preço mais recente encontrado para Trayenta 5mg na Drogasil é 322.15, coletado em 2026-09-19.",
       "pergunta": "Qual o preço da Trayenta 5mg na Drogasil?"
     },
-    "chave_idempotencia": "5330dc6ff90b4f4c",
-    "consequencia": "Cria o arquivo dados/exports/analise_5330dc6ff90b4f4c.md com a pergunta, os dados e a explicação acima. Não altera preço, venda nem estoque. Para desfazer, apague o arquivo. Se o mesmo conteúdo já tiver sido exportado, nada novo é criado.",
+    "chave_idempotencia": "309dca1a797db7fe",
+    "consequencia": "Cria o arquivo dados/exports/analise_309dca1a797db7fe.md com a pergunta, os dados e a explicação acima. Não altera preço, venda nem estoque. Para desfazer, apague o arquivo. Se o mesmo conteúdo já tiver sido exportado, nada novo é criado.",
     "perfil_revisor": "Administração (o usuário principal do case) ou o próprio gestor que pediu",
     "respostas_aceitas": {
       "aprovar": {
@@ -62,28 +62,28 @@
         }
       }
     },
-    "criado_em": "2026-10-19T03:16:11.268498+00:00",
-    "prazo_expira_em": "2026-10-20T03:16:11.268498+00:00",
+    "criado_em": "2026-10-19T05:03:45.560845+00:00",
+    "prazo_expira_em": "2026-10-20T05:03:45.560845+00:00",
     "se_ninguem_responder": "a execução expira: nada é exportado e o turno termina com motivo 'aprovacao_expirada'",
-    "tool_call_id": "fc_db92ab92-e42f-42fd-818c-0d01b0dcfaea",
-    "thread_id": "G-CA06:c06-20261019T001352"
+    "tool_call_id": "fc_50a6da32-c9cd-4652-af26-8d4c8eaeae69",
+    "thread_id": "G-CA06:c06-20261019T020102"
   },
   "medicoes": {
     "chamadas_recuperacao_rag": 0,
     "chamadas_modelo_laco": 2,
-    "tokens_turno": 4861,
+    "tokens_turno": 5052,
     "paralelo": {
-      "memoria_ms": 1.8,
-      "triagem_ms": 1194.2,
-      "soma_ms": 1196.0,
-      "maior_ms": 1194.2,
-      "decorrido_ms": 1194.4
+      "memoria_ms": 2.5,
+      "triagem_ms": 1172.9,
+      "soma_ms": 1175.4,
+      "maior_ms": 1172.9,
+      "decorrido_ms": 1173.2
     }
   },
   "triagem": {
     "rota": "atender",
     "pilar": "preco",
-    "pergunta_reescrita": "Qual o preço atual da Trayenta 5mg na Drogasil? Salvar essa análise para a diretoria.",
+    "pergunta_reescrita": "Qual o preço atual da Trayenta 5mg na Drogasil? Salvar análise para envio à diretoria.",
     "faltando": [],
     "pergunta_esclarecimento": null,
     "suposicoes": [
@@ -123,7 +123,7 @@
       ],
       "faltando": [],
       "erros": [],
-      "tokens": 1432
+      "tokens": 1551
     },
     {
       "no": "ferramentas",
@@ -162,58 +162,58 @@
   "eventos": [
     {
       "no": "receber_entrada",
-      "inicio": 1792379761.5501,
-      "fim": 1792379761.5501,
+      "inicio": 1792386222.7135,
+      "fim": 1792386222.7136,
       "ms": 0.0
     },
     {
       "no": "carregar_memoria",
-      "inicio": 1792379761.5515,
-      "fim": 1792379761.5532,
-      "ms": 1.8
+      "inicio": 1792386222.7147,
+      "fim": 1792386222.7171,
+      "ms": 2.5
     },
     {
       "no": "triagem",
-      "inicio": 1792379761.5517,
-      "fim": 1792379762.7459,
-      "ms": 1194.2
+      "inicio": 1792386222.715,
+      "fim": 1792386223.8879,
+      "ms": 1172.9
     },
     {
       "no": "portao",
-      "inicio": 1792379762.7466,
-      "fim": 1792379762.7466,
+      "inicio": 1792386223.8886,
+      "fim": 1792386223.8886,
       "ms": 0.0
     },
     {
       "no": "agente",
-      "inicio": 1792379762.7471,
-      "fim": 1792379767.3689,
-      "ms": 4621.8,
+      "inicio": 1792386223.889,
+      "fim": 1792386224.5893,
+      "ms": 700.3,
       "passo": 1
     },
     {
       "no": "ferramentas",
-      "inicio": 1792379767.3694,
-      "fim": 1792379767.37,
-      "ms": 0.6
+      "inicio": 1792386224.5899,
+      "fim": 1792386224.5906,
+      "ms": 0.7
     },
     {
       "no": "agente",
-      "inicio": 1792379767.3706,
-      "fim": 1792379771.2672,
-      "ms": 3896.6,
+      "inicio": 1792386224.5911,
+      "fim": 1792386225.5594,
+      "ms": 968.3,
       "passo": 2
     },
     {
       "no": "ferramentas",
-      "inicio": 1792379771.2678,
-      "fim": 1792379771.2678,
+      "inicio": 1792386225.5602,
+      "fim": 1792386225.5602,
       "ms": 0.0
     },
     {
       "no": "preparar_aprovacao",
-      "inicio": 1792379771.2685,
-      "fim": 1792379771.2685,
+      "inicio": 1792386225.5609,
+      "fim": 1792386225.5609,
       "ms": 0.0
     }
   ]

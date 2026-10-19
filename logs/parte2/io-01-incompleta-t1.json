@@ -1,7 +1,7 @@
 {
   "carimbo": {
-    "commit": "b3c8fbf+alteracoes-locais-em-src",
-    "data_utc": "2026-10-19T03:14:46+00:00",
+    "commit": "4af5edd",
+    "data_utc": "2026-10-19T05:02:00+00:00",
     "modelo": "openai/gpt-oss-120b",
     "prompt_agente": "analista_bi_v3@v3.0",
     "prompt_triagem": "triagem_v1@v1.0",
@@ -14,12 +14,12 @@
     "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
   },
   "tipo": "turno",
-  "thread_id": "G-IO01:io1-20261019T001352",
-  "checkpoint_id": "1f1cb6b3-cb51-61dc-8006-8a3fde4878d8",
+  "thread_id": "G-IO01:io1-20261019T020102",
+  "checkpoint_id": "1f1cb7a3-775d-6ce0-8006-1f1d7b69526f",
   "pedido": {
     "texto": "quanto ta o remedio na drogasil?",
     "usuario_id": "G-IO01",
-    "sessao_id": "io1-20261019T001352"
+    "sessao_id": "io1-20261019T020102"
   },
   "saida": {
     "resultado": "Qual produto você quer consultar na Drogasil?",
@@ -31,20 +31,20 @@
     "acoes_executadas": [],
     "alertas": [],
     "motivo_terminacao": "esclarecimento_pedido",
-    "thread_id": "G-IO01:io1-20261019T001352",
+    "thread_id": "G-IO01:io1-20261019T020102",
     "turno": 1
   },
   "interrupcao": null,
   "medicoes": {
     "chamadas_recuperacao_rag": 0,
     "chamadas_modelo_laco": 0,
-    "tokens_turno": 1267,
+    "tokens_turno": 1296,
     "paralelo": {
-      "memoria_ms": 2.4,
-      "triagem_ms": 694.6,
-      "soma_ms": 697.0,
-      "maior_ms": 694.6,
-      "decorrido_ms": 694.9
+      "memoria_ms": 2.8,
+      "triagem_ms": 688.4,
+      "soma_ms": 691.2,
+      "maior_ms": 688.4,
+      "decorrido_ms": 688.7
     }
   },
   "triagem": {
@@ -94,50 +94,50 @@
         "produto"
       ],
       "erros": [],
-      "tokens": 1267
+      "tokens": 1296
     }
   ],
   "eventos": [
     {
       "no": "receber_entrada",
-      "inicio": 1792379685.8648,
-      "fim": 1792379685.8649,
+      "inicio": 1792386119.5179,
+      "fim": 1792386119.5179,
       "ms": 0.0
     },
     {
       "no": "carregar_memoria",
-      "inicio": 1792379685.8659,
-      "fim": 1792379685.8684,
-      "ms": 2.4
+      "inicio": 1792386119.5192,
+      "fim": 1792386119.522,
+      "ms": 2.8
     },
     {
       "no": "triagem",
-      "inicio": 1792379685.8662,
-      "fim": 1792379686.5608,
-      "ms": 694.6
+      "inicio": 1792386119.5195,
+      "fim": 1792386120.2079,
+      "ms": 688.4
     },
     {
       "no": "portao",
-      "inicio": 1792379686.5615,
-      "fim": 1792379686.5615,
+      "inicio": 1792386120.2088,
+      "fim": 1792386120.2088,
       "ms": 0.0
     },
     {
       "no": "esclarecer",
-      "inicio": 1792379686.562,
-      "fim": 1792379686.562,
+      "inicio": 1792386120.2095,
+      "fim": 1792386120.2095,
       "ms": 0.0
     },
     {
       "no": "montar_saida",
-      "inicio": 1792379686.5624,
-      "fim": 1792379686.5625,
+      "inicio": 1792386120.21,
+      "fim": 1792386120.21,
       "ms": 0.0
     },
     {
       "no": "gravar_memoria",
-      "inicio": 1792379686.5628,
-      "fim": 1792379686.5628,
+      "inicio": 1792386120.2111,
+      "fim": 1792386120.2111,
       "ms": 0.0
     }
   ]

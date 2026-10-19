@@ -1,7 +1,7 @@
 {
   "carimbo": {
-    "commit": "b3c8fbf+alteracoes-locais-em-src",
-    "data_utc": "2026-10-19T03:15:28+00:00",
+    "commit": "4af5edd",
+    "data_utc": "2026-10-19T05:02:44+00:00",
     "modelo": "openai/gpt-oss-120b",
     "prompt_agente": "analista_bi_v3@v3.0",
     "prompt_triagem": "triagem_v1@v1.0",
@@ -14,16 +14,21 @@
     "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
   },
   "tipo": "turno",
-  "thread_id": "G-IO04:io4-20261019T001352",
-  "checkpoint_id": "1f1cb6b5-5b0d-6a5c-8008-ede5ae59bc71",
+  "thread_id": "G-IO04:io4-20261019T020102",
+  "checkpoint_id": "1f1cb7a5-197d-69a2-8008-2ad991a45455",
   "pedido": {
     "texto": "O desconto do PBM conta para o teto de desconto da rede?",
     "usuario_id": "G-IO04",
-    "sessao_id": "io4-20261019T001352"
+    "sessao_id": "io4-20261019T020102"
   },
   "saida": {
-    "resultado": "O desconto do PBM **não** conta para o teto de desconto da rede. Conforme a política de precificação, produtos com programa de benefício (PBM) ativo são excluídos do cálculo do teto de desconto quando vendidos pelo programa, pois o desconto é concedido e reembolsado pelo laboratório, não pela rede【politica-precificacao-2026#s05】.",
+    "resultado": "O desconto do PBM **não** conta para o teto de desconto da rede. Conforme a política de precificação, “Produtos com programa de benefício (PBM) ativo não entram no teto de desconto… O desconto do PBM é concedido e reembolsado pelo laboratório, e não conta como desconto praticado pela rede”【politica-precificacao-2026#s05】. Além disso, o cálculo oficial de desconto da farmácia usa apenas PrecoFarmacia ÷ PrecoTabela, excluindo o desconto do PBM【glossario-precos#s06】.",
     "fontes": [
+      {
+        "tipo": "corpus",
+        "referencia": "glossario-precos#s06",
+        "detalhe": "Glossário de preços do monitoramento de concorrência"
+      },
       {
         "tipo": "corpus",
         "referencia": "politica-precificacao-2026#s05",
@@ -37,20 +42,20 @@
     "acoes_executadas": [],
     "alertas": [],
     "motivo_terminacao": "resposta_final",
-    "thread_id": "G-IO04:io4-20261019T001352",
+    "thread_id": "G-IO04:io4-20261019T020102",
     "turno": 1
   },
   "interrupcao": null,
   "medicoes": {
     "chamadas_recuperacao_rag": 1,
     "chamadas_modelo_laco": 2,
-    "tokens_turno": 4520,
+    "tokens_turno": 4516,
     "paralelo": {
-      "memoria_ms": 1.9,
-      "triagem_ms": 741.8,
-      "soma_ms": 743.7,
-      "maior_ms": 741.8,
-      "decorrido_ms": 742.1
+      "memoria_ms": 2.0,
+      "triagem_ms": 661.2,
+      "soma_ms": 663.2,
+      "maior_ms": 661.2,
+      "decorrido_ms": 661.4
     }
   },
   "triagem": {
@@ -98,7 +103,7 @@
       "suposicoes": [],
       "faltando": [],
       "erros": [],
-      "tokens": 1317
+      "tokens": 1262
     },
     {
       "no": "ferramentas",
@@ -135,65 +140,65 @@
       "no": "agente",
       "passo": 2,
       "tipo": "resposta_final",
-      "conteudo": "O desconto do PBM **não** conta para o teto de desconto da rede. Conforme a política de precificação, produtos com programa de benefício (PBM) ativo são excluídos do cálculo do teto de desconto quando vendidos pelo programa, pois o desconto é concedido e reembolsado pelo laboratório, não pela rede【politica-precificacao-2026#s05】."
+      "conteudo": "O desconto do PBM **não** conta para o teto de desconto da rede. Conforme a política de precificação, “Produtos com programa de benefício (PBM) ativo não entram no teto de desconto… O desconto do PBM é concedido e reembolsado pelo laboratório, e não conta como desconto praticado pela rede”【politica-precificacao-2026#s05】. Além disso, o cálculo oficial de desconto da farmácia usa apenas PrecoFarmacia ÷ PrecoTabela, excluindo o desconto do PBM【glossario-precos#s06】."
     }
   ],
   "eventos": [
     {
       "no": "receber_entrada",
-      "inicio": 1792379726.7128,
-      "fim": 1792379726.7129,
+      "inicio": 1792386158.1637,
+      "fim": 1792386158.1637,
       "ms": 0.0
     },
     {
       "no": "carregar_memoria",
-      "inicio": 1792379726.7139,
-      "fim": 1792379726.7158,
-      "ms": 1.9
+      "inicio": 1792386158.1649,
+      "fim": 1792386158.1668,
+      "ms": 2.0
     },
     {
       "no": "triagem",
-      "inicio": 1792379726.7142,
-      "fim": 1792379727.456,
-      "ms": 741.8
+      "inicio": 1792386158.1652,
+      "fim": 1792386158.8263,
+      "ms": 661.2
     },
     {
       "no": "portao",
-      "inicio": 1792379727.4567,
-      "fim": 1792379727.4567,
+      "inicio": 1792386158.8269,
+      "fim": 1792386158.8269,
       "ms": 0.0
     },
     {
       "no": "agente",
-      "inicio": 1792379727.4572,
-      "fim": 1792379727.8651,
-      "ms": 407.9,
+      "inicio": 1792386158.8273,
+      "fim": 1792386159.3966,
+      "ms": 569.2,
       "passo": 1
     },
     {
       "no": "ferramentas",
-      "inicio": 1792379727.8658,
-      "fim": 1792379727.8663,
-      "ms": 0.5
+      "inicio": 1792386159.3973,
+      "fim": 1792386159.3979,
+      "ms": 0.6
     },
     {
       "no": "agente",
-      "inicio": 1792379727.8668,
-      "fim": 1792379728.4643,
-      "ms": 597.5,
+      "inicio": 1792386159.3984,
+      "fim": 1792386164.0475,
+      "ms": 4649.1,
       "passo": 2
     },
     {
       "no": "montar_saida",
-      "inicio": 1792379728.4651,
-      "fim": 1792379728.4651,
+      "inicio": 1792386164.0482,
+      "fim": 1792386164.0483,
       "ms": 0.1
     },
     {
       "no": "gravar_memoria",
-      "inicio": 1792379728.4656,
-      "fim": 1792379728.4786,
-      "ms": 12.9
+      "inicio": 1792386164.0488,
+      "fim": 1792386164.0548,
+      "ms": 6.0
     }
   ]
 }

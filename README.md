@@ -67,11 +67,11 @@ python -m src.main "Qual o preço atual da Novalgina 500mg na farmácia Araujo?"
 **suficiência** — se o sistema teve base para responder. Exemplo real, copiado do log da execução:
 
 <!-- exemplo-principal:inicio -->
-Commit `b3c8fbf+alteracoes-locais-em-src`, 2026-10-19T03:13:55+00:00, modelo `openai/gpt-oss-120b` — log [`logs/parte2/caso-01-simples-t1.json`](logs/parte2/caso-01-simples-t1.json). Entrada: `Qual o preço atual da Novalgina 500mg na farmácia Araujo?`
+Commit `4af5edd`, 2026-10-19T05:01:06+00:00, modelo `openai/gpt-oss-120b` — log [`logs/parte2/caso-01-simples-t1.json`](logs/parte2/caso-01-simples-t1.json). Entrada: `Qual o preço atual da Novalgina 500mg na farmácia Araujo?`
 
 ```json
 {
-  "resultado": "**Farmácia:** Araujo  \n**Produto:** Novalgina 500 mg  \n**Data da coleta:** 19/09/2026  \n\n- **Preço Tabela (teto regulado):** R$ 14,82  \n- **Preço Farmácia (preço com desconto padrão da loja):** R$ 13,63  \n\nNão há preço PBM cadastrado para este produto.",
+  "resultado": "Na farmácia **Araujo**, o preço mais recente (coleta de 19/09/2026) da **Novalgina 500 mg** é:\n\n- **Preço de tabela**: R$ 14,82  \n- **Preço da farmácia** (desconto padrão): R$ 13,63  \n\nNão há preço PBM (não existe programa de parceria para este produto).",
   "fontes": [
     {
       "tipo": "banco_precos",
@@ -86,7 +86,7 @@ Commit `b3c8fbf+alteracoes-locais-em-src`, 2026-10-19T03:13:55+00:00, modelo `op
   "acoes_executadas": [],
   "alertas": [],
   "motivo_terminacao": "resposta_final",
-  "thread_id": "G-CA01:c01-20261019T001352",
+  "thread_id": "G-CA01:c01-20261019T020102",
   "turno": 1
 }
 ```
@@ -110,11 +110,11 @@ Exemplo real ([`logs/parte2/caso-06-t1-pausa.json`](logs/parte2/caso-06-t1-pausa
   "acao": "exportar_analise",
   "argumentos": {
     "dados_resumo": "Drogasil | Trayenta 5mg | PrecoFarmacia: 322.15 | Data da coleta: 2026-09-19",
-    "explicacao": "O preço atual da Trayenta 5mg na Drogasil, considerando a definição de 'preço' como PrecoFarmacia (preço da loja sem PBM), é R$ 322,15, conforme coleta mais recente em 19/09/2026.",
+    "explicacao": "O preço solicitado foi interpretado como PrecoFarmacia, conforme a suposição indicada. O preço mais recente encontrado para Trayenta 5mg na Drogasil é 322.15, coletado em 2026-09-19.",
     "pergunta": "Qual o preço da Trayenta 5mg na Drogasil?"
   },
-  "consequencia": "Cria o arquivo dados/exports/analise_5330dc6ff90b4f4c.md com a pergunta, os dados e a explicação acima. Não altera preço, venda nem estoque. Para desfazer, apague o arquivo. Se o mesmo conteúdo já tiver sido exportado, nada novo é criado.",
-  "prazo_expira_em": "2026-10-20T03:16:11.268498+00:00",
+  "consequencia": "Cria o arquivo dados/exports/analise_309dca1a797db7fe.md com a pergunta, os dados e a explicação acima. Não altera preço, venda nem estoque. Para desfazer, apague o arquivo. Se o mesmo conteúdo já tiver sido exportado, nada novo é criado.",
+  "prazo_expira_em": "2026-10-20T05:03:45.560845+00:00",
   "se_ninguem_responder": "a execução expira: nada é exportado e o turno termina com motivo 'aprovacao_expirada'"
 }
 ```

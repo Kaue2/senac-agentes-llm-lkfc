@@ -1,7 +1,7 @@
 {
   "carimbo": {
-    "commit": "b3c8fbf+alteracoes-locais-em-src",
-    "data_utc": "2026-10-19T03:14:37+00:00",
+    "commit": "4af5edd",
+    "data_utc": "2026-10-19T05:01:51+00:00",
     "modelo": "openai/gpt-oss-120b",
     "prompt_agente": "analista_bi_v3@v3.0",
     "prompt_triagem": "triagem_v1@v1.0",
@@ -14,15 +14,15 @@
     "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
   },
   "tipo": "turno",
-  "thread_id": "G-CA05:c05-20261019T001352",
-  "checkpoint_id": "1f1cb6b3-77a5-61fb-8008-e0d3620d68f4",
+  "thread_id": "G-CA05:c05-20261019T020102",
+  "checkpoint_id": "1f1cb7a3-239d-6e97-8008-fd8441323ad3",
   "pedido": {
     "texto": "Qual é a política de troca e devolução de produtos para o cliente final?",
     "usuario_id": "G-CA05",
-    "sessao_id": "c05-20261019T001352"
+    "sessao_id": "c05-20261019T020102"
   },
   "saida": {
-    "resultado": "A base de conhecimento da rede não contém informações sobre a política de troca e devolução de produtos para o cliente final. Recomendo consultar o time responsável (por exemplo, o setor de atendimento ou jurídico) para obter essa orientação.",
+    "resultado": "A base de conhecimento não contém informação sobre a política de troca e devolução de produtos para o cliente final. Recomendo consultar o time responsável (por exemplo, Comercial ou Atendimento) para obter a regra correta.",
     "fontes": [],
     "suficiencia": "insuficiente",
     "motivo_insuficiencia": "a base de conhecimento não trata do assunto (mais próximo: Validade de estoque, FEFO e perda por vencimento — Exceção: devolução ao fornecedor)",
@@ -31,20 +31,20 @@
     "acoes_executadas": [],
     "alertas": [],
     "motivo_terminacao": "resposta_final",
-    "thread_id": "G-CA05:c05-20261019T001352",
+    "thread_id": "G-CA05:c05-20261019T020102",
     "turno": 1
   },
   "interrupcao": null,
   "medicoes": {
     "chamadas_recuperacao_rag": 1,
     "chamadas_modelo_laco": 2,
-    "tokens_turno": 4394,
+    "tokens_turno": 4364,
     "paralelo": {
-      "memoria_ms": 1.9,
-      "triagem_ms": 769.2,
-      "soma_ms": 771.1,
-      "maior_ms": 769.2,
-      "decorrido_ms": 769.5
+      "memoria_ms": 2.3,
+      "triagem_ms": 1062.4,
+      "soma_ms": 1064.7,
+      "maior_ms": 1062.4,
+      "decorrido_ms": 1062.7
     }
   },
   "triagem": {
@@ -113,65 +113,65 @@
       "no": "agente",
       "passo": 2,
       "tipo": "resposta_final",
-      "conteudo": "A base de conhecimento da rede não contém informações sobre a política de troca e devolução de produtos para o cliente final. Recomendo consultar o time responsável (por exemplo, o setor de atendimento ou jurídico) para obter essa orientação."
+      "conteudo": "A base de conhecimento não contém informação sobre a política de troca e devolução de produtos para o cliente final. Recomendo consultar o time responsável (por exemplo, Comercial ou Atendimento) para obter a regra correta."
     }
   ],
   "eventos": [
     {
       "no": "receber_entrada",
-      "inicio": 1792379675.9928,
-      "fim": 1792379675.9928,
+      "inicio": 1792386108.0809,
+      "fim": 1792386108.0809,
       "ms": 0.0
     },
     {
       "no": "carregar_memoria",
-      "inicio": 1792379675.9937,
-      "fim": 1792379675.9956,
-      "ms": 1.9
+      "inicio": 1792386108.0822,
+      "fim": 1792386108.0844,
+      "ms": 2.3
     },
     {
       "no": "triagem",
-      "inicio": 1792379675.994,
-      "fim": 1792379676.7632,
-      "ms": 769.2
+      "inicio": 1792386108.0825,
+      "fim": 1792386109.1449,
+      "ms": 1062.4
     },
     {
       "no": "portao",
-      "inicio": 1792379676.7637,
-      "fim": 1792379676.7637,
+      "inicio": 1792386109.1455,
+      "fim": 1792386109.1455,
       "ms": 0.0
     },
     {
       "no": "agente",
-      "inicio": 1792379676.7642,
-      "fim": 1792379677.2465,
-      "ms": 482.3,
+      "inicio": 1792386109.146,
+      "fim": 1792386109.74,
+      "ms": 594.0,
       "passo": 1
     },
     {
       "no": "ferramentas",
-      "inicio": 1792379677.247,
-      "fim": 1792379677.2476,
-      "ms": 0.6
+      "inicio": 1792386109.7406,
+      "fim": 1792386109.7413,
+      "ms": 0.7
     },
     {
       "no": "agente",
-      "inicio": 1792379677.2482,
-      "fim": 1792379677.7842,
-      "ms": 536.0,
+      "inicio": 1792386109.7419,
+      "fim": 1792386111.4254,
+      "ms": 1683.4,
       "passo": 2
     },
     {
       "no": "montar_saida",
-      "inicio": 1792379677.7847,
-      "fim": 1792379677.7848,
+      "inicio": 1792386111.426,
+      "fim": 1792386111.426,
       "ms": 0.0
     },
     {
       "no": "gravar_memoria",
-      "inicio": 1792379677.7851,
-      "fim": 1792379677.7897,
-      "ms": 4.5
+      "inicio": 1792386111.4263,
+      "fim": 1792386111.4296,
+      "ms": 3.3
     }
   ]
 }

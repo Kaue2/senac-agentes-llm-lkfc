@@ -1,7 +1,7 @@
 {
   "carimbo": {
-    "commit": "b3c8fbf+alteracoes-locais-em-src",
-    "data_utc": "2026-10-19T03:14:56+00:00",
+    "commit": "4af5edd",
+    "data_utc": "2026-10-19T05:02:11+00:00",
     "modelo": "openai/gpt-oss-120b",
     "prompt_agente": "analista_bi_v3@v3.0",
     "prompt_triagem": "triagem_v1@v1.0",
@@ -14,15 +14,15 @@
     "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
   },
   "tipo": "turno",
-  "thread_id": "G-IO01:io1-20261019T001352",
-  "checkpoint_id": "1f1cb6b4-2dc2-6772-8010-4c1d4aceeff3",
+  "thread_id": "G-IO01:io1-20261019T020102",
+  "checkpoint_id": "1f1cb7a3-dde4-690d-8010-8a8a293cdf43",
   "pedido": {
     "texto": "a trayenta 5mg",
     "usuario_id": "G-IO01",
-    "sessao_id": "io1-20261019T001352"
+    "sessao_id": "io1-20261019T020102"
   },
   "saida": {
-    "resultado": "O preço atual da **Trayenta 5 mg** na **Drogasil** (PreçoFarmácia) é **R$ 322,15** – dado da coleta mais recente em **19/09/2026**.",
+    "resultado": "Usei a preferência indicada: **Drogasil**.  \n\n- **Preço Farmácia (Preço da loja, sem PBM)** da **Trayenta 5 mg**: **R$ 322,15** – coleta mais recente em **19/09/2026** (fonte = consulta de preços).",
     "fontes": [
       {
         "tipo": "banco_precos",
@@ -39,20 +39,20 @@
     "acoes_executadas": [],
     "alertas": [],
     "motivo_terminacao": "resposta_final",
-    "thread_id": "G-IO01:io1-20261019T001352",
+    "thread_id": "G-IO01:io1-20261019T020102",
     "turno": 2
   },
   "interrupcao": null,
   "medicoes": {
     "chamadas_recuperacao_rag": 0,
     "chamadas_modelo_laco": 2,
-    "tokens_turno": 4659,
+    "tokens_turno": 4811,
     "paralelo": {
-      "memoria_ms": 1.0,
-      "triagem_ms": 946.6,
-      "soma_ms": 947.6,
-      "maior_ms": 946.6,
-      "decorrido_ms": 947.0
+      "memoria_ms": 0.8,
+      "triagem_ms": 1294.1,
+      "soma_ms": 1294.9,
+      "maior_ms": 1294.1,
+      "decorrido_ms": 1294.4
     }
   },
   "triagem": {
@@ -64,7 +64,7 @@
     "suposicoes": [
       "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
     ],
-    "justificativa": "Produto e farmácia informados.",
+    "justificativa": "Produto e farmácia informados; a mensagem completa o recorte solicitado.",
     "erros": []
   },
   "memoria_usada": {
@@ -104,7 +104,7 @@
       ],
       "faltando": [],
       "erros": [],
-      "tokens": 1393
+      "tokens": 1488
     },
     {
       "no": "ferramentas",
@@ -143,65 +143,65 @@
       "no": "agente",
       "passo": 2,
       "tipo": "resposta_final",
-      "conteudo": "O preço atual da **Trayenta 5 mg** na **Drogasil** (PreçoFarmácia) é **R$ 322,15** – dado da coleta mais recente em **19/09/2026**."
+      "conteudo": "Usei a preferência indicada: **Drogasil**.  \n\n- **Preço Farmácia (Preço da loja, sem PBM)** da **Trayenta 5 mg**: **R$ 322,15** – coleta mais recente em **19/09/2026** (fonte = consulta de preços)."
     }
   ],
   "eventos": [
     {
       "no": "receber_entrada",
-      "inicio": 1792379694.7535,
-      "fim": 1792379694.7535,
+      "inicio": 1792386128.3035,
+      "fim": 1792386128.3035,
       "ms": 0.0
     },
     {
       "no": "carregar_memoria",
-      "inicio": 1792379694.7547,
-      "fim": 1792379694.7558,
-      "ms": 1.0
+      "inicio": 1792386128.3045,
+      "fim": 1792386128.3052,
+      "ms": 0.8
     },
     {
       "no": "triagem",
-      "inicio": 1792379694.7551,
-      "fim": 1792379695.7017,
-      "ms": 946.6
+      "inicio": 1792386128.3047,
+      "fim": 1792386129.5989,
+      "ms": 1294.1
     },
     {
       "no": "portao",
-      "inicio": 1792379695.7023,
-      "fim": 1792379695.7023,
+      "inicio": 1792386129.5995,
+      "fim": 1792386129.5995,
       "ms": 0.0
     },
     {
       "no": "agente",
-      "inicio": 1792379695.7028,
-      "fim": 1792379696.2204,
-      "ms": 517.6,
+      "inicio": 1792386129.5999,
+      "fim": 1792386130.2151,
+      "ms": 615.2,
       "passo": 1
     },
     {
       "no": "ferramentas",
-      "inicio": 1792379696.221,
-      "fim": 1792379696.2217,
+      "inicio": 1792386130.2157,
+      "fim": 1792386130.2165,
       "ms": 0.7
     },
     {
       "no": "agente",
-      "inicio": 1792379696.2222,
-      "fim": 1792379696.7546,
-      "ms": 532.4,
+      "inicio": 1792386130.217,
+      "fim": 1792386130.9557,
+      "ms": 738.7,
       "passo": 2
     },
     {
       "no": "montar_saida",
-      "inicio": 1792379696.7553,
-      "fim": 1792379696.7553,
-      "ms": 0.1
+      "inicio": 1792386130.9563,
+      "fim": 1792386130.9563,
+      "ms": 0.0
     },
     {
       "no": "gravar_memoria",
-      "inicio": 1792379696.7558,
-      "fim": 1792379696.8857,
-      "ms": 129.9
+      "inicio": 1792386130.9566,
+      "fim": 1792386130.9619,
+      "ms": 5.3
     }
   ]
 }

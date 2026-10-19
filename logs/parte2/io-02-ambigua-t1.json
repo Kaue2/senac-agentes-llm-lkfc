@@ -1,7 +1,7 @@
 {
   "carimbo": {
-    "commit": "b3c8fbf+alteracoes-locais-em-src",
-    "data_utc": "2026-10-19T03:15:09+00:00",
+    "commit": "4af5edd",
+    "data_utc": "2026-10-19T05:02:21+00:00",
     "modelo": "openai/gpt-oss-120b",
     "prompt_agente": "analista_bi_v3@v3.0",
     "prompt_triagem": "triagem_v1@v1.0",
@@ -14,15 +14,15 @@
     "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
   },
   "tipo": "turno",
-  "thread_id": "G-IO02:io2-20261019T001352",
-  "checkpoint_id": "1f1cb6b4-a336-6b34-8008-d7363ac7d84d",
+  "thread_id": "G-IO02:io2-20261019T020102",
+  "checkpoint_id": "1f1cb7a4-3dc8-6305-8008-483218d64f49",
   "pedido": {
     "texto": "quanto custa a trayenta na raia",
     "usuario_id": "G-IO02",
-    "sessao_id": "io2-20261019T001352"
+    "sessao_id": "io2-20261019T020102"
   },
   "saida": {
-    "resultado": "Usei a suposição de que “quanto custa” se refere ao **PreçoFarmácia** atual.\n\n- **Raia – Trayenta 5 mg**  \n  - PreçoFarmácia (última coleta em 19/09/2026): **R$ 326,04**.",
+    "resultado": "Usei a suposição de que “quanto custa” se refere ao **PreçoFarmácia** atual.\n\n- **Farmácia:** Raia  \n- **Produto:** Trayenta 5 mg  \n- **Data da coleta:** 19/09/2026  \n- **PreçoFarmácia:** **R$ 326,04**.",
     "fontes": [
       {
         "tipo": "banco_precos",
@@ -39,20 +39,20 @@
     "acoes_executadas": [],
     "alertas": [],
     "motivo_terminacao": "resposta_final",
-    "thread_id": "G-IO02:io2-20261019T001352",
+    "thread_id": "G-IO02:io2-20261019T020102",
     "turno": 1
   },
   "interrupcao": null,
   "medicoes": {
     "chamadas_recuperacao_rag": 0,
     "chamadas_modelo_laco": 2,
-    "tokens_turno": 4492,
+    "tokens_turno": 4493,
     "paralelo": {
-      "memoria_ms": 1.8,
-      "triagem_ms": 739.6,
-      "soma_ms": 741.4,
-      "maior_ms": 739.6,
-      "decorrido_ms": 739.9
+      "memoria_ms": 1.9,
+      "triagem_ms": 725.3,
+      "soma_ms": 727.2,
+      "maior_ms": 725.3,
+      "decorrido_ms": 725.6
     }
   },
   "triagem": {
@@ -143,65 +143,65 @@
       "no": "agente",
       "passo": 2,
       "tipo": "resposta_final",
-      "conteudo": "Usei a suposição de que “quanto custa” se refere ao **PreçoFarmácia** atual.\n\n- **Raia – Trayenta 5 mg**  \n  - PreçoFarmácia (última coleta em 19/09/2026): **R$ 326,04**."
+      "conteudo": "Usei a suposição de que “quanto custa” se refere ao **PreçoFarmácia** atual.\n\n- **Farmácia:** Raia  \n- **Produto:** Trayenta 5 mg  \n- **Data da coleta:** 19/09/2026  \n- **PreçoFarmácia:** **R$ 326,04**."
     }
   ],
   "eventos": [
     {
       "no": "receber_entrada",
-      "inicio": 1792379704.973,
-      "fim": 1792379704.9731,
+      "inicio": 1792386139.0469,
+      "fim": 1792386139.0469,
       "ms": 0.0
     },
     {
       "no": "carregar_memoria",
-      "inicio": 1792379704.9741,
-      "fim": 1792379704.9759,
-      "ms": 1.8
+      "inicio": 1792386139.0482,
+      "fim": 1792386139.0501,
+      "ms": 1.9
     },
     {
       "no": "triagem",
-      "inicio": 1792379704.9744,
-      "fim": 1792379705.714,
-      "ms": 739.6
+      "inicio": 1792386139.0485,
+      "fim": 1792386139.7738,
+      "ms": 725.3
     },
     {
       "no": "portao",
-      "inicio": 1792379705.7147,
-      "fim": 1792379705.7147,
+      "inicio": 1792386139.7745,
+      "fim": 1792386139.7745,
       "ms": 0.0
     },
     {
       "no": "agente",
-      "inicio": 1792379705.7153,
-      "fim": 1792379706.4189,
-      "ms": 703.6,
+      "inicio": 1792386139.7749,
+      "fim": 1792386140.2144,
+      "ms": 439.5,
       "passo": 1
     },
     {
       "no": "ferramentas",
-      "inicio": 1792379706.4197,
-      "fim": 1792379706.4205,
-      "ms": 0.8
+      "inicio": 1792386140.215,
+      "fim": 1792386140.2157,
+      "ms": 0.7
     },
     {
       "no": "agente",
-      "inicio": 1792379706.4211,
-      "fim": 1792379709.05,
-      "ms": 2628.9,
+      "inicio": 1792386140.2164,
+      "fim": 1792386141.0113,
+      "ms": 795.0,
       "passo": 2
     },
     {
       "no": "montar_saida",
-      "inicio": 1792379709.0508,
-      "fim": 1792379709.0509,
-      "ms": 0.1
+      "inicio": 1792386141.0119,
+      "fim": 1792386141.012,
+      "ms": 0.0
     },
     {
       "no": "gravar_memoria",
-      "inicio": 1792379709.0513,
-      "fim": 1792379709.2016,
-      "ms": 150.3
+      "inicio": 1792386141.0125,
+      "fim": 1792386141.0167,
+      "ms": 4.2
     }
   ]
 }

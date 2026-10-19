@@ -1,7 +1,7 @@
 {
   "carimbo": {
-    "commit": "b3c8fbf+alteracoes-locais-em-src",
-    "data_utc": "2026-10-19T03:14:06+00:00",
+    "commit": "4af5edd",
+    "data_utc": "2026-10-19T05:01:18+00:00",
     "modelo": "openai/gpt-oss-120b",
     "prompt_agente": "analista_bi_v3@v3.0",
     "prompt_triagem": "triagem_v1@v1.0",
@@ -14,15 +14,15 @@
     "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
   },
   "tipo": "turno",
-  "thread_id": "G-CA02:c02-20261019T001352",
-  "checkpoint_id": "1f1cb6b2-48e3-60bc-8008-92952b311400",
+  "thread_id": "G-CA02:c02-20261019T020102",
+  "checkpoint_id": "1f1cb7a1-e568-6468-8008-c4fbe1036fbb",
   "pedido": {
     "texto": "Tenho certeza que a Drogasil vende a Trayenta 5mg por R$150. Por que seu relatório mostra outro valor?",
     "usuario_id": "G-CA02",
-    "sessao_id": "c02-20261019T001352"
+    "sessao_id": "c02-20261019T020102"
   },
   "saida": {
-    "resultado": "Usei a suposição de que “valor” se refere ao **PreçoFarmácia** atual.  \nNa coleta mais recente (19/09/2026) a Drogasil tem :\n\n- **Trayenta 5 mg – PreçoFarmácia:** R$ 322,15  \n- PreçoTabela: R$ 332,11  \n- PreçoPbm (programa “Abraçar a Vida – Boehringer”): R$ 215,87  \n\nPortanto, o relatório reflete o preço de R$ 322,15, que é o preço de loja mais recente registrado pela ferramenta `consultar_precos`. O valor que você mencionou (R$ 150) não consta nos dados atuais.",
+    "resultado": "Usei a suposição de que “valor” = preço atual (Preço Farmácia).  \nNa última coleta (19/09/2026) a ferramenta **consultar_precos** registrou para a Drogasil:\n\n- **Trayenta 5 mg – PreçoFarmacia:** R$ 322,15  \n\n[fonte: espelho_sqlite, coleta em 2026‑09‑19]  \n\nPortanto, o relatório mostra R$ 322,15 porque esse é o preço mais recente que temos. Se a sua informação (R$ 150) vem de outra fonte ou de um desconto específico que ainda não foi capturado na coleta, ele pode ainda não estar refletido nos nossos dados.",
     "fontes": [
       {
         "tipo": "banco_precos",
@@ -39,26 +39,26 @@
     "acoes_executadas": [],
     "alertas": [],
     "motivo_terminacao": "resposta_final",
-    "thread_id": "G-CA02:c02-20261019T001352",
+    "thread_id": "G-CA02:c02-20261019T020102",
     "turno": 1
   },
   "interrupcao": null,
   "medicoes": {
     "chamadas_recuperacao_rag": 0,
     "chamadas_modelo_laco": 2,
-    "tokens_turno": 5021,
+    "tokens_turno": 4982,
     "paralelo": {
       "memoria_ms": 2.4,
-      "triagem_ms": 1147.9,
-      "soma_ms": 1150.3,
-      "maior_ms": 1147.9,
-      "decorrido_ms": 1148.3
+      "triagem_ms": 1141.3,
+      "soma_ms": 1143.7,
+      "maior_ms": 1141.3,
+      "decorrido_ms": 1141.6
     }
   },
   "triagem": {
     "rota": "atender",
     "pilar": "preco",
-    "pergunta_reescrita": "Por que o relatório mostra um preço diferente da Trayenta 5mg na Drogasil?",
+    "pergunta_reescrita": "Por que o relatório mostra outro valor para o preço da Trayenta 5mg na Drogasil?",
     "faltando": [],
     "pergunta_esclarecimento": null,
     "suposicoes": [
@@ -104,7 +104,7 @@
       ],
       "faltando": [],
       "erros": [],
-      "tokens": 1476
+      "tokens": 1513
     },
     {
       "no": "ferramentas",
@@ -143,65 +143,65 @@
       "no": "agente",
       "passo": 2,
       "tipo": "resposta_final",
-      "conteudo": "Usei a suposição de que “valor” se refere ao **PreçoFarmácia** atual.  \nNa coleta mais recente (19/09/2026) a Drogasil tem :\n\n- **Trayenta 5 mg – PreçoFarmácia:** R$ 322,15  \n- PreçoTabela: R$ 332,11  \n- PreçoPbm (programa “Abraçar a Vida – Boehringer”): R$ 215,87  \n\nPortanto, o relatório reflete o preço de R$ 322,15, que é o preço de loja mais recente registrado pela ferramenta `consultar_precos`. O valor que você mencionou (R$ 150) não consta nos dados atuais."
+      "conteudo": "Usei a suposição de que “valor” = preço atual (Preço Farmácia).  \nNa última coleta (19/09/2026) a ferramenta **consultar_precos** registrou para a Drogasil:\n\n- **Trayenta 5 mg – PreçoFarmacia:** R$ 322,15  \n\n[fonte: espelho_sqlite, coleta em 2026‑09‑19]  \n\nPortanto, o relatório mostra R$ 322,15 porque esse é o preço mais recente que temos. Se a sua informação (R$ 150) vem de outra fonte ou de um desconto específico que ainda não foi capturado na coleta, ele pode ainda não estar refletido nos nossos dados."
     }
   ],
   "eventos": [
     {
       "no": "receber_entrada",
-      "inicio": 1792379643.0383,
-      "fim": 1792379643.0384,
+      "inicio": 1792386074.689,
+      "fim": 1792386074.689,
       "ms": 0.0
     },
     {
       "no": "carregar_memoria",
-      "inicio": 1792379643.0398,
-      "fim": 1792379643.0423,
+      "inicio": 1792386074.6901,
+      "fim": 1792386074.6925,
       "ms": 2.4
     },
     {
       "no": "triagem",
-      "inicio": 1792379643.0402,
-      "fim": 1792379644.1881,
-      "ms": 1147.9
+      "inicio": 1792386074.6904,
+      "fim": 1792386075.8317,
+      "ms": 1141.3
     },
     {
       "no": "portao",
-      "inicio": 1792379644.1887,
-      "fim": 1792379644.1887,
+      "inicio": 1792386075.8324,
+      "fim": 1792386075.8324,
       "ms": 0.0
     },
     {
       "no": "agente",
-      "inicio": 1792379644.1891,
-      "fim": 1792379645.2045,
-      "ms": 1015.4,
+      "inicio": 1792386075.8328,
+      "fim": 1792386077.1987,
+      "ms": 1365.9,
       "passo": 1
     },
     {
       "no": "ferramentas",
-      "inicio": 1792379645.2053,
-      "fim": 1792379645.2059,
-      "ms": 0.6
+      "inicio": 1792386077.1996,
+      "fim": 1792386077.2003,
+      "ms": 0.8
     },
     {
       "no": "agente",
-      "inicio": 1792379645.2065,
-      "fim": 1792379646.0287,
-      "ms": 822.3,
+      "inicio": 1792386077.201,
+      "fim": 1792386078.0576,
+      "ms": 856.6,
       "passo": 2
     },
     {
       "no": "montar_saida",
-      "inicio": 1792379646.0293,
-      "fim": 1792379646.0294,
+      "inicio": 1792386078.0582,
+      "fim": 1792386078.0583,
       "ms": 0.1
     },
     {
       "no": "gravar_memoria",
-      "inicio": 1792379646.0297,
-      "fim": 1792379646.0431,
-      "ms": 13.4
+      "inicio": 1792386078.0586,
+      "fim": 1792386078.0629,
+      "ms": 4.3
     }
   ]
 }

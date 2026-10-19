@@ -162,22 +162,22 @@ e `triagem` (Groq, remoto):
 <!-- medicoes-paralelo:inicio -->
 | turno | memória (ms) | triagem (ms) | soma (ms) | maior (ms) | decorrido (ms) |
 |---|---:|---:|---:|---:|---:|
-| `caso-01-simples-t1` | 1 | 1569 | 1570 | 1569 | **1569** |
-| `caso-02-divergencia-t1` | 2 | 1148 | 1150 | 1148 | **1148** |
-| `caso-03-registro-inexistente-t1` | 2 | 1004 | 1006 | 1004 | **1004** |
-| `caso-04-nao-deve-agir-t1` | 2 | 1862 | 1864 | 1862 | **1862** |
-| `caso-05-fora-do-corpus-t1` | 2 | 769 | 771 | 769 | **770** |
-| `caso-06-t1-pausa` | 2 | 1194 | 1196 | 1194 | **1194** |
-| `io-01-incompleta-t1` | 2 | 695 | 697 | 695 | **695** |
-| `io-01-incompleta-t2` | 1 | 947 | 948 | 947 | **947** |
-| `io-02-ambigua-t1` | 2 | 740 | 741 | 740 | **740** |
-| `io-03-fora-do-escopo-t1` | 3 | 1306 | 1310 | 1306 | **1307** |
-| `io-04-regra-com-citacao-t1` | 2 | 742 | 744 | 742 | **742** |
-| `io-07-memoria-t1` | 2 | 744 | 746 | 744 | **744** |
-| `io-07-memoria-t2` | 4 | 1087 | 1091 | 1087 | **1087** |
-| **total (13 turnos)** | | | **13833** | **13806** | **13810** |
+| `caso-01-simples-t1` | 1 | 2411 | 2412 | 2411 | **2411** |
+| `caso-02-divergencia-t1` | 2 | 1141 | 1144 | 1141 | **1142** |
+| `caso-03-registro-inexistente-t1` | 2 | 1008 | 1010 | 1008 | **1008** |
+| `caso-04-nao-deve-agir-t1` | 2 | 1544 | 1546 | 1544 | **1544** |
+| `caso-05-fora-do-corpus-t1` | 2 | 1062 | 1065 | 1062 | **1063** |
+| `caso-06-t1-pausa` | 2 | 1173 | 1175 | 1173 | **1173** |
+| `io-01-incompleta-t1` | 3 | 688 | 691 | 688 | **689** |
+| `io-01-incompleta-t2` | 1 | 1294 | 1295 | 1294 | **1294** |
+| `io-02-ambigua-t1` | 2 | 725 | 727 | 725 | **726** |
+| `io-03-fora-do-escopo-t1` | 2 | 962 | 963 | 962 | **962** |
+| `io-04-regra-com-citacao-t1` | 2 | 661 | 663 | 661 | **661** |
+| `io-07-memoria-t1` | 2 | 1172 | 1174 | 1172 | **1172** |
+| `io-07-memoria-t2` | 3 | 888 | 891 | 888 | **888** |
+| **total (13 turnos)** | | | **14755** | **14729** | **14732** |
 
-O decorrido tende ao **maior** dos ramos (13810 ms contra 13806 ms), e não à soma (13833 ms): há paralelismo de verdade, porque os ramos usam recursos diferentes (a memória é CPU local — SQLite e o e5-large via ONNX —, a triagem é espera de rede pela Groq). **O ganho é pequeno:** 2 ms por turno, 0.2% do tempo dos dois ramos, porque a memória é muito mais rápida que a triagem (medianas: 2 ms contra 1004 ms). O paralelo fica porque é de graça (não acrescenta chamada nem custo) e porque o ganho cresce com a memória: a busca episódica é linear no número de episódios do gestor. Com modelo local que atende uma requisição por vez — o caso medido na Aula 09 — o ganho seria o mesmo, já que só um dos ramos chama o modelo.
+O decorrido tende ao **maior** dos ramos (14732 ms contra 14729 ms), e não à soma (14755 ms): há paralelismo de verdade, porque os ramos usam recursos diferentes (a memória é CPU local — SQLite e o e5-large via ONNX —, a triagem é espera de rede pela Groq). **O ganho é pequeno:** 2 ms por turno, 0.2% do tempo dos dois ramos, porque a memória é muito mais rápida que a triagem (medianas: 2 ms contra 1062 ms). O paralelo fica porque é de graça (não acrescenta chamada nem custo) e porque o ganho cresce com a memória: a busca episódica é linear no número de episódios do gestor. Com modelo local que atende uma requisição por vez — o caso medido na Aula 09 — o ganho seria o mesmo, já que só um dos ramos chama o modelo.
 <!-- medicoes-paralelo:fim -->
 
 **O ganho depende do tamanho da memória.** A tabela acima é da rodada com **um gestor por caso**

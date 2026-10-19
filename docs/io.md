@@ -44,9 +44,9 @@ fonte é `insuficiente`. A recusa é parte do contrato: uma saída `insuficiente
 
 ### 3.1 O caminho feliz
 
-Execução: commit `b3c8fbf+alteracoes-locais-em-src`, 2026-10-19T03:13:55+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/caso-01-simples-t1.json`](../logs/parte2/caso-01-simples-t1.json)
+Execução: commit `4af5edd`, 2026-10-19T05:01:06+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/caso-01-simples-t1.json`](../logs/parte2/caso-01-simples-t1.json)
 
-**Entrada exata** (usuário `G-CA01`, sessão `c01-20261019T001352`):
+**Entrada exata** (usuário `G-CA01`, sessão `c01-20261019T020102`):
 
 ```
 Qual o preço atual da Novalgina 500mg na farmácia Araujo?
@@ -56,7 +56,7 @@ Qual o preço atual da Novalgina 500mg na farmácia Araujo?
 
 ```json
 {
-  "resultado": "**Farmácia:** Araujo  \n**Produto:** Novalgina 500 mg  \n**Data da coleta:** 19/09/2026  \n\n- **Preço Tabela (teto regulado):** R$ 14,82  \n- **Preço Farmácia (preço com desconto padrão da loja):** R$ 13,63  \n\nNão há preço PBM cadastrado para este produto.",
+  "resultado": "Na farmácia **Araujo**, o preço mais recente (coleta de 19/09/2026) da **Novalgina 500 mg** é:\n\n- **Preço de tabela**: R$ 14,82  \n- **Preço da farmácia** (desconto padrão): R$ 13,63  \n\nNão há preço PBM (não existe programa de parceria para este produto).",
   "fontes": [
     {
       "tipo": "banco_precos",
@@ -71,7 +71,7 @@ Qual o preço atual da Novalgina 500mg na farmácia Araujo?
   "acoes_executadas": [],
   "alertas": [],
   "motivo_terminacao": "resposta_final",
-  "thread_id": "G-CA01:c01-20261019T001352",
+  "thread_id": "G-CA01:c01-20261019T020102",
   "turno": 1
 }
 ```
@@ -80,9 +80,9 @@ Qual o preço atual da Novalgina 500mg na farmácia Araujo?
 
 ### 3.2 A recusa (pergunta fora do corpus)
 
-Execução: commit `b3c8fbf+alteracoes-locais-em-src`, 2026-10-19T03:14:37+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/caso-05-fora-do-corpus-t1.json`](../logs/parte2/caso-05-fora-do-corpus-t1.json)
+Execução: commit `4af5edd`, 2026-10-19T05:01:51+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/caso-05-fora-do-corpus-t1.json`](../logs/parte2/caso-05-fora-do-corpus-t1.json)
 
-**Entrada exata** (usuário `G-CA05`, sessão `c05-20261019T001352`):
+**Entrada exata** (usuário `G-CA05`, sessão `c05-20261019T020102`):
 
 ```
 Qual é a política de troca e devolução de produtos para o cliente final?
@@ -92,7 +92,7 @@ Qual é a política de troca e devolução de produtos para o cliente final?
 
 ```json
 {
-  "resultado": "A base de conhecimento da rede não contém informações sobre a política de troca e devolução de produtos para o cliente final. Recomendo consultar o time responsável (por exemplo, o setor de atendimento ou jurídico) para obter essa orientação.",
+  "resultado": "A base de conhecimento não contém informação sobre a política de troca e devolução de produtos para o cliente final. Recomendo consultar o time responsável (por exemplo, Comercial ou Atendimento) para obter a regra correta.",
   "fontes": [],
   "suficiencia": "insuficiente",
   "motivo_insuficiencia": "a base de conhecimento não trata do assunto (mais próximo: Validade de estoque, FEFO e perda por vencimento — Exceção: devolução ao fornecedor)",
@@ -101,7 +101,7 @@ Qual é a política de troca e devolução de produtos para o cliente final?
   "acoes_executadas": [],
   "alertas": [],
   "motivo_terminacao": "resposta_final",
-  "thread_id": "G-CA05:c05-20261019T001352",
+  "thread_id": "G-CA05:c05-20261019T020102",
   "turno": 1
 }
 ```
@@ -110,9 +110,9 @@ Qual é a política de troca e devolução de produtos para o cliente final?
 
 ### 3.3 Entrada incompleta — turno 1: pergunta o que falta
 
-Execução: commit `b3c8fbf+alteracoes-locais-em-src`, 2026-10-19T03:14:46+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/io-01-incompleta-t1.json`](../logs/parte2/io-01-incompleta-t1.json)
+Execução: commit `4af5edd`, 2026-10-19T05:02:00+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/io-01-incompleta-t1.json`](../logs/parte2/io-01-incompleta-t1.json)
 
-**Entrada exata** (usuário `G-IO01`, sessão `io1-20261019T001352`):
+**Entrada exata** (usuário `G-IO01`, sessão `io1-20261019T020102`):
 
 ```
 quanto ta o remedio na drogasil?
@@ -131,7 +131,7 @@ quanto ta o remedio na drogasil?
   "acoes_executadas": [],
   "alertas": [],
   "motivo_terminacao": "esclarecimento_pedido",
-  "thread_id": "G-IO01:io1-20261019T001352",
+  "thread_id": "G-IO01:io1-20261019T020102",
   "turno": 1
 }
 ```
@@ -140,9 +140,9 @@ quanto ta o remedio na drogasil?
 
 ### 3.3 Entrada incompleta — turno 2: com a resposta, atende
 
-Execução: commit `b3c8fbf+alteracoes-locais-em-src`, 2026-10-19T03:14:56+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/io-01-incompleta-t2.json`](../logs/parte2/io-01-incompleta-t2.json)
+Execução: commit `4af5edd`, 2026-10-19T05:02:11+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/io-01-incompleta-t2.json`](../logs/parte2/io-01-incompleta-t2.json)
 
-**Entrada exata** (usuário `G-IO01`, sessão `io1-20261019T001352`):
+**Entrada exata** (usuário `G-IO01`, sessão `io1-20261019T020102`):
 
 ```
 a trayenta 5mg
@@ -152,7 +152,7 @@ a trayenta 5mg
 
 ```json
 {
-  "resultado": "O preço atual da **Trayenta 5 mg** na **Drogasil** (PreçoFarmácia) é **R$ 322,15** – dado da coleta mais recente em **19/09/2026**.",
+  "resultado": "Usei a preferência indicada: **Drogasil**.  \n\n- **Preço Farmácia (Preço da loja, sem PBM)** da **Trayenta 5 mg**: **R$ 322,15** – coleta mais recente em **19/09/2026** (fonte = consulta de preços).",
   "fontes": [
     {
       "tipo": "banco_precos",
@@ -169,7 +169,7 @@ a trayenta 5mg
   "acoes_executadas": [],
   "alertas": [],
   "motivo_terminacao": "resposta_final",
-  "thread_id": "G-IO01:io1-20261019T001352",
+  "thread_id": "G-IO01:io1-20261019T020102",
   "turno": 2
 }
 ```
@@ -178,9 +178,9 @@ a trayenta 5mg
 
 ### 3.4 Entrada ambígua — escolhe e declara a escolha
 
-Execução: commit `b3c8fbf+alteracoes-locais-em-src`, 2026-10-19T03:15:09+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/io-02-ambigua-t1.json`](../logs/parte2/io-02-ambigua-t1.json)
+Execução: commit `4af5edd`, 2026-10-19T05:02:21+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/io-02-ambigua-t1.json`](../logs/parte2/io-02-ambigua-t1.json)
 
-**Entrada exata** (usuário `G-IO02`, sessão `io2-20261019T001352`):
+**Entrada exata** (usuário `G-IO02`, sessão `io2-20261019T020102`):
 
 ```
 quanto custa a trayenta na raia
@@ -190,7 +190,7 @@ quanto custa a trayenta na raia
 
 ```json
 {
-  "resultado": "Usei a suposição de que “quanto custa” se refere ao **PreçoFarmácia** atual.\n\n- **Raia – Trayenta 5 mg**  \n  - PreçoFarmácia (última coleta em 19/09/2026): **R$ 326,04**.",
+  "resultado": "Usei a suposição de que “quanto custa” se refere ao **PreçoFarmácia** atual.\n\n- **Farmácia:** Raia  \n- **Produto:** Trayenta 5 mg  \n- **Data da coleta:** 19/09/2026  \n- **PreçoFarmácia:** **R$ 326,04**.",
   "fontes": [
     {
       "tipo": "banco_precos",
@@ -207,7 +207,7 @@ quanto custa a trayenta na raia
   "acoes_executadas": [],
   "alertas": [],
   "motivo_terminacao": "resposta_final",
-  "thread_id": "G-IO02:io2-20261019T001352",
+  "thread_id": "G-IO02:io2-20261019T020102",
   "turno": 1
 }
 ```
@@ -216,9 +216,9 @@ quanto custa a trayenta na raia
 
 ### 3.5 Entrada fora do escopo — recusa e diz o que faz
 
-Execução: commit `b3c8fbf+alteracoes-locais-em-src`, 2026-10-19T03:15:18+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/io-03-fora-do-escopo-t1.json`](../logs/parte2/io-03-fora-do-escopo-t1.json)
+Execução: commit `4af5edd`, 2026-10-19T05:02:30+00:00 · modelo `openai/gpt-oss-120b` · prompts `triagem_v1@v1.0`, `analista_bi_v3@v3.0` · log [`logs/parte2/io-03-fora-do-escopo-t1.json`](../logs/parte2/io-03-fora-do-escopo-t1.json)
 
-**Entrada exata** (usuário `G-IO03`, sessão `io3-20261019T001352`):
+**Entrada exata** (usuário `G-IO03`, sessão `io3-20261019T020102`):
 
 ```
 quantas caixas de clonazepam o cliente de cpf 123.456.789-09 comprou esse mes?
@@ -237,7 +237,7 @@ quantas caixas de clonazepam o cliente de cpf 123.456.789-09 comprou esse mes?
   "acoes_executadas": [],
   "alertas": [],
   "motivo_terminacao": "fora_do_escopo",
-  "thread_id": "G-IO03:io3-20261019T001352",
+  "thread_id": "G-IO03:io3-20261019T020102",
   "turno": 1
 }
 ```
@@ -281,12 +281,12 @@ chamou `interrupt` e a saída voltou com `suficiencia: aguardando_aprovacao`. O 
   "acao": "exportar_analise",
   "argumentos": {
     "dados_resumo": "Drogasil | Trayenta 5mg | PrecoFarmacia: 322.15 | Data da coleta: 2026-09-19",
-    "explicacao": "O preço atual da Trayenta 5mg na Drogasil, considerando a definição de 'preço' como PrecoFarmacia (preço da loja sem PBM), é R$ 322,15, conforme coleta mais recente em 19/09/2026.",
+    "explicacao": "O preço solicitado foi interpretado como PrecoFarmacia, conforme a suposição indicada. O preço mais recente encontrado para Trayenta 5mg na Drogasil é 322.15, coletado em 2026-09-19.",
     "pergunta": "Qual o preço da Trayenta 5mg na Drogasil?"
   },
-  "chave_idempotencia": "5330dc6ff90b4f4c",
-  "consequencia": "Cria o arquivo dados/exports/analise_5330dc6ff90b4f4c.md com a pergunta, os dados e a explicação acima. Não altera preço, venda nem estoque. Para desfazer, apague o arquivo. Se o mesmo conteúdo já tiver sido exportado, nada novo é criado.",
-  "prazo_expira_em": "2026-10-20T03:16:11.268498+00:00",
+  "chave_idempotencia": "309dca1a797db7fe",
+  "consequencia": "Cria o arquivo dados/exports/analise_309dca1a797db7fe.md com a pergunta, os dados e a explicação acima. Não altera preço, venda nem estoque. Para desfazer, apague o arquivo. Se o mesmo conteúdo já tiver sido exportado, nada novo é criado.",
+  "prazo_expira_em": "2026-10-20T05:03:45.560845+00:00",
   "se_ninguem_responder": "a execução expira: nada é exportado e o turno termina com motivo 'aprovacao_expirada'"
 }
 ```
@@ -310,7 +310,7 @@ arquivo `dados\exports\analise_7dcbd4081abadd65.md`, chave `7dcbd4081abadd65`,
 editado — ela é recalculada sobre o que de fato foi gravado.
 
 **3. A mesma aprovação chega de novo**, a partir do mesmo checkpoint da pausa
-(`1f1cb6b6-f321-60d4-8008-3602ac786be0`): log
+(`1f1cb7a7-640e-6a95-8008-89a7320c523e`): log
 [`caso-06-t1-aprovacao-2-repetida.json`](../logs/parte2/caso-06-t1-aprovacao-2-repetida.json) —
 chave `7dcbd4081abadd65`, `ja_existia: True`.
 
@@ -324,6 +324,7 @@ A segunda chamada à ferramenta aconteceu (está na trajetória do log), e não 
 
 **Resposta final ao gestor** (depois da 1ª aprovação):
 
-> O preço atual da **Trayenta 5 mg** na **Drogasil**, interpretado como **PreçoFarmácia** (preço da loja, sem PBM), é **R$ 322,15**. Dados da coleta mais recente em **19/09/2026**.  
+> Usei a suposição de que “preço” se refere ao **PreçoFarmácia**.  
+> Na Drogasil, o **PreçoFarmácia de Trayenta 5 mg** é **R$ 322,15**, conforme coleta mais recente de **19/09/2026**.  
 > 
-> Análise salva para a diretoria.
+> A análise foi salva para envio à diretoria.

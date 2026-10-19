@@ -1,7 +1,7 @@
 {
   "carimbo": {
-    "commit": "b3c8fbf+alteracoes-locais-em-src",
-    "data_utc": "2026-10-19T03:15:18+00:00",
+    "commit": "4af5edd",
+    "data_utc": "2026-10-19T05:02:30+00:00",
     "modelo": "openai/gpt-oss-120b",
     "prompt_agente": "analista_bi_v3@v3.0",
     "prompt_triagem": "triagem_v1@v1.0",
@@ -14,12 +14,12 @@
     "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)"
   },
   "tipo": "turno",
-  "thread_id": "G-IO03:io3-20261019T001352",
-  "checkpoint_id": "1f1cb6b4-fcf9-6226-8006-7d2d1577814c",
+  "thread_id": "G-IO03:io3-20261019T020102",
+  "checkpoint_id": "1f1cb7a4-941c-64c5-8006-7ee18a2964bf",
   "pedido": {
     "texto": "quantas caixas de clonazepam o cliente de cpf 123.456.789-09 comprou esse mes?",
     "usuario_id": "G-IO03",
-    "sessao_id": "io3-20261019T001352"
+    "sessao_id": "io3-20261019T020102"
   },
   "saida": {
     "resultado": "Não posso atender a esse pedido: pede dado de compra de paciente identificado (controlado), que o sistema não trata. Eu respondo sobre preço atual, histórico de preço e falta (ruptura) de produtos nas 13 farmácias monitoradas, e sobre as regras e definições da rede (descontos, margem, PBM, ruptura, FEFO). Vendas e estoque ainda não têm dado. Não altero preço, não faço compra e não trato dado de paciente.",
@@ -31,26 +31,26 @@
     "acoes_executadas": [],
     "alertas": [],
     "motivo_terminacao": "fora_do_escopo",
-    "thread_id": "G-IO03:io3-20261019T001352",
+    "thread_id": "G-IO03:io3-20261019T020102",
     "turno": 1
   },
   "interrupcao": null,
   "medicoes": {
     "chamadas_recuperacao_rag": 0,
     "chamadas_modelo_laco": 0,
-    "tokens_turno": 1300,
+    "tokens_turno": 1360,
     "paralelo": {
-      "memoria_ms": 3.4,
-      "triagem_ms": 1306.3,
-      "soma_ms": 1309.7,
-      "maior_ms": 1306.3,
-      "decorrido_ms": 1306.6
+      "memoria_ms": 1.7,
+      "triagem_ms": 961.7,
+      "soma_ms": 963.4,
+      "maior_ms": 961.7,
+      "decorrido_ms": 962.0
     }
   },
   "triagem": {
     "rota": "fora_escopo",
     "pilar": "nenhum",
-    "pergunta_reescrita": "Quantas caixas de clonazepam o cliente de CPF 123.456.789-09 comprou este mês?",
+    "pergunta_reescrita": "Quantas caixas de clonazepam o cliente de CPF 123.456.789-09 comprou esse mês?",
     "faltando": [],
     "pergunta_esclarecimento": null,
     "suposicoes": [],
@@ -90,50 +90,50 @@
       "suposicoes": [],
       "faltando": [],
       "erros": [],
-      "tokens": 1300
+      "tokens": 1360
     }
   ],
   "eventos": [
     {
       "no": "receber_entrada",
-      "inicio": 1792379717.3025,
-      "fim": 1792379717.3025,
+      "inicio": 1792386149.1027,
+      "fim": 1792386149.1027,
       "ms": 0.0
     },
     {
       "no": "carregar_memoria",
-      "inicio": 1792379717.3035,
-      "fim": 1792379717.3069,
-      "ms": 3.4
+      "inicio": 1792386149.1037,
+      "fim": 1792386149.1054,
+      "ms": 1.7
     },
     {
       "no": "triagem",
-      "inicio": 1792379717.3038,
-      "fim": 1792379718.6101,
-      "ms": 1306.3
+      "inicio": 1792386149.104,
+      "fim": 1792386150.0657,
+      "ms": 961.7
     },
     {
       "no": "portao",
-      "inicio": 1792379718.6109,
-      "fim": 1792379718.6109,
+      "inicio": 1792386150.0664,
+      "fim": 1792386150.0664,
       "ms": 0.0
     },
     {
       "no": "recusar",
-      "inicio": 1792379718.6117,
-      "fim": 1792379718.6117,
+      "inicio": 1792386150.0671,
+      "fim": 1792386150.0671,
       "ms": 0.0
     },
     {
       "no": "montar_saida",
-      "inicio": 1792379718.6121,
-      "fim": 1792379718.6122,
-      "ms": 0.1
+      "inicio": 1792386150.0675,
+      "fim": 1792386150.0675,
+      "ms": 0.0
     },
     {
       "no": "gravar_memoria",
-      "inicio": 1792379718.6134,
-      "fim": 1792379718.6134,
+      "inicio": 1792386150.0686,
+      "fim": 1792386150.0686,
       "ms": 0.0
     }
   ]
