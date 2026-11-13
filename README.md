@@ -53,6 +53,29 @@ python -m pytest -q
 python conferir_grafo.py
 ```
 
+## Demonstração em um comando
+
+```bash
+python demo.py
+```
+
+Roda, em sequência, as cinco cenas da apresentação: preço com fonte, regra da rede com citação
+(RAG), pergunta incompleta que o sistema esclarece, recusa de pergunta com dado de paciente, e a
+exportação que para e espera aprovação humana (com a aprovação repetida que não duplica o arquivo).
+Leva cerca de 3 minutos no tier gratuito; prepara o espelho e o índice se ainda não existirem.
+
+| Opção | O que faz |
+|---|---|
+| `--cena N` | roda só a cena `N` (1 a 5) |
+| `--pergunta "texto"` | faz uma pergunta livre ao agente |
+| `--auto` | aprova sozinho na cena 5 (num terminal interativo, quem decide é você) |
+| `--sintetico` | usa o espelho sintético mesmo com o banco real configurado |
+| `--json` | mostra também o objeto de saída completo |
+
+Com `FRACTALPRECOS_CONNECTION_STRING` preenchida e a conexão aberta, a demonstração consulta o banco
+real; senão, cai no espelho sintético e avisa. O que ela grava (logs, memória, exportações) fica em
+pastas fora do git.
+
 ## Como usar
 
 **O que você digita:** uma pergunta em português, em texto livre, sobre preço, falta (ruptura) ou
