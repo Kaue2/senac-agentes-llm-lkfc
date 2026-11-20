@@ -24,6 +24,7 @@ from langgraph.types import interrupt
 from pydantic import ValidationError
 
 from src.observabilidade.telemetria import rastrear_ferramenta
+from src.grafo.controles import validar_exportacao
 from src.memoria.contexto import contar_tokens, montar_contexto_memoria
 from src.memoria.politica import extrair_preferencia_farmacia, extrair_recorte
 from src.projects.farmacia_precos.tools_farmacia import chave_exportacao
@@ -338,12 +339,10 @@ def ferramentas(estado: EstadoGrafo, runtime: Runtime[Dependencias]) -> dict:
     mensagens: list[dict] = []
     trajetoria: list[dict] = []
     acao: dict | None = None
-    for c in estado.get("chamadas_pendentes", []):
-        if c["nome"] == "exportar_analise" and not c["erro_argumentos"]:
-            if acao is None:
-                acao = {"tool_call_id": c["id"], "ferramenta": c["nome"], "argumentos": c["argumentos"]}
-            else:
-                mensagens.append(_mensagem_ferramenta(c["id"], {"erro": "uma exportação por vez; aguarde a aprovação da primeira"}))
+    pendentes = estado.get("chamadas_pendentes", [])
+    escritas = [c for c in pendentes if c["nome"] == "exportar_analise" and not c["erro_argumentos"]]
+    for c in pendentes:
+        if c in escritas:
             continue
         if c["erro_argumentos"]:
             resultado = {"erro": c["erro_argumentos"]}
@@ -354,6 +353,22 @@ def ferramentas(estado: EstadoGrafo, runtime: Runtime[Dependencias]) -> dict:
         trajetoria.append({"no": "ferramentas", "passo": estado.get("passos", 0), "tipo": "chamada_ferramenta",
                            "ferramenta": c["nome"], "argumentos": c["argumentos"], "resultado": resultado,
                            "erro_recuperavel": "erro" in resultado})
+    # A escrita depois das leituras do mesmo passo: o controle C2 confere os números do pedido contra
+    # tudo o que as ferramentas devolveram neste turno, inclusive neste passo.
+    exportacoes_no_turno = len(estado.get("efeitos_aplicados", []))
+    for c in escritas:
+        motivo = validar_exportacao(c["argumentos"], estado.get("trajetoria", []) + trajetoria,
+                                    exportacoes_no_turno + (1 if acao else 0))
+        if motivo is None:
+            acao = {"tool_call_id": c["id"], "ferramenta": c["nome"], "argumentos": c["argumentos"]}
+            continue
+        resultado = {"erro": f"exportação bloqueada (controle C2): {motivo}", "bloqueado_por": "C2", "nada_foi_gravado": True}
+        with rastrear_ferramenta(c["nome"], c["id"], c["argumentos"]) as registro:
+            registro["resultado"] = resultado
+        mensagens.append(_mensagem_ferramenta(c["id"], resultado))
+        trajetoria.append({"no": "ferramentas", "passo": estado.get("passos", 0), "tipo": "chamada_ferramenta",
+                           "ferramenta": c["nome"], "argumentos": c["argumentos"], "resultado": resultado,
+                           "erro_recuperavel": True})
     return {
         "mensagens_modelo": mensagens,
         "trajetoria": trajetoria,
