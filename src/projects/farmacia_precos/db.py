@@ -81,6 +81,11 @@ def _traduzir_connection_string_para_odbc(connection_string: str, driver: str = 
 
 
 _COMANDO_INICIAL = re.compile(r"^\s*(select|with)\b", re.IGNORECASE)
+# `WITH x AS (SELECT 1) DELETE FROM ...` começa com WITH e escreve: além do comando inicial, nenhuma
+# palavra de escrita pode aparecer fora de literal entre aspas.
+_PALAVRA_DE_ESCRITA = re.compile(
+    r"\b(insert|update|delete|merge|drop|alter|create|truncate|replace|grant|revoke|exec|execute|attach|pragma|into)\b",
+    re.IGNORECASE)
 
 
 def exigir_somente_leitura(sql: str) -> None:
@@ -89,7 +94,9 @@ def exigir_somente_leitura(sql: str) -> None:
     as duas fontes — no SQL Server real, é a única barreira em código; o privilégio da credencial
     é da plataforma (LACUNA declarada no model card enquanto o grant não for mostrado)."""
     sem_comentarios = re.sub(r"--[^\n]*|/\*.*?\*/", " ", sql, flags=re.DOTALL)
-    if not _COMANDO_INICIAL.match(sem_comentarios) or ";" in sem_comentarios.strip().rstrip(";"):
+    sem_literais = re.sub(r"'(?:[^']|'')*'", "''", sem_comentarios)
+    if (not _COMANDO_INICIAL.match(sem_literais) or ";" in sem_literais.strip().rstrip(";")
+            or _PALAVRA_DE_ESCRITA.search(sem_literais)):
         raise PermissionError(f"consulta bloqueada (somente leitura): {sql[:80]!r}")
 
 

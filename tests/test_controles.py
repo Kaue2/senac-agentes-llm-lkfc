@@ -18,6 +18,8 @@ from src.projects.farmacia_precos.db import exigir_somente_leitura
     "SELECT * FROM Produto; DROP TABLE Produto",
     "/* comentário */ INSERT INTO Farmacia (Nome) VALUES ('x')",
     "  drop table Farmacia",
+    "WITH x AS (SELECT 1) DELETE FROM Produto",
+    "SELECT * INTO copia FROM Produto",
 ])
 def test_c1_portao_bloqueia_escrita(sql):
     with pytest.raises(PermissionError):
