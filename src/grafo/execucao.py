@@ -20,6 +20,8 @@ from typing import Any
 from langgraph.errors import GraphRecursionError
 from langgraph.types import Command
 
+from src.versao import SISTEMA_VERSAO
+
 from .contrato import Entrada, SaidaAgente
 from .dependencias import Dependencias, Tetos, carregar_prompts
 from .grafo import PASTA_RAIZ, RECURSION_LIMIT, config_da_thread, obter_grafo
@@ -40,6 +42,7 @@ def carimbo(deps: Dependencias) -> dict[str, str]:
     from src.rag.resposta import K_PADRAO, LIMIAR_PADRAO
 
     return {
+        "versao_sistema": SISTEMA_VERSAO,
         "commit": commit_atual(),
         "data_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         **deps.carimbo(),
