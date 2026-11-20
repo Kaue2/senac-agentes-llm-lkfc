@@ -16,6 +16,7 @@ vira uma troca de fonte de dados, não uma exceção não tratada.
 from __future__ import annotations
 
 import os
+import re
 import sqlite3
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -79,6 +80,19 @@ def _traduzir_connection_string_para_odbc(connection_string: str, driver: str = 
     return ";".join(f"{chave}={valor}" for chave, valor in partes_odbc.items())
 
 
+_COMANDO_INICIAL = re.compile(r"^\s*(select|with)\b", re.IGNORECASE)
+
+
+def exigir_somente_leitura(sql: str) -> None:
+    """Controle C1 (docs/seguranca.md, ASI03): toda consulta que sai deste módulo é um único
+    SELECT. Fail-closed: o que não passa levanta PermissionError e não chega ao banco. Vale para
+    as duas fontes — no SQL Server real, é a única barreira em código; o privilégio da credencial
+    é da plataforma (LACUNA declarada no model card enquanto o grant não for mostrado)."""
+    sem_comentarios = re.sub(r"--[^\n]*|/\*.*?\*/", " ", sql, flags=re.DOTALL)
+    if not _COMANDO_INICIAL.match(sem_comentarios) or ";" in sem_comentarios.strip().rstrip(";"):
+        raise PermissionError(f"consulta bloqueada (somente leitura): {sql[:80]!r}")
+
+
 class BancoPrecos:
     def __init__(self) -> None:
         self._conn: Any = None
@@ -104,13 +118,16 @@ class BancoPrecos:
                 )
             # check_same_thread=False: o LangGraph roda nós num pool de threads; o grafo nunca usa o
             # banco em dois nós ao mesmo tempo (só o nó `ferramentas` o consulta).
-            self._conn = sqlite3.connect(CAMINHO_ESPELHO_SQLITE, check_same_thread=False)
+            # mode=ro: o espelho é aberto SOMENTE LEITURA pelo próprio SQLite (controle C1,
+            # docs/seguranca.md). Nenhum caminho do agente escreve no banco de preços.
+            self._conn = sqlite3.connect(f"file:{CAMINHO_ESPELHO_SQLITE.as_posix()}?mode=ro", uri=True, check_same_thread=False)
             self.fonte = "espelho_sqlite"
 
     def close(self) -> None:
         self._conn.close()
 
     def _query(self, sql: str, params: tuple) -> list[dict]:
+        exigir_somente_leitura(sql)
         cursor = self._conn.cursor()
         cursor.execute(sql, params)
         colunas = [c[0] for c in cursor.description]
