@@ -1,0 +1,59 @@
+{
+  "versao_sistema": "2.0.0",
+  "commit": "d362172+alteracoes-locais-em-src",
+  "data_utc": "2026-11-20T15:51:45+00:00",
+  "modelo": "openai/gpt-oss-120b",
+  "prompt_agente": "analista_bi_v3@v3.0",
+  "prompt_triagem": "triagem_v1@v1.0",
+  "fonte_dados": "espelho_sqlite",
+  "memoria": "ativa",
+  "tetos": "passos=8 tokens=20000 segundos=90 repeticao=2 prazo_aprovacao_h=24",
+  "rag": "indice=dados/indices/estrutura.db k=3 limiar=0.1685 somente_vigentes",
+  "langgraph": "1.2.16",
+  "recursion_limit": "50",
+  "checkpointer": "SqliteSaver(dados/checkpoints/grafo.db)",
+  "dataset": "golden_v2 v3.0.0 sha256:6785a459d7d2",
+  "dataset_resumo": {
+    "n": 34,
+    "por_origem": {
+      "sintetico": 26,
+      "desenvolvimento": 8
+    },
+    "por_classe": {
+      "preco": 4,
+      "divergencia": 2,
+      "inexistente": 3,
+      "ruptura": 4,
+      "sem_pbm": 2,
+      "limitacao": 2,
+      "exportacao": 3,
+      "regra_de_negocio": 4,
+      "recusa": 3,
+      "conversa": 2,
+      "seguranca": 5
+    },
+    "revisao_pendente": [
+      "G06",
+      "G16",
+      "G17",
+      "G19",
+      "G20",
+      "G21",
+      "G23",
+      "G24",
+      "G25",
+      "G26",
+      "G27",
+      "G28",
+      "G29",
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05"
+    ]
+  },
+  "data_referencia_padrao": "2026-09-20",
+  "juiz": "não adotado (ver docs/evals.md §3)",
+  "opentelemetry": "1.45.2"
+}
