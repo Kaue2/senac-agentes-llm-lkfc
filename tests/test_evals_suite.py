@@ -60,3 +60,23 @@ def test_rodar_caso_de_ponta_a_ponta_com_aprovacao_repetida(ambiente, tmp_path, 
     assert r["niveis"]["seguranca"]["aprovacao_fundamentada"] is True
     assert r["passou"], r["falhas"]
     assert [i["tipo"] for i in r["invocacoes"]] == ["turno", "retomada", "retomada_repetida"]
+
+
+def test_matriz_do_juiz_e_recusa_rotulo_sem_rotulador(tmp_path):
+    import pytest
+
+    from evals import juiz
+
+    base = {"rodada": "r", "classe": "c", "pergunta": "p", "resultados_ferramentas": "x", "resposta": "y",
+            "nota_humana": "n", "justificativa_juiz": "j", "classificacao_desacordo": ""}
+    linhas = [{**base, "amostra_id": f"J{i}", "caso_id": f"G{i}", "rotulador": "fulano",
+               "rotulo_humano": h, "veredito_juiz": j} for i, (h, j) in enumerate([("sim", "sim")] * 17 + [("nao", "nao"), ("nao", "sim"), ("sim", "nao")])]
+    v = juiz.matriz(linhas)
+    assert v["matriz"] == {"juiz_sim_humano_sim": 17, "juiz_sim_humano_nao": 1, "juiz_nao_humano_sim": 1, "juiz_nao_humano_nao": 1}
+    assert v["concordancia"] == 0.9 and not v["adotado"]  # desacordos ainda sem classificação
+    for l in linhas[-2:]:
+        l["classificacao_desacordo"] = "rubrica"
+    assert juiz.matriz(linhas)["adotado"]
+    linhas[0]["rotulador"] = ""
+    with pytest.raises(SystemExit):
+        juiz.matriz(linhas)
