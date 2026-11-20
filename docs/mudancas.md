@@ -14,7 +14,7 @@ A versão está em `src/versao.py`. Ela vai para o carimbo de todo log, para a r
 | 1.x | `28f634a` | Parte 1: laço do agente escrito à mão (`src/core/agent.py`) | grupo |
 | 2.0 (sem constante) | `4af5edd` | Parte 2: grafo LangGraph, contrato de saída, RAG, memória, HITL | grupo |
 | **2.0.0** | `8987083`…`d362172` | Parte 2 + correção da regra de ruptura + traces OpenTelemetry. É a **versão A** da comparação: a rodada A rodou sobre `d362172` | grupo |
-| **2.1.0** | `d1bde1a` | 2.0.0 + os controles de segurança C1–C4. É a **versão B** | grupo — a decisão de promover segue a regra do Exercício 11, ver [`evals.md`](evals.md) §4 |
+| **2.1.0** | `d1bde1a` (a rodada B rodou sobre `ab3f35d`, que inclui a correção `08bb562` do C1) | 2.0.0 + os controles de segurança C1–C4. É a **versão B** | grupo. A regra de promoção do Exercício 11 **não** a promove (−3,0 p.p., um caso, falso negativo do avaliador). Os controles ficam por decisão de segurança declarada, ver [`evals.md`](evals.md) §4.4 |
 
 ## Defeitos da Parte 2, corrigidos
 
@@ -72,6 +72,9 @@ ferramenta no turno, os argumentos têm tamanho máximo e só vai 1 exportação
 | `2ac5a30` | a suíte de avaliação em `evals/` ([`evals.md`](evals.md)) |
 | `a0038a4`, `d362172` | hash do dataset independente de CRLF/LF (o segundo corrige um erro de sintaxe do primeiro) |
 | `192fe7c` | C1 — banco somente leitura em código |
+| `08bb562` | correção do C1: o portão deixava passar `WITH ... DELETE` |
+| `1834c24` | correção do avaliador (data com espaço, recusa com "não contém"), achada lendo a rodada A |
+| `3d2c47d` | dataset 3.0.0, reavaliação de rodada gravada e trava de régua no `comparar` |
 | `c01cc30` | validação do juiz contra rótulos humanos |
 | `7b4f495` | métricas e SLO calculados dos traces |
 
