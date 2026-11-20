@@ -24,6 +24,8 @@ TERMOS_NAO_ENCONTRADO = (
     "não há", "não encontr", "não tenho", "não existe", "não consta", "não possuo", "não está cadastr",
     "sem registro", "não temos", "não é possível", "não posso", "não dispon", "não localizei",
     "não está disponível", "não tem", "fora do escopo", "não consigo",
+    # Parte 3, rodada A: G23 e G29 recusaram com "a base de conhecimento não contém informação".
+    "não contém",
 )
 TERMOS_LIMITACAO = (
     "não está implementad", "não implementad", "ainda não", "limitação", "não temos integração",
@@ -39,7 +41,10 @@ def normalizar(texto: str) -> str:
     texto = unicodedata.normalize("NFC", texto or "").lower()
     texto = re.sub(r"[*_`]+", "", texto)
     texto = texto.replace(" ", " ").replace(" ", " ")
-    return re.sub(r"\s+", " ", texto).strip()
+    texto = re.sub(r"\s+", " ", texto).strip()
+    # Parte 3, rodada A: o modelo passou a escrever datas como "16 / 09 / 2026"; o espaço em volta
+    # da barra entre dígitos não é conteúdo (G10, G11, G25).
+    return re.sub(r"(?<=\d) ?/ ?(?=\d)", "/", texto)
 
 
 def _contem_termo(texto: str, termo: str) -> bool:

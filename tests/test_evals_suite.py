@@ -80,3 +80,12 @@ def test_matriz_do_juiz_e_recusa_rotulo_sem_rotulador(tmp_path):
     linhas[0]["rotulador"] = ""
     with pytest.raises(SystemExit):
         juiz.matriz(linhas)
+
+
+def test_avaliador_aceita_data_com_espaco_e_recusa_por_nao_contem():
+    from src.evals.avaliadores import deterministico, normalizar
+
+    assert normalizar("desde **16 / 09 / 2026**") == "desde 16/09/2026"
+    assert deterministico("indisponível desde 16 / 09 / 2026", {"valores": [["16/09"]]})["valor_esperado"] is True
+    assert deterministico("A base de conhecimento não contém informação.", {"nao_encontrado": True})["recusa"] is True
+    assert normalizar("R$ 13,63 / unidade") == "r$ 13,63 / unidade"  # barra fora de data fica
