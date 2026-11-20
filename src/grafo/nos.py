@@ -23,6 +23,7 @@ from langgraph.runtime import Runtime
 from langgraph.types import interrupt
 from pydantic import ValidationError
 
+from src.observabilidade.telemetria import rastrear_ferramenta
 from src.memoria.contexto import contar_tokens, montar_contexto_memoria
 from src.memoria.politica import extrair_preferencia_farmacia, extrair_recorte
 from src.projects.farmacia_precos.tools_farmacia import chave_exportacao
@@ -347,7 +348,8 @@ def ferramentas(estado: EstadoGrafo, runtime: Runtime[Dependencias]) -> dict:
         if c["erro_argumentos"]:
             resultado = {"erro": c["erro_argumentos"]}
         else:
-            resultado = deps.ferramentas.chamar(c["nome"], c["argumentos"])
+            with rastrear_ferramenta(c["nome"], c["id"], c["argumentos"]) as registro:
+                resultado = registro["resultado"] = deps.ferramentas.chamar(c["nome"], c["argumentos"])
         mensagens.append(_mensagem_ferramenta(c["id"], resultado))
         trajetoria.append({"no": "ferramentas", "passo": estado.get("passos", 0), "tipo": "chamada_ferramenta",
                            "ferramenta": c["nome"], "argumentos": c["argumentos"], "resultado": resultado,
@@ -443,7 +445,8 @@ def exportar(estado: EstadoGrafo, runtime: Runtime[Dependencias]) -> dict:
     args = dict(aprovacao["argumentos"])
     if decisao["decisao"] == "editar" and decisao.get("argumentos"):
         args.update({k: v for k, v in decisao["argumentos"].items() if k in CAMPOS_EDITAVEIS})
-    resultado = deps.ferramentas.chamar("exportar_analise", args)
+    with rastrear_ferramenta("exportar_analise", aprovacao["tool_call_id"], args) as registro:
+        resultado = registro["resultado"] = deps.ferramentas.chamar("exportar_analise", args)
     efeito = {
         "acao": "exportar_analise", "argumentos": args,
         "chave_idempotencia": resultado.get("chave_idempotencia", ""), "ja_existia": bool(resultado.get("ja_existia")),

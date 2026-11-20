@@ -20,6 +20,7 @@ from typing import Any
 from langgraph.errors import GraphRecursionError
 from langgraph.types import Command
 
+from src.observabilidade.telemetria import ClienteInstrumentado, span_raiz, texto_curto
 from src.versao import SISTEMA_VERSAO
 
 from .contrato import Entrada, SaidaAgente
@@ -91,7 +92,7 @@ def montar_dependencias(memoria: bool | None = None, pasta_memoria: Path | None 
         mem = Memoria(embeddings, pasta_memoria or PASTA_MEMORIA_PADRAO)
     prompt_agente, prompt_triagem = carregar_prompts()
     deps = Dependencias(
-        cliente=criar_cliente(config), modelo=config.modelo, ferramentas=registro,
+        cliente=ClienteInstrumentado(criar_cliente(config)), modelo=config.modelo, ferramentas=registro,
         prompt_agente=prompt_agente, prompt_triagem=prompt_triagem,
         fonte_dados=banco.fonte, memoria=mem, tetos=Tetos.do_ambiente(),
     )
@@ -123,7 +124,60 @@ def _saida_de(estado: dict, interrupcao: dict | None, thread_id: str) -> SaidaAg
     return SaidaAgente.model_validate(estado["saida"])
 
 
-def _invocar(grafo, entrada_ou_comando, config: dict, deps: Dependencias) -> dict:
+def _invocar(grafo, entrada_ou_comando, config: dict, deps: Dependencias, tipo: str = "turno") -> dict:
+    """Uma invocação = um trace: a raiz `invoke_agent` envolve o `invoke`, e os spans `chat` e
+    `execute_tool` abertos dentro dos nós ficam como filhos dela. Os atributos de registro da
+    decisão (§2.3 da Parte 3) são gravados na raiz depois do `invoke`."""
+    thread_id = config["configurable"]["thread_id"]
+    with span_raiz(tipo, thread_id, deps.modelo, {
+        "app.prompt.agente": deps.prompt_agente.rotulo,
+        "app.prompt.triagem": deps.prompt_triagem.rotulo,
+        "app.fonte_dados": deps.fonte_dados,
+        "app.checkpoint_origem": config["configurable"].get("checkpoint_id"),
+    }) as raiz:
+        estado = _invocar_sem_trace(grafo, entrada_ou_comando, config, deps)
+        registrar_na_raiz(raiz, grafo, estado, thread_id, tipo)
+        return estado
+
+
+def registrar_na_raiz(raiz, grafo, estado: dict, thread_id: str, tipo: str) -> None:
+    interrupcao = _interrupcao_pendente(grafo, {"configurable": {"thread_id": thread_id}})
+    saida = _saida_de(estado, interrupcao, thread_id)
+    entrada = estado.get("entrada") or {}
+    raiz.set_attributes({
+        "app.turno": int(estado.get("turno", 0)),
+        "app.usuario_id": entrada.get("usuario_id", ""),
+        "app.entrada": texto_curto(entrada.get("texto", "")),
+        "app.triagem.rota": (estado.get("triagem") or {}).get("rota", ""),
+        "app.motivo_terminacao": saida.motivo_terminacao,
+        "app.suficiencia": saida.suficiencia,
+        "app.saida": texto_curto(saida.resultado),
+        "app.fontes": [f.referencia for f in saida.fontes],
+        "app.suposicoes": saida.suposicoes,
+        "app.passos": int(estado.get("passos", 0)),
+        "app.tokens": int(estado.get("tokens", 0)),
+        "app.checkpoint_id": str(grafo.get_state({"configurable": {"thread_id": thread_id}}).config["configurable"].get("checkpoint_id")),
+    })
+    if interrupcao:
+        raiz.add_event("aprovacao_solicitada", {
+            "app.acao": interrupcao["acao"], "app.argumentos": texto_curto(interrupcao["argumentos"]),
+            "app.chave_idempotencia": interrupcao["chave_idempotencia"], "app.prazo_expira_em": interrupcao["prazo_expira_em"],
+        })
+    decisao = estado.get("decisao_humana")
+    if tipo == "retomada" and decisao:
+        raiz.add_event("aprovacao_humana", {
+            "app.decisao": decisao.get("decisao", ""), "app.revisor": decisao.get("revisor", ""),
+            "app.recebida_em": decisao.get("recebida_em", ""), "app.comentario": decisao.get("comentario", ""),
+            "app.argumentos_editados": texto_curto(decisao.get("argumentos") or {}),
+        })
+    for efeito in estado.get("efeitos_aplicados", []):
+        raiz.add_event("escrita_executada", {
+            "app.acao": efeito["acao"], "app.chave_idempotencia": efeito["chave_idempotencia"],
+            "app.ja_existia": bool(efeito["ja_existia"]), "app.arquivo": str(efeito["resultado"].get("arquivo", "")),
+        })
+
+
+def _invocar_sem_trace(grafo, entrada_ou_comando, config: dict, deps: Dependencias) -> dict:
     try:
         return grafo.invoke(entrada_ou_comando, config, context=deps)
     except GraphRecursionError:
@@ -214,7 +268,7 @@ def retomar(thread_id: str, decisao: dict, deps: Dependencias, grafo=None, check
     duas vezes (o caminho de uma retentativa depois de queda de processo)."""
     grafo = grafo or obter_grafo()
     config = config_da_thread(thread_id, checkpoint_id)
-    estado = _invocar(grafo, Command(resume=decisao), config, deps)
+    estado = _invocar(grafo, Command(resume=decisao), config, deps, tipo="retomada")
     return _finalizar(grafo, estado, config, deps, "retomada", decisao, pasta_logs, nome_log)
 
 

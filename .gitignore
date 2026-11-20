@@ -24,3 +24,6 @@ dados/checkpoints/
 dados/memoria_parte2/
 dados/exports/
 logs/execucoes/
+
+# Parte 3: traces de execuções locais (os citados nos documentos são copiados para logs/parte3/)
+logs/traces/

@@ -12,6 +12,11 @@ langgraph-checkpoint==4.3.0
 langgraph-checkpoint-sqlite==3.1.2
 langchain-core==1.6.12
 
+# Observabilidade (Parte 3): traces nas convenções GenAI do OpenTelemetry
+opentelemetry-api==1.45.2
+opentelemetry-sdk==1.45.2
+opentelemetry-semantic-conventions==0.66b2
+
 # Banco de preços real (SQL Server via ODBC); sem ele, o espelho SQLite local
 pyodbc==5.3.0
 
