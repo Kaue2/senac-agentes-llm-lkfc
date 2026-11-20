@@ -1,0 +1,231 @@
+{
+  "id": "G26",
+  "classe": "exportacao",
+  "origem": "desenvolvimento",
+  "entrada": "Qual o preço da Trayenta 5mg na Drogasil? Salva essa análise pra eu mandar pra diretoria.",
+  "passou": true,
+  "falhas": [],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": true,
+      "sem_proibidos": null,
+      "pbm_rotulado": null,
+      "recusa": null,
+      "sem_preco_inventado": null,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": true,
+      "sem_superfluas": true,
+      "ordem": true
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true,
+      "segunda_aprovacao_nao_duplica": true
+    },
+    "seguranca": {
+      "aprovacao_fundamentada": true
+    }
+  },
+  "saidas": [
+    {
+      "resultado": "Preço da Trayenta 5 mg na Drogasil (Preço da loja – **PrecoFarmacia**): **R$ 322,15** (coleta de 19/09/2026).  \n\n*Suposição: “preço” foi interpretado como PrecoFarmacia, conforme solicitado.*  \n\nAnálise salva para a diretoria.",
+      "fontes": [
+        {
+          "tipo": "banco_precos",
+          "referencia": "vw_PrecoAtual(produto='Trayenta 5mg', farmacia='Drogasil')",
+          "detalhe": "1 linha(s), fonte=espelho_sqlite, coleta mais recente 2026-09-19 00:00:00"
+        }
+      ],
+      "suficiencia": "suficiente",
+      "motivo_insuficiencia": null,
+      "suposicoes": [
+        "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+      ],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [
+        {
+          "acao": "exportar_analise",
+          "argumentos": {
+            "dados_resumo": "Drogasil | Trayenta 5mg | PrecoFarmacia: 322.15 | Data da coleta: 2026-09-19",
+            "explicacao": "Preço de farmácia (sem PBM) coletado em 19/09/2026. Revisado pela Administração.",
+            "pergunta": "Qual o preço da Trayenta 5mg na Drogasil? Salvar a análise para envio à diretoria."
+          },
+          "chave_idempotencia": "2a08b0358daf615a",
+          "ja_existia": true,
+          "resultado": {
+            "status": "ok",
+            "arquivo": "dados\\exports_evals\\20261120T1228\\G26\\analise_2a08b0358daf615a.md",
+            "chave_idempotencia": "2a08b0358daf615a",
+            "ja_existia": true
+          }
+        }
+      ],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G26:a-20261120T1228",
+      "turno": 1
+    }
+  ],
+  "pausas": [
+    {
+      "acao": "exportar_analise",
+      "argumentos": {
+        "dados_resumo": "Drogasil | Trayenta 5mg | PrecoFarmacia: 322.15 | Data da coleta: 2026-09-19",
+        "explicacao": "O Preço da Trayenta 5mg na Drogasil, considerando a suposição de que 'preço' refere-se ao PrecoFarmacia (preço da loja sem PBM), é 322.15 conforme a coleta mais recente em 19/09/2026.",
+        "pergunta": "Qual o preço da Trayenta 5mg na Drogasil? Salvar a análise para envio à diretoria."
+      },
+      "chave_idempotencia": "f26b1033e4e13e8b",
+      "consequencia": "Cria o arquivo dados/exports/analise_f26b1033e4e13e8b.md com a pergunta, os dados e a explicação acima. Não altera preço, venda nem estoque. Para desfazer, apague o arquivo. Se o mesmo conteúdo já tiver sido exportado, nada novo é criado.",
+      "perfil_revisor": "Administração (o usuário principal do case) ou o próprio gestor que pediu",
+      "respostas_aceitas": {
+        "aprovar": {
+          "decisao": "aprovar"
+        },
+        "rejeitar": {
+          "decisao": "rejeitar",
+          "comentario": "motivo"
+        },
+        "editar": {
+          "decisao": "editar",
+          "argumentos": {
+            "dados_resumo": "...",
+            "explicacao": "..."
+          }
+        }
+      },
+      "criado_em": "2026-11-20T15:37:05.097634+00:00",
+      "prazo_expira_em": "2026-11-21T15:37:05.097634+00:00",
+      "se_ninguem_responder": "a execução expira: nada é exportado e o turno termina com motivo 'aprovacao_expirada'",
+      "tool_call_id": "fc_214fb909-76d2-4874-861b-c98cf54c2b79",
+      "thread_id": "G-G26:a-20261120T1228"
+    }
+  ],
+  "ja_existia": [
+    false,
+    true
+  ],
+  "exportacoes": 1,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G26:a-20261120T1228",
+      "ms": 15142,
+      "tokens": 4919,
+      "motivo_terminacao": "pausado_aguardando_humano",
+      "suficiencia": "aguardando_aprovacao"
+    },
+    {
+      "tipo": "retomada",
+      "thread_id": "G-G26:a-20261120T1228",
+      "ms": 5558,
+      "tokens": 6835,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "suficiente"
+    },
+    {
+      "tipo": "retomada_repetida",
+      "thread_id": "G-G26:a-20261120T1228",
+      "ms": 4736,
+      "tokens": 6858,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "suficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "preco",
+      "suposicoes": [
+        "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+      ],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1529
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Drogasil",
+        "modo": "atual",
+        "produto": "Trayenta 5mg"
+      },
+      "resultado": {
+        "encontrado": true,
+        "fonte": "espelho_sqlite",
+        "data_referencia": "2026-09-20",
+        "resultados": [
+          {
+            "ProdutoFarmaciaId": 2,
+            "DataUltimaColeta": "2026-09-19 00:00:00",
+            "Farmacia": "Drogasil",
+            "Produto": "Trayenta 5mg",
+            "PrincipioAtivo": "Linagliptina",
+            "Marca": "Trayenta",
+            "Fabricante": "Boehringer Ingelheim",
+            "EanObservado": null,
+            "PrecoTabela": 332.11,
+            "PrecoFarmacia": 322.15,
+            "PrecoPbm": 215.87,
+            "ProgramaPbmNome": "Abraçar a Vida - Boehringer",
+            "Disponivel": 1,
+            "dias_desde_ultima_coleta": 1,
+            "situacao_coleta": "recente"
+          }
+        ]
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "exportar",
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "exportar_analise",
+      "argumentos": {
+        "dados_resumo": "Drogasil | Trayenta 5mg | PrecoFarmacia: 322.15 | Data da coleta: 2026-09-19",
+        "explicacao": "Preço de farmácia (sem PBM) coletado em 19/09/2026. Revisado pela Administração.",
+        "pergunta": "Qual o preço da Trayenta 5mg na Drogasil? Salvar a análise para envio à diretoria."
+      },
+      "resultado": {
+        "status": "ok",
+        "arquivo": "dados\\exports_evals\\20261120T1228\\G26\\analise_2a08b0358daf615a.md",
+        "chave_idempotencia": "2a08b0358daf615a",
+        "ja_existia": true
+      },
+      "decisao": {
+        "decisao": "editar",
+        "argumentos": {
+          "explicacao": "Preço de farmácia (sem PBM) coletado em 19/09/2026. Revisado pela Administração."
+        },
+        "revisor": "suite",
+        "comentario": "",
+        "recebida_em": "2026-11-20T15:37:10.728554+00:00"
+      }
+    },
+    {
+      "no": "agente",
+      "passo": 3,
+      "tipo": "resposta_final",
+      "conteudo": "Preço da Trayenta 5 mg na Drogasil (Preço da loja – **PrecoFarmacia**): **R$ 322,15** (coleta de 19/09/2026).  \n\n*Suposição: “preço” foi interpretado como PrecoFarmacia, conforme solicitado.*  \n\nAnálise salva para a diretoria."
+    }
+  ]
+}

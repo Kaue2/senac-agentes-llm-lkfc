@@ -1,0 +1,125 @@
+{
+  "id": "G19",
+  "classe": "regra_de_negocio",
+  "origem": "sintetico",
+  "entrada": "Qual o desconto máximo que podemos dar sobre o preço de tabela num medicamento de referência?",
+  "passou": true,
+  "falhas": [],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": true,
+      "sem_proibidos": true,
+      "pbm_rotulado": null,
+      "recusa": null,
+      "sem_preco_inventado": null,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": null,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "O desconto máximo permitido sobre o Preço de Tabela de um medicamento de referência é de 15 % [politica-precificacao-2026#s02].",
+      "fontes": [
+        {
+          "tipo": "corpus",
+          "referencia": "politica-precificacao-2026#s02",
+          "detalhe": "Política de precificação de balcão e e-commerce — versão 2026"
+        }
+      ],
+      "suficiencia": "suficiente",
+      "motivo_insuficiencia": null,
+      "suposicoes": [],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G19:a-20261120T1228",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G19:a-20261120T1228",
+      "ms": 21077,
+      "tokens": 4492,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "suficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "regra",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1324
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_base_conhecimento",
+      "argumentos": {
+        "pergunta": "Qual o desconto máximo que podemos dar sobre o preço de tabela num medicamento de referência?"
+      },
+      "resultado": {
+        "encontrado": true,
+        "trechos": [
+          {
+            "id": "politica-precificacao-2026#s02",
+            "documento": "Política de precificação de balcão e e-commerce — versão 2026",
+            "texto": "O desconto praticado sobre o PrecoTabela de medicamentos de referência é de no máximo 15%.\nDescontos acima desse teto precisam de aprovação do gerente comercial da regional."
+          },
+          {
+            "id": "politica-precificacao-2026#s03",
+            "documento": "Política de precificação de balcão e e-commerce — versão 2026",
+            "texto": "O desconto praticado sobre o PrecoTabela de medicamentos genéricos é de no máximo 40%."
+          },
+          {
+            "id": "politica-precificacao-2026#s06",
+            "documento": "Política de precificação de balcão e e-commerce — versão 2026",
+            "texto": "Medicamentos sujeitos a controle especial (tarja preta e tarja vermelha com retenção de receita)\ntêm desconto máximo de 5% sobre o PrecoTabela e não podem participar de campanhas promocionais,\nqualquer que seja o canal."
+          }
+        ],
+        "instrucao": "Responda só com o que os trechos dizem e cite o id do trecho usado entre colchetes."
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "O desconto máximo permitido sobre o Preço de Tabela de um medicamento de referência é de 15 % [politica-precificacao-2026#s02]."
+    }
+  ]
+}

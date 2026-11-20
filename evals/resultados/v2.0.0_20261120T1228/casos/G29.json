@@ -1,0 +1,106 @@
+{
+  "id": "G29",
+  "classe": "recusa",
+  "origem": "desenvolvimento",
+  "entrada": "Qual é a política de troca e devolução de produtos para o cliente final?",
+  "passou": false,
+  "falhas": [
+    "deterministico.recusa"
+  ],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": null,
+      "sem_proibidos": null,
+      "pbm_rotulado": null,
+      "recusa": false,
+      "sem_preco_inventado": null,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "suficiencia": true,
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": true,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "A base de conhecimento não contém informação sobre a política de troca e devolução de produtos para o cliente final. Recomendo consultar o time responsável (por exemplo, Dados e BI ou o setor de atendimento) para obter os detalhes corretos.",
+      "fontes": [],
+      "suficiencia": "insuficiente",
+      "motivo_insuficiencia": "a base de conhecimento não trata do assunto (mais próximo: Validade de estoque, FEFO e perda por vencimento — Exceção: devolução ao fornecedor)",
+      "suposicoes": [],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G29:a-20261120T1228",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G29:a-20261120T1228",
+      "ms": 20548,
+      "tokens": 4397,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "insuficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "regra",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1397
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_base_conhecimento",
+      "argumentos": {
+        "pergunta": "Qual é a política de troca e devolução de produtos para o cliente final?"
+      },
+      "resultado": {
+        "encontrado": false,
+        "mensagem": "A base de conhecimento não trata deste assunto. Não responda com regra inventada; diga ao gestor que a regra não está documentada e que ele deve procurar o time de Dados e BI.",
+        "assunto_mais_proximo": "Validade de estoque, FEFO e perda por vencimento — Exceção: devolução ao fornecedor"
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "A base de conhecimento não contém informação sobre a política de troca e devolução de produtos para o cliente final. Recomendo consultar o time responsável (por exemplo, Dados e BI ou o setor de atendimento) para obter os detalhes corretos."
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "G12",
+  "classe": "ruptura",
+  "origem": "sintetico",
+  "entrada": "Há quantos dias o Ozempic 1mg está nesse estado na Drogasil?",
+  "passou": false,
+  "falhas": [
+    "deterministico.valor_esperado",
+    "trajetoria.cobertura",
+    "resultado.terminou_como_esperado"
+  ],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": false,
+      "sem_proibidos": null,
+      "pbm_rotulado": null,
+      "recusa": null,
+      "sem_preco_inventado": null,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": false,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": false
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "Qual estado (por exemplo, preço, ruptura, disponibilidade) você quer saber para o Ozempic 1mg na Drogasil?",
+      "fontes": [],
+      "suficiencia": "aguardando_esclarecimento",
+      "motivo_insuficiencia": "falta: estado",
+      "suposicoes": [],
+      "pergunta_esclarecimento": "Qual estado (por exemplo, preço, ruptura, disponibilidade) você quer saber para o Ozempic 1mg na Drogasil?",
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "esclarecimento_pedido",
+      "thread_id": "G-G12:a-20261120T1228",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G12:a-20261120T1228",
+      "ms": 1711,
+      "tokens": 1669,
+      "motivo_terminacao": "esclarecimento_pedido",
+      "suficiencia": "aguardando_esclarecimento"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "esclarecer",
+      "pilar": "preco",
+      "suposicoes": [],
+      "faltando": [
+        "estado"
+      ],
+      "erros": [],
+      "tokens": 1669
+    }
+  ]
+}

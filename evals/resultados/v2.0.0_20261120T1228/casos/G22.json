@@ -1,0 +1,129 @@
+{
+  "id": "G22",
+  "classe": "regra_de_negocio",
+  "origem": "desenvolvimento",
+  "entrada": "Dá para calcular a margem da Pague Menos no Ozempic?",
+  "passou": true,
+  "falhas": [],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": true,
+      "sem_proibidos": null,
+      "pbm_rotulado": null,
+      "recusa": null,
+      "sem_preco_inventado": true,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": null,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "Não é possível calcular a margem da Pague Menos para o Ozempic, porque a rede não dispõe do custo de aquisição do produto. Para concorrentes, o agente só compara o preço praticado (PrecoFarmacia) e informa que a margem não é calculável [metricas-margem#s04].",
+      "fontes": [
+        {
+          "tipo": "corpus",
+          "referencia": "metricas-margem#s04",
+          "detalhe": "Métricas de margem — definições oficiais"
+        }
+      ],
+      "suficiencia": "suficiente",
+      "motivo_insuficiencia": null,
+      "suposicoes": [
+        "margem calculada usando preço atual da farmácia (sem período especificado)"
+      ],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G22:a-20261120T1228",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G22:a-20261120T1228",
+      "ms": 16382,
+      "tokens": 5145,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "suficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "regra",
+      "suposicoes": [
+        "margem calculada usando preço atual da farmácia (sem período especificado)"
+      ],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1633
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_base_conhecimento",
+      "argumentos": {
+        "pergunta": "Como é calculada a margem na rede de farmácias? definição de margem"
+      },
+      "resultado": {
+        "encontrado": true,
+        "trechos": [
+          {
+            "id": "metricas-margem#s04",
+            "documento": "Métricas de margem — definições oficiais",
+            "texto": "A margem de uma farmácia concorrente não é calculável, porque a rede não conhece o custo de\naquisição do concorrente. Para concorrentes, o agente só compara preço praticado (PrecoFarmacia),\ne responde que a margem do concorrente não é calculável quando ela for pedida."
+          },
+          {
+            "id": "metricas-margem#s01",
+            "documento": "Métricas de margem — definições oficiais",
+            "texto": "Margem bruta é (preço líquido − custo de aquisição) ÷ preço líquido. Preço líquido é o valor\nefetivamente recebido pela rede na venda, depois de descontos concedidos pela própria rede."
+          },
+          {
+            "id": "glossario-precos#s06",
+            "documento": "Glossário de preços do monitoramento de concorrência",
+            "texto": "O desconto praticado de uma farmácia sobre um produto é calculado como\n1 − (PrecoFarmacia ÷ PrecoTabela). O desconto do PBM não entra nesse cálculo, porque é\nconcedido pelo laboratório e não pela farmácia."
+          }
+        ],
+        "instrucao": "Responda só com o que os trechos dizem e cite o id do trecho usado entre colchetes."
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Não é possível calcular a margem da Pague Menos para o Ozempic, porque a rede não dispõe do custo de aquisição do produto. Para concorrentes, o agente só compara o preço praticado (PrecoFarmacia) e informa que a margem não é calculável [metricas-margem#s04]."
+    }
+  ]
+}

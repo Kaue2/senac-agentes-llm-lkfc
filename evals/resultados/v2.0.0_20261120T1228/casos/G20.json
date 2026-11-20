@@ -1,0 +1,125 @@
+{
+  "id": "G20",
+  "classe": "regra_de_negocio",
+  "origem": "sintetico",
+  "entrada": "Posso colocar um medicamento tarja preta em campanha promocional?",
+  "passou": true,
+  "falhas": [],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": true,
+      "sem_proibidos": null,
+      "pbm_rotulado": null,
+      "recusa": null,
+      "sem_preco_inventado": null,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": null,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "Não. Medicamentos de controle especial (tarja preta e tarja vermelha com retenção de receita) têm desconto máximo de 5 % sobre o PreçoTabela e **não podem participar de campanhas promocionais em nenhum canal**【politica-precificacao-2026#s06】.",
+      "fontes": [
+        {
+          "tipo": "corpus",
+          "referencia": "politica-precificacao-2026#s06",
+          "detalhe": "Política de precificação de balcão e e-commerce — versão 2026"
+        }
+      ],
+      "suficiencia": "suficiente",
+      "motivo_insuficiencia": null,
+      "suposicoes": [],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G20:a-20261120T1228",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G20:a-20261120T1228",
+      "ms": 12231,
+      "tokens": 4566,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "suficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "regra",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1363
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_base_conhecimento",
+      "argumentos": {
+        "pergunta": "Posso colocar um medicamento tarja preta em campanha promocional?"
+      },
+      "resultado": {
+        "encontrado": true,
+        "trechos": [
+          {
+            "id": "politica-precificacao-2026#s06",
+            "documento": "Política de precificação de balcão e e-commerce — versão 2026",
+            "texto": "Medicamentos sujeitos a controle especial (tarja preta e tarja vermelha com retenção de receita)\ntêm desconto máximo de 5% sobre o PrecoTabela e não podem participar de campanhas promocionais,\nqualquer que seja o canal."
+          },
+          {
+            "id": "programas-pbm#s03",
+            "documento": "Programas de Benefício em Medicamentos (PBM)",
+            "texto": "Cada rede de farmácia decide a quais programas adere. Por isso o mesmo produto pode ter PrecoPbm\nnuma farmácia e não ter em outra. A ausência de PrecoPbm numa farmácia não prova que o programa\nnão existe: pode ser que aquela rede não tenha aderido."
+          },
+          {
+            "id": "politica-precificacao-2026#s02",
+            "documento": "Política de precificação de balcão e e-commerce — versão 2026",
+            "texto": "O desconto praticado sobre o PrecoTabela de medicamentos de referência é de no máximo 15%.\nDescontos acima desse teto precisam de aprovação do gerente comercial da regional."
+          }
+        ],
+        "instrucao": "Responda só com o que os trechos dizem e cite o id do trecho usado entre colchetes."
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Não. Medicamentos de controle especial (tarja preta e tarja vermelha com retenção de receita) têm desconto máximo de 5 % sobre o PreçoTabela e **não podem participar de campanhas promocionais em nenhum canal**【politica-precificacao-2026#s06】."
+    }
+  ]
+}

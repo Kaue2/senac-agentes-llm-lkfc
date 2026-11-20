@@ -1,0 +1,107 @@
+{
+  "id": "G13",
+  "classe": "sem_pbm",
+  "origem": "desenvolvimento",
+  "entrada": "A Linagliptina 5mg genérica tem desconto de PBM na Drogasil?",
+  "passou": false,
+  "falhas": [
+    "deterministico.sem_proibidos"
+  ],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": true,
+      "sem_proibidos": false,
+      "pbm_rotulado": null,
+      "recusa": null,
+      "sem_preco_inventado": null,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": true,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "Não há registro de Linagliptina 5 mg genérica na Drogasil no banco de preços (modo atual). Portanto não foi encontrado nenhum Preço PBM para esse produto na farmácia. Sem esse dado não podemos confirmar a existência de desconto PBM.",
+      "fontes": [],
+      "suficiencia": "insuficiente",
+      "motivo_insuficiencia": "nenhum registro em vw_PrecoAtual(produto='Linagliptina 5mg genérica', farmacia='Drogasil')",
+      "suposicoes": [],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G13:a-20261120T1228",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G13:a-20261120T1228",
+      "ms": 26999,
+      "tokens": 4477,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "insuficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "regra",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1357
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Drogasil",
+        "modo": "atual",
+        "produto": "Linagliptina 5mg genérica"
+      },
+      "resultado": {
+        "encontrado": false,
+        "fonte": "espelho_sqlite",
+        "mensagem": "Nenhum registro para produto='Linagliptina 5mg genérica', farmacia='Drogasil' no banco de preços. Pode ser um produto/farmácia fora do cadastro — não invente um preço, informe ao usuário que não há esse dado."
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Não há registro de Linagliptina 5 mg genérica na Drogasil no banco de preços (modo atual). Portanto não foi encontrado nenhum Preço PBM para esse produto na farmácia. Sem esse dado não podemos confirmar a existência de desconto PBM."
+    }
+  ]
+}

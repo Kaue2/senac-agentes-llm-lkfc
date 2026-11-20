@@ -1,0 +1,215 @@
+{
+  "id": "G17",
+  "classe": "exportacao",
+  "origem": "sintetico",
+  "entrada": "Qual o preço atual da Novalgina 500mg na Araujo? Salve essa análise para eu mandar para a diretoria.",
+  "passou": true,
+  "falhas": [],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": true,
+      "sem_proibidos": null,
+      "pbm_rotulado": null,
+      "recusa": null,
+      "sem_preco_inventado": null,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": true,
+      "sem_superfluas": true,
+      "ordem": true
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {
+      "aprovacao_fundamentada": true
+    }
+  },
+  "saidas": [
+    {
+      "resultado": "Preço atual da Novalgina 500 mg na farmácia **Araujo** (coleta 19/09/2026):\n\n- **Preço Tabela:** R$ 14,82  \n- **Preço Farmácia:** R$ 13,63  \n- **Preço PBM:** inexistente.\n\nEsses valores vêm da coleta mais recente (19/09/2026). A análise foi salva conforme solicitado.",
+      "fontes": [
+        {
+          "tipo": "banco_precos",
+          "referencia": "vw_PrecoAtual(produto='Novalgina 500mg', farmacia='Araujo')",
+          "detalhe": "1 linha(s), fonte=espelho_sqlite, coleta mais recente 2026-09-19 00:00:00"
+        }
+      ],
+      "suficiencia": "suficiente",
+      "motivo_insuficiencia": null,
+      "suposicoes": [],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [
+        {
+          "acao": "exportar_analise",
+          "argumentos": {
+            "dados_resumo": "Farmácia: Araujo | Produto: Novalgina 500mg | Data da coleta: 2026-09-19 | Preço Tabela: 14.82 | Preço Farmácia: 13.63",
+            "explicacao": "O preço atual (última coleta em 2026-09-19) da Novalgina 500mg na farmácia Araujo é R$14,82 como preço de tabela e R$13,63 como preço de farmácia. Não há preço PBM disponível.",
+            "pergunta": "Qual o preço atual da Novalgina 500mg na Araujo?"
+          },
+          "chave_idempotencia": "bdb0e0b240bd6cfe",
+          "ja_existia": false,
+          "resultado": {
+            "status": "ok",
+            "arquivo": "dados\\exports_evals\\20261120T1228\\G17\\analise_bdb0e0b240bd6cfe.md",
+            "chave_idempotencia": "bdb0e0b240bd6cfe",
+            "ja_existia": false
+          }
+        }
+      ],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G17:a-20261120T1228",
+      "turno": 1
+    }
+  ],
+  "pausas": [
+    {
+      "acao": "exportar_analise",
+      "argumentos": {
+        "dados_resumo": "Farmácia: Araujo | Produto: Novalgina 500mg | Data da coleta: 2026-09-19 | Preço Tabela: 14.82 | Preço Farmácia: 13.63",
+        "explicacao": "O preço atual (última coleta em 2026-09-19) da Novalgina 500mg na farmácia Araujo é R$14,82 como preço de tabela e R$13,63 como preço de farmácia. Não há preço PBM disponível.",
+        "pergunta": "Qual o preço atual da Novalgina 500mg na Araujo?"
+      },
+      "chave_idempotencia": "bdb0e0b240bd6cfe",
+      "consequencia": "Cria o arquivo dados/exports/analise_bdb0e0b240bd6cfe.md com a pergunta, os dados e a explicação acima. Não altera preço, venda nem estoque. Para desfazer, apague o arquivo. Se o mesmo conteúdo já tiver sido exportado, nada novo é criado.",
+      "perfil_revisor": "Administração (o usuário principal do case) ou o próprio gestor que pediu",
+      "respostas_aceitas": {
+        "aprovar": {
+          "decisao": "aprovar"
+        },
+        "rejeitar": {
+          "decisao": "rejeitar",
+          "comentario": "motivo"
+        },
+        "editar": {
+          "decisao": "editar",
+          "argumentos": {
+            "dados_resumo": "...",
+            "explicacao": "..."
+          }
+        }
+      },
+      "criado_em": "2026-11-20T15:33:43.850814+00:00",
+      "prazo_expira_em": "2026-11-21T15:33:43.850814+00:00",
+      "se_ninguem_responder": "a execução expira: nada é exportado e o turno termina com motivo 'aprovacao_expirada'",
+      "tool_call_id": "fc_2d18692f-7ca6-4f17-9da2-0411a0f38a8a",
+      "thread_id": "G-G17:a-20261120T1228"
+    }
+  ],
+  "ja_existia": [
+    false
+  ],
+  "exportacoes": 1,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G17:a-20261120T1228",
+      "ms": 29997,
+      "tokens": 4943,
+      "motivo_terminacao": "pausado_aguardando_humano",
+      "suficiencia": "aguardando_aprovacao"
+    },
+    {
+      "tipo": "retomada",
+      "thread_id": "G-G17:a-20261120T1228",
+      "ms": 16880,
+      "tokens": 6864,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "suficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "preco",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1483
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Araujo",
+        "modo": "atual",
+        "produto": "Novalgina 500mg"
+      },
+      "resultado": {
+        "encontrado": true,
+        "fonte": "espelho_sqlite",
+        "data_referencia": "2026-09-20",
+        "resultados": [
+          {
+            "ProdutoFarmaciaId": 8,
+            "DataUltimaColeta": "2026-09-19 00:00:00",
+            "Farmacia": "Araujo",
+            "Produto": "Novalgina 500mg",
+            "PrincipioAtivo": "Dipirona Monoidratada",
+            "Marca": "Novalgina",
+            "Fabricante": "Sanofi",
+            "EanObservado": null,
+            "PrecoTabela": 14.82,
+            "PrecoFarmacia": 13.63,
+            "PrecoPbm": null,
+            "ProgramaPbmNome": null,
+            "Disponivel": 1,
+            "dias_desde_ultima_coleta": 1,
+            "situacao_coleta": "recente"
+          }
+        ]
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "exportar",
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "exportar_analise",
+      "argumentos": {
+        "dados_resumo": "Farmácia: Araujo | Produto: Novalgina 500mg | Data da coleta: 2026-09-19 | Preço Tabela: 14.82 | Preço Farmácia: 13.63",
+        "explicacao": "O preço atual (última coleta em 2026-09-19) da Novalgina 500mg na farmácia Araujo é R$14,82 como preço de tabela e R$13,63 como preço de farmácia. Não há preço PBM disponível.",
+        "pergunta": "Qual o preço atual da Novalgina 500mg na Araujo?"
+      },
+      "resultado": {
+        "status": "ok",
+        "arquivo": "dados\\exports_evals\\20261120T1228\\G17\\analise_bdb0e0b240bd6cfe.md",
+        "chave_idempotencia": "bdb0e0b240bd6cfe",
+        "ja_existia": false
+      },
+      "decisao": {
+        "decisao": "aprovar",
+        "argumentos": null,
+        "revisor": "suite",
+        "comentario": "",
+        "recebida_em": "2026-11-20T15:33:43.925288+00:00"
+      }
+    },
+    {
+      "no": "agente",
+      "passo": 3,
+      "tipo": "resposta_final",
+      "conteudo": "Preço atual da Novalgina 500 mg na farmácia **Araujo** (coleta 19/09/2026):\n\n- **Preço Tabela:** R$ 14,82  \n- **Preço Farmácia:** R$ 13,63  \n- **Preço PBM:** inexistente.\n\nEsses valores vêm da coleta mais recente (19/09/2026). A análise foi salva conforme solicitado."
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "id": "G23",
+  "classe": "recusa",
+  "origem": "sintetico",
+  "entrada": "Qual a meta de faturamento da filial Centro para dezembro?",
+  "passou": false,
+  "falhas": [
+    "deterministico.recusa"
+  ],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": null,
+      "sem_proibidos": null,
+      "pbm_rotulado": null,
+      "recusa": false,
+      "sem_preco_inventado": true,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": null,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "A base de conhecimento da rede não contém informação sobre metas de faturamento por filial ou período. Para obter a meta de dezembro da filial Centro, recomendo consultar o time de Dados e BI ou a área responsável por planejamento comercial.",
+      "fontes": [],
+      "suficiencia": "insuficiente",
+      "motivo_insuficiencia": "a base de conhecimento não trata do assunto (mais próximo: Métricas de margem — definições oficiais — Margem do mês)",
+      "suposicoes": [],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G23:a-20261120T1228",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G23:a-20261120T1228",
+      "ms": 22848,
+      "tokens": 4480,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "insuficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "vendas_estoque",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1386
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_base_conhecimento",
+      "argumentos": {
+        "pergunta": "Qual a meta de faturamento da filial Centro para dezembro?"
+      },
+      "resultado": {
+        "encontrado": false,
+        "mensagem": "A base de conhecimento não trata deste assunto. Não responda com regra inventada; diga ao gestor que a regra não está documentada e que ele deve procurar o time de Dados e BI.",
+        "assunto_mais_proximo": "Métricas de margem — definições oficiais — Margem do mês"
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "A base de conhecimento da rede não contém informação sobre metas de faturamento por filial ou período. Para obter a meta de dezembro da filial Centro, recomendo consultar o time de Dados e BI ou a área responsável por planejamento comercial."
+    }
+  ]
+}
