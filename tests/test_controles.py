@@ -140,3 +140,44 @@ def test_c3_ataque_de_ponta_a_ponta_nao_chega_a_sessao_seguinte(ambiente, tmp_pa
 
 def test_c3_farmacia_fora_do_cadastro_nao_vira_preferencia():
     assert extrair_preferencia_farmacia("minha farmácia padrão é a Extrafarma") is None
+
+
+# ------------------------------------- C4 — dado pessoal mascarado antes do modelo e do registro
+def test_c4_cpf_nao_sai_para_o_modelo_nem_fica_registrado(ambiente, tmp_path, monkeypatch):
+    import json
+
+    from opentelemetry.sdk.trace.export.in_memory_span_exporter import InMemorySpanExporter
+
+    from src.memoria.memoria import Memoria
+    from src.observabilidade import telemetria
+    from src.rag.embeddings import EmbeddingComCache
+    from tests.test_memoria import EmbeddingFalso
+
+    exportador = InMemorySpanExporter()
+    telemetria.configurar(exportador)
+    monkeypatch.setattr(telemetria, "_provedor", telemetria._provedor)
+    enviado: list = []
+    original = ambiente.modelo.create
+
+    def gravar(**kw):
+        enviado.append(kw["messages"])
+        return original(**kw)
+
+    ambiente.modelo.chat.completions.create = gravar
+    ambiente.deps.memoria = Memoria(EmbeddingComCache(EmbeddingFalso(), caminho=tmp_path / "c.db"), tmp_path / "mem")
+    ambiente.modelo.triagens = [triagem_json()]
+    ambiente.modelo.passos = [_msg(tool_calls=[_call("consultar_precos", {"produto": "Novalgina 500mg"})]), _msg("R$ 13,63")]
+    cpf, email = "123.456.789-09", "maria@exemplo.com.br"
+    r = turno(ambiente, f"O cliente de CPF {cpf} ({email}) reclamou. Quanto está a Novalgina 500mg?")
+
+    assert r.saida.suficiencia == "suficiente"  # a pergunta continua sendo respondida
+    alvo = (cpf, "12345678909", email)
+    assert not any(x in json.dumps(enviado, ensure_ascii=False) for x in alvo), "dado pessoal enviado ao provedor"
+    spans = json.dumps([dict(s.attributes) for s in exportador.get_finished_spans()], ensure_ascii=False)
+    assert not any(x in spans for x in alvo), "dado pessoal no trace"
+    historico = json.dumps([dict(s.values) for s in ambiente.grafo.get_state_history({"configurable": {"thread_id": r.thread_id}})],
+                           ensure_ascii=False, default=str)
+    assert not any(x in historico for x in alvo), "dado pessoal no checkpoint"
+    assert not any(x.encode() in (tmp_path / "mem" / "memoria.db").read_bytes() for x in alvo), "dado pessoal na memória"
+    assert "[CPF]" in r.estado["entrada"]["texto"]
+    telemetria._provedor = None

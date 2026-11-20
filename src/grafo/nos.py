@@ -26,7 +26,7 @@ from pydantic import ValidationError
 from src.observabilidade.telemetria import rastrear_ferramenta
 from src.grafo.controles import validar_exportacao
 from src.memoria.contexto import contar_tokens, montar_contexto_memoria
-from src.memoria.politica import extrair_preferencia_farmacia, extrair_recorte
+from src.memoria.politica import extrair_preferencia_farmacia, extrair_recorte, mascarar_sensiveis
 from src.projects.farmacia_precos.tools_farmacia import chave_exportacao
 
 from .contrato import MAX_CARACTERES_ENTRADA, AcaoExecutada, DecisaoHumana, Entrada, Fonte, SaidaAgente, Triagem
@@ -76,6 +76,9 @@ def receber_entrada(estado: EstadoGrafo, runtime: Runtime[Dependencias]) -> dict
     inicio = time.time()
     deps = runtime.context
     entrada = Entrada.model_validate(estado["entrada"])
+    # C4, segunda barreira: quem invocar o grafo direto (sem executar_turno) também tem a entrada
+    # mascarada antes de qualquer nó que fale com o modelo.
+    entrada = entrada.model_copy(update={"texto": mascarar_sensiveis(entrada.texto)})
     texto = entrada.texto.strip()
     motivo = None
     if not texto:

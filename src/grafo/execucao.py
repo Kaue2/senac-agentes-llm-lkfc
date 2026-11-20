@@ -23,6 +23,8 @@ from langgraph.types import Command
 from src.observabilidade.telemetria import ClienteInstrumentado, span_raiz, texto_curto
 from src.versao import SISTEMA_VERSAO
 
+from src.memoria.politica import mascarar_sensiveis
+
 from .contrato import Entrada, SaidaAgente
 from .dependencias import Dependencias, Tetos, carregar_prompts
 from .grafo import PASTA_RAIZ, RECURSION_LIMIT, config_da_thread, obter_grafo
@@ -249,7 +251,10 @@ def _finalizar(grafo, estado: dict, config: dict, deps: Dependencias, tipo: str,
 def executar_turno(texto: str, deps: Dependencias, usuario_id: str = "G-0000", sessao_id: str = "s1",
                    grafo=None, pasta_logs: Path | None = None, nome_log: str | None = None) -> ResultadoTurno:
     grafo = grafo or obter_grafo()
-    entrada = Entrada(texto=texto, usuario_id=usuario_id, sessao_id=sessao_id)
+    # Controle C4 (docs/seguranca.md §3): dado pessoal é mascarado ANTES do grafo. A entrada do
+    # invoke vira o primeiro checkpoint; mascarar só dentro do grafo deixaria o CPF no histórico
+    # do checkpointer, e de lá ele iria para o trace e para o provedor do modelo.
+    entrada = Entrada(texto=mascarar_sensiveis(texto), usuario_id=usuario_id, sessao_id=sessao_id)
     config = config_da_thread(entrada.thread_id)
     pendente = _interrupcao_pendente(grafo, config)
     if pendente is not None:
