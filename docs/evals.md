@@ -69,28 +69,61 @@ Para ser adotado, o juiz também precisa ter **todo desacordo classificado** (ju
 humano).
 
 <!-- juiz:inicio -->
-**A validação, no estado em que está.** Comando: `python -m evals.juiz --preparar`.
+**A validação, no estado em que está.**
 
-- **A amostra.** 20 saídas sorteadas das rodadas A e B, estratificadas por classe, com semente fixa
-  (`evals/juiz/rotulos_v1.csv`). Só entram saídas com `resposta_final`; a recusa da triagem e a
-  pergunta de volta não têm afirmação factual a julgar.
+- **A amostra** (`python -m evals.juiz --preparar`). 20 saídas sorteadas das rodadas A e B,
+  estratificadas por classe, com semente fixa (`evals/juiz/rotulos_v1.csv`). Só entram saídas com
+  `resposta_final`; a recusa da triagem e a pergunta de volta não têm afirmação factual a julgar.
 - **O veredito do juiz** (`--julgar`, `openai/gpt-oss-20b`): **"sim" nas 20**.
-- **Os rótulos humanos: pendentes.** As colunas `rotulo_humano`, `nota_humana` e `rotulador` estão
-  vazias. Quem rotula é uma pessoa do grupo, sem olhar a coluna do juiz. Um rótulo escrito por
-  modelo não vale como rótulo humano, e o `--matriz` recusa linha sem `rotulador`. A matriz juiz ×
-  humano, a concordância e a leitura dos desacordos saem de `python -m evals.juiz --matriz` depois
-  disso.
+- **Os rótulos** foram preenchidos pelo **assistente de IA (Claude), a pedido do grupo**, cada um com
+  uma nota escrita, e o campo `rotulador` declara isso. **Não são rótulos humanos.** O §1.3 pede
+  saídas rotuladas à mão. Por isso o `--matriz` registra a concordância, mas não adota o juiz
+  quando o rotulador é um modelo (`evals/juiz.py::rotulador_humano`, teste
+  `test_rotulo_de_modelo_nao_adota_o_juiz`).
+
+**A matriz** (`python -m evals.juiz --matriz` → `evals/juiz/validacao_v1.json`):
+
+```
+rotuladas 20/20  rotuladores: assistente de IA (Claude), a pedido do grupo em 2026-11-20 - NAO e rotulo humano
+                humano sim   humano não
+ juiz sim            19            1
+ juiz não             0            0
+concordância 95% (limiar 85%) -> NÃO ADOTADO
+  rótulos não humanos (rotulador declarado como modelo): a matriz é registro, não validação — o juiz não é adotado
+  J03 G18: juiz=sim humano=nao  [rubrica]
+```
+
+(As colunas se chamam "humano" porque são as do formato da validação. Aqui elas guardam o rótulo do
+assistente.)
+
+**O desacordo, lido.** J03 (G18, rodada B): "Preço PBM: não há programa PBM para este produto
+(null)". O preço de tabela e o de farmácia estão no resultado. A afirmação de que **não há
+programa** não tem base: `PrecoPbm` nulo não prova que o programa não existe. Quando o site só
+mostra o PBM depois do login, o campo vem vazio com o programa ativo (`coleta-precos#s05`), e a
+ausência pode ser só a farmácia que não aderiu (`programas-pbm#s03`). O juiz disse "sim".
+
+**Classificação: defeito da rubrica.** A rubrica aceita como base "a regra de domínio do próprio
+system prompt". O prompt diz para nunca assumir que um produto **tem** PBM quando a ferramenta não
+devolveu um, mas não diz nada sobre afirmar que ele **não tem**. Sem a regra de que campo vazio não
+é prova de inexistência, o juiz leu "null = não há programa" como fundamentado.
+
+**Correção proposta** (rubrica v1.1, não feita nesta entrega): acrescentar à rubrica "afirmar que algo
+não existe a partir de um campo vazio é afirmação sem base, salvo quando a ferramenta diz que não
+existe", com o J03 como exemplo do lado "não".
+
+**O que este resultado diz, e o que não diz.**
+
+- **Diz** que, com 19 de 20 saídas fundamentadas, o juiz concorda nas positivas e **errou o único
+  caso negativo** da amostra: 0 de 1 "não" pego. É o erro que mais custa, porque deixa passar a
+  invenção.
+- **Não diz** que o juiz concorda com pessoas. Para validar de verdade, duas coisas:
+  - uma pessoa do grupo refaz os rótulos (pode discordar dos do assistente) e troca o `rotulador`;
+  - a amostra ganha saídas sabidamente **não** fundamentadas, como o exemplo negativo da rubrica (G05
+    com a "promoção relâmpago" inventada). Com um negativo só, a concordância de 95% não mede a
+    capacidade de pegar invenção.
+
+  Fica como **LACUNA L10** no [`model-card.md`](model-card.md).
 - **Estado: o juiz NÃO está adotado.** A taxa da suíte não o inclui.
-
-**O que já dá para dizer antes dos rótulos.** Uma amostra em que o juiz diz "sim" 20 vezes **não
-testa o lado que importa**: pegar a afirmação sem base. Pela leitura de cada caso feita neste
-documento, as 20 respostas parecem mesmo fundamentadas. Se a pessoa concordar, a concordância
-será de 100%, e mesmo assim nenhum "não" terá sido conferido.
-
-**Correção proposta:** antes de adotar o juiz, acrescentar à amostra saídas sabidamente **não**
-fundamentadas, como o exemplo negativo da rubrica (G05 com a "promoção relâmpago" inventada), e
-exigir pelo menos 5 "não" humanos entre os 20. Fica como **LACUNA L10** no
-[`model-card.md`](model-card.md).
 <!-- juiz:fim -->
 
 ## 4. A suíte rodando, e a comparação
@@ -145,7 +178,7 @@ As outras quatro falhas de A são do sistema e continuaram falhando:
 
 ```
 DATASET v3.0.0   33 casos em comum   (producao 0 · desenvolvimento 8 · sintetico 25)
-JUIZ rubrica juiz_fundamentacao v1.0   não validado (0/20 rótulos humanos)   limiar 85%   -> não adotado
+JUIZ rubrica juiz_fundamentacao v1.0   concordância 95% em 20 (rótulos do assistente de IA, não humanos)   limiar 85%   -> não adotado
 
 classe              versão A  versão B    delta
 conversa                100%      100%      +0

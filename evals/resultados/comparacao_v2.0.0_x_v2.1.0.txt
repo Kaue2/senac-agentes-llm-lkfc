@@ -1,5 +1,5 @@
 DATASET v3.0.0   33 casos em comum   (producao 0 · desenvolvimento 8 · sintetico 25)
-JUIZ rubrica juiz_fundamentacao v1.0   não validado (0/20 rótulos humanos)   limiar 85%   -> não adotado
+JUIZ rubrica juiz_fundamentacao v1.0   concordância 95% em 20 (rótulos do assistente de IA, não humanos)   limiar 85%   -> não adotado
 A = v2.0.0_20261120T1228 (sistema 2.0.0, commit d362172, pontuação reavaliada)
 B = v2.1.0_20261120T1244 (sistema 2.1.0, commit ab3f35d, pontuação reavaliada)
 

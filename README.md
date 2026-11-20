@@ -222,7 +222,9 @@ python -m evals.juiz --julgar
 python -m evals.juiz --matriz
 ```
 
-O `--preparar` já foi rodado. Antes do `--matriz`, preencha `evals/juiz/rotulos_v1.csv`.
+O `--preparar` e o `--julgar` já foram rodados, e os rótulos atuais são do assistente de IA, declarados
+como não humanos: o juiz não é adotado. Para validar, uma pessoa do grupo refaz os rótulos em
+`evals/juiz/rotulos_v1.csv`, troca o `rotulador` e roda o `--matriz` de novo.
 
 ## Reproduzir os casos da Parte 2
 

@@ -1,0 +1,29 @@
+{
+  "n_rotuladas": 20,
+  "n_amostras": 20,
+  "matriz": {
+    "juiz_sim_humano_sim": 19,
+    "juiz_sim_humano_nao": 1,
+    "juiz_nao_humano_sim": 0,
+    "juiz_nao_humano_nao": 0
+  },
+  "concordancia": 0.95,
+  "limiar": 0.85,
+  "minimo_rotulos": 20,
+  "rotulos_humanos": false,
+  "adotado": false,
+  "desacordos": [
+    {
+      "amostra_id": "J03",
+      "caso_id": "G18",
+      "juiz": "sim",
+      "humano": "nao",
+      "nota_humana": "Afirma 'não há programa PBM para este produto' a partir de PrecoPbm nulo. Campo vazio não prova que o programa não existe (coleta-precos#s05, PBM que exige login; programas-pbm#s03). Preço tabela e farmácia estão certos; a afirmação sobre o programa não tem base.",
+      "justificativa_juiz": "Todas as informações estão presentes nos resultados da ferramenta.",
+      "classificacao": "rubrica"
+    }
+  ],
+  "rotuladores": [
+    "assistente de IA (Claude), a pedido do grupo em 2026-11-20 - NAO e rotulo humano"
+  ]
+}
