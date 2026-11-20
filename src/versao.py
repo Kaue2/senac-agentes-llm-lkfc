@@ -6,4 +6,4 @@ controle, regra do grafo) e o patch quando só corrige sem mudar o contrato. O h
 commit de cada versão, está em docs/mudancas.md.
 """
 
-SISTEMA_VERSAO = "2.0.0"
+SISTEMA_VERSAO = "2.1.0"
