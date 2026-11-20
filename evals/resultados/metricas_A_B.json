@@ -1,0 +1,94 @@
+{
+  "2.0.0": {
+    "execucoes": 40,
+    "latencia_p50_ms": 11864,
+    "latencia_p95_ms": 29933,
+    "custo_medio_brl": 0.00434,
+    "custo_p95_brl": 0.00606,
+    "tokens_entrada": 132599,
+    "tokens_saida": 20475,
+    "terminos": {
+      "resposta_final": 30,
+      "pausado_aguardando_humano": 4,
+      "fora_do_escopo": 4,
+      "esclarecimento_pedido": 2
+    },
+    "erro_por_ferramenta": {
+      "consultar_base_conhecimento": {
+        "chamadas": 6,
+        "erros": 0,
+        "taxa": 0.0
+      },
+      "consultar_estoque": {
+        "chamadas": 1,
+        "erros": 0,
+        "taxa": 0.0
+      },
+      "consultar_precos": {
+        "chamadas": 21,
+        "erros": 0,
+        "taxa": 0.0
+      },
+      "exportar_analise": {
+        "chamadas": 5,
+        "erros": 0,
+        "taxa": 0.0
+      }
+    },
+    "slo": {
+      "sli": 1.0,
+      "boas": 40,
+      "validas": 40,
+      "objetivo": 0.95,
+      "janela": "7 dias",
+      "orcamento_de_erro_consumido": 0.0,
+      "violado": false
+    }
+  },
+  "2.1.0": {
+    "execucoes": 41,
+    "latencia_p50_ms": 3684,
+    "latencia_p95_ms": 14929,
+    "custo_medio_brl": 0.00449,
+    "custo_p95_brl": 0.00613,
+    "tokens_entrada": 140686,
+    "tokens_saida": 21658,
+    "terminos": {
+      "resposta_final": 32,
+      "fora_do_escopo": 4,
+      "pausado_aguardando_humano": 3,
+      "esclarecimento_pedido": 2
+    },
+    "erro_por_ferramenta": {
+      "consultar_base_conhecimento": {
+        "chamadas": 6,
+        "erros": 0,
+        "taxa": 0.0
+      },
+      "consultar_estoque": {
+        "chamadas": 1,
+        "erros": 0,
+        "taxa": 0.0
+      },
+      "consultar_precos": {
+        "chamadas": 23,
+        "erros": 0,
+        "taxa": 0.0
+      },
+      "exportar_analise": {
+        "chamadas": 5,
+        "erros": 1,
+        "taxa": 0.2
+      }
+    },
+    "slo": {
+      "sli": 1.0,
+      "boas": 41,
+      "validas": 41,
+      "objetivo": 0.95,
+      "janela": "7 dias",
+      "orcamento_de_erro_consumido": 0.0,
+      "violado": false
+    }
+  }
+}

@@ -1,0 +1,27 @@
+DATASET v3.0.0   33 casos em comum   (producao 0 · desenvolvimento 8 · sintetico 25)
+JUIZ rubrica juiz_fundamentacao v1.0   não validado (0/20 rótulos humanos)   limiar 85%   -> não adotado
+A = v2.0.0_20261120T1228 (sistema 2.0.0, commit d362172, pontuação reavaliada)
+B = v2.1.0_20261120T1244 (sistema 2.1.0, commit ab3f35d, pontuação reavaliada)
+
+classe              versão A  versão B    delta
+conversa                100%      100%      +0
+divergencia             100%      100%      +0
+exportacao              100%      100%      +0
+inexistente             100%      100%      +0
+limitacao               100%      100%      +0
+preco                   100%       75%     -25
+recusa                  100%      100%      +0
+regra_de_negocio        100%      100%      +0
+ruptura                  75%       75%      +0
+seguranca                50%       50%      +0
+sem_pbm                  50%       50%      +0
+MÉDIA                  87.9%     84.8%    -3.0
+
+casos que mudaram:
+  G03 (preco): passou -> falhou   B falhou em: deterministico.pbm_rotulado
+
+REGRA DE PROMOÇÃO v1.0 (declarada em 2026-10-09); ruído de base: NÃO MEDIDO (usado só o piso)
+  (1) delta médio -3.0 p.p. < exigido 5.0 p.p.
+  (2) queda por classe tolerada até 10.0 p.p.: preco caiu 25.0 p.p.
+  (3) críticas pass^k: todas 100%
+  -> NÃO PROMOVER B  (1 repetição por versão: o pass^k da condição 3 é pass^1)

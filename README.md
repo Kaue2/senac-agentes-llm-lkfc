@@ -4,8 +4,19 @@
 
 Permitir que gestores de uma rede de farmácias respondam, em linguagem natural, perguntas de negócio que hoje exigem cruzar vendas, estoque e preço regulado em múltiplos relatórios.
 
-O case completo (com o que o domínio ensinou, §12) está em [`docs/case.md`](docs/case.md). A Parte 2
-está documentada em:
+O case completo (com o que o domínio ensinou, §12) está em [`docs/case.md`](docs/case.md).
+
+A **Parte 3** (o sistema sob controle) está documentada em:
+
+| Documento | O quê |
+|---|---|
+| [`docs/evals.md`](docs/evals.md) | o golden dataset, os níveis de avaliação, o juiz e a validação dele, a comparação entre duas versões |
+| [`docs/model-card.md`](docs/model-card.md) | os doze campos, a autoridade com o ponto de aplicação de cada limite, a decisão reconstruída a partir do trace, as lacunas |
+| [`docs/seguranca.md`](docs/seguranca.md) | os canais, os riscos do case, os quatro controles e o que custaram, o risco aceito, os dados pessoais, o histórico do `.env` |
+| [`docs/observabilidade.md`](docs/observabilidade.md) | o plano, o trace de uma execução, os modos de falha, as métricas por versão e o SLO |
+| [`docs/mudancas.md`](docs/mudancas.md) | o que mudou desde a Parte 2, com o commit de cada correção |
+
+A Parte 2 está documentada em:
 
 | Documento | O quê |
 |---|---|
@@ -164,6 +175,55 @@ conteúdo não cria um segundo arquivo (`docs/humano.md` §5).
 - Não trata dado de paciente nem de cliente identificado: recusa na entrada.
 - Não inventa: sem registro no banco ou sem regra no corpus, a saída é `insuficiente` e diz por quê.
 
+## Parte 3 — avaliação, controles e traces
+
+**Rodar a suíte e comparar duas rodadas** (`docs/evals.md`). A suíte roda o golden dataset no
+sistema entregue, sempre contra o espelho sintético (a connection string do banco real é apagada
+do ambiente da rodada), e grava em `evals/resultados/v<versao>_<data>/`. São cerca de 25 min no
+tier gratuito, e a rodada é retomável com `--continuar`.
+
+```bash
+python -m evals.rodar --versao 2.1.0
+python -m evals.reavaliar evals/resultados/<rodada>
+python -m evals.comparar evals/resultados/v2.0.0_20261120T1228 evals/resultados/<rodada-B>
+```
+
+A versão passada em `--versao` precisa ser a de `src/versao.py`. O `reavaliar` pontua de novo o
+que uma rodada gravou com o avaliador e o dataset atuais, e o `comparar` recusa duas rodadas
+pontuadas em versões diferentes do dataset.
+
+**Os testes dos controles de segurança** (`docs/seguranca.md` §3). Cada teste tenta a ação indevida
+e confere que ela foi bloqueada:
+
+```bash
+python -m pytest tests/test_controles.py -q
+python -m pytest -q
+```
+
+O primeiro roda só os controles; o segundo, todos os testes (sem rede e sem LLM).
+
+**Ver os traces** (`docs/observabilidade.md` §6). Toda execução grava os spans OpenTelemetry
+(convenções GenAI) em `logs/traces/traces-<data>.jsonl`; os da suíte ficam em
+`evals/resultados/<rodada>/traces.jsonl`.
+
+```bash
+python -m src.observabilidade.ver --ultimos 5
+python -m src.observabilidade.ver --arquivo evals/resultados/<rodada>/traces.jsonl --thread G-G26:a-<rotulo>
+python -m src.observabilidade.metricas evals/resultados/*/traces.jsonl
+```
+
+O último calcula p50/p95, custo, términos, erro por ferramenta e o SLO, separados por versão.
+
+**Validar o juiz** (`docs/evals.md` §3). Os rótulos humanos são do grupo:
+
+```bash
+python -m evals.juiz --preparar evals/resultados/<rodada-A> evals/resultados/<rodada-B>
+python -m evals.juiz --julgar
+python -m evals.juiz --matriz
+```
+
+O `--preparar` já foi rodado. Antes do `--matriz`, preencha `evals/juiz/rotulos_v1.csv`.
+
 ## Reproduzir os casos da Parte 2
 
 ```bash
@@ -176,7 +236,11 @@ python scripts/demo_reducer.py         # o que acontece sem os reducers (sem red
 ## Estrutura do repositório
 
 ```
-src/grafo/                     o sistema da Parte 2: contrato, estado, nós, rotas, grafo, execução
+src/grafo/                     o sistema: contrato, estado, nós, rotas, grafo, execução, controles (C2)
+src/observabilidade/           traces OpenTelemetry, visualizador, métricas e SLO
+src/versao.py                  a versão do sistema (vai para todo trace e todo resultado da suíte)
+evals/                         a suíte da Parte 3: dataset, avaliadores, rodar, comparar, reavaliar, juiz
+evals/resultados/              uma pasta por rodada, commitada: a evidência dos números de docs/evals.md
 src/prompts/                   os prompts, versionados, carregados em tempo de execução
 src/rag/                       corpus, corte, embeddings, índice vetorial, portão
 src/memoria/                   as três memórias, a política de escrita, o contexto com teto
