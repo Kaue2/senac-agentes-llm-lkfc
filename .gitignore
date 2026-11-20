@@ -27,3 +27,5 @@ logs/execucoes/
 
 # Parte 3: traces de execuções locais (os citados nos documentos são copiados para logs/parte3/)
 logs/traces/
+dados/memoria_evals/
+dados/exports_evals/
