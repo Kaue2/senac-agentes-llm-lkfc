@@ -64,10 +64,28 @@ class RecorteExtraido:
     terminou_por: str
 
 
+# As bandeiras monitoradas pelo fractal-precos (docs/case.md §1; o espelho sintético tem 5 delas).
+# Controle C3: preferência declarada fora desta lista não é gravada — "minha farmácia padrão é
+# <qualquer texto>" era um canal de escrita de texto livre na memória semântica.
+FARMACIAS_MONITORADAS = (
+    "Araujo", "Drogasil", "Raia", "Pacheco", "Venancio", "DPSP", "Globo", "Indiana", "Nissei",
+    "Pague Menos", "Panvel", "São João",
+)
+
+
+def _verificada(chamada: dict) -> bool:
+    """Chamada cujo resultado o banco CONFIRMOU (encontrado=True, sem erro). Controle C3: só o que
+    foi verificado contra o sistema vira memória; o que o gestor (ou um texto injetado) escreveu,
+    e o banco não confirmou, não persiste."""
+    resultado = chamada.get("resultado") or {}
+    return isinstance(resultado, dict) and resultado.get("encontrado") is True and "erro" not in resultado
+
+
 def extrair_recorte(trajetoria: list[dict], motivo_terminacao: str) -> RecorteExtraido:
     """Regra de extração do episódio: só o RECORTE da consulta (o que foi perguntado ao banco),
-    nunca o RESULTADO (o que o banco respondeu)."""
-    chamadas = [p for p in trajetoria if p.get("tipo") == "chamada_ferramenta"]
+    nunca o RESULTADO (o que o banco respondeu) — e, desde a Parte 3 (controle C3), só das consultas
+    que o banco confirmou."""
+    chamadas = [p for p in trajetoria if p.get("tipo") == "chamada_ferramenta" and _verificada(p)]
 
     def coletar(campo: str) -> tuple[str, ...]:
         return tuple(sorted({str(c["argumentos"][campo]) for c in chamadas if c.get("argumentos", {}).get(campo)}))
@@ -83,4 +101,7 @@ def extrair_recorte(trajetoria: list[dict], motivo_terminacao: str) -> RecorteEx
 
 def extrair_preferencia_farmacia(pergunta: str) -> str | None:
     achado = _PREFERENCIA_FARMACIA.search(pergunta)
-    return achado.group(1).strip() if achado else None
+    if not achado:
+        return None
+    declarada = achado.group(1).strip().casefold()
+    return next((f for f in FARMACIAS_MONITORADAS if f.casefold() == declarada), None)

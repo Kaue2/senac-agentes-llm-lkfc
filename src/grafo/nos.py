@@ -601,7 +601,7 @@ def gravar_memoria(estado: EstadoGrafo, runtime: Runtime[Dependencias]) -> dict:
         usuario = estado["entrada"]["usuario_id"]
         hoje = deps.agora().date().isoformat()
         recorte = extrair_recorte(estado.get("trajetoria", []), motivo)
-        if recorte.ferramentas:
+        if recorte.produtos:  # C3: só consulta que o banco confirmou vira episódio
             g = deps.memoria.gravar_episodio(usuario, hoje, _texto(estado), recorte)
             gravacoes.append({"tipo": "episodica", "id": g.id, "ja_existia": g.ja_existia})
         preferencia = extrair_preferencia_farmacia(_texto(estado))

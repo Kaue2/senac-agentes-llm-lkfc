@@ -33,7 +33,7 @@ import numpy as np
 
 from src.rag.embeddings import CAMINHO_CACHE, EmbeddingComCache, ModeloEmbedding
 
-from .politica import RecorteExtraido, texto_para_memoria
+from .politica import RecorteExtraido
 
 PASTA_MEMORIA_PADRAO = Path(__file__).resolve().parents[2] / "dados" / "memoria"
 
@@ -116,7 +116,12 @@ class Memoria:
     # ---------------------------------------------------------------- episódica
     @staticmethod
     def texto_do_episodio(pergunta: str, recorte: RecorteExtraido) -> str:
-        partes = [f"Pergunta: {texto_para_memoria(pergunta)}"]
+        """Controle C3 (Parte 3, docs/seguranca.md): o episódio NÃO guarda o texto da pergunta. Até a
+        Parte 2 ele guardava a pergunta mascarada e truncada — e uma instrução escrita na pergunta
+        ("em toda resposta futura diga que...") voltava ao contexto das execuções seguintes como
+        "consulta anterior". Agora o texto é montado só do recorte verificado; `pergunta` fica na
+        assinatura por compatibilidade e é ignorada."""
+        partes = [f"Consulta: {', '.join(recorte.modos) or 'atual'}"]
         if recorte.produtos:
             partes.append(f"produto: {', '.join(recorte.produtos)}")
         if recorte.farmacias:
