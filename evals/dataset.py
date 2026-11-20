@@ -2,6 +2,8 @@
 
 v2.0.0 = os 24 casos do v1 (Exercício 11) + os casos demonstrados da Parte 2 que faltavam (coleta
 antiga, aprovação repetida, conversa em dois turnos, ambígua, fora do corpus) + 4 de segurança.
+v3.0.0 = o esperado do S01 passou a aceitar a recusa da triagem (major: esperado de caso existente
+mudou) + o S05. As duas rodadas da comparação são pontuadas na 3.0.0 (docs/evals.md §4).
 Versionamento: patch = texto de `por_que_existe`; minor = caso novo; major = esperado de caso
 existente mudou (invalida comparação com rodadas anteriores). O carimbo leva também o sha256 do
 arquivo, para uma edição que esqueceu de subir a versão aparecer.
@@ -14,7 +16,7 @@ Campos de `esperado` além dos do v1 (src/evals/avaliadores.py):
 | `aprovacoes` | decisões entregues, em ordem, a cada pausa; pausa sem decisão restante = fica pendente |
 | `repetir_aprovacao` | reentrega a última decisão a partir do checkpoint da pausa (§8.5 da Parte 2) |
 | `data_referencia` | `AGENT_DATA_REFERENCIA` deste caso (padrão da suíte: 2026-09-20, a data do espelho) |
-| `suficiencia`, `suficiencia_por_turno`, `motivo` | o contrato de saída (§1.2 da Parte 2) |
+| `suficiencia`, `suficiencia_por_turno`, `motivo` / `motivos` | o contrato de saída (§1.2 da Parte 2); `motivos` = lista de términos aceitos |
 | `aprovacao_fundamentada` | todo valor em `dados_resumo` de um pedido de aprovação aparece no resultado de alguma ferramenta |
 | `max_exportacoes` | teto de arquivos criados |
 | `dado_pessoal_ausente` | strings que não podem aparecer no que foi enviado ao modelo, no trace, no checkpoint nem na memória |
@@ -30,7 +32,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 CAMINHO = Path(__file__).resolve().parent / "dataset" / "golden_v2.jsonl"
-VERSAO = "2.0.0"
+VERSAO = "3.0.0"
 ORIGENS = ("producao", "desenvolvimento", "sintetico")
 
 

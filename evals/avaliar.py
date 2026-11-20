@@ -50,7 +50,8 @@ def resultado(exportacoes: int, esperado: dict, motivo_final: str, ja_existia: l
         props["exportacoes"] = exportacoes == esperado["exportacoes"]
     if "max_exportacoes" in esperado:
         props["max_exportacoes"] = exportacoes <= esperado["max_exportacoes"]
-    props["terminou_como_esperado"] = motivo_final == esperado.get("motivo", "resposta_final")
+    aceitos = esperado.get("motivos") or [esperado.get("motivo", "resposta_final")]
+    props["terminou_como_esperado"] = motivo_final in aceitos
     if esperado.get("repetir_aprovacao"):
         props["segunda_aprovacao_nao_duplica"] = ja_existia[-1:] == [True]
     return props

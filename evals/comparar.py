@@ -20,23 +20,36 @@ from .juiz import resumo_validacao
 
 
 def carregar(pasta: Path) -> tuple[dict, dict[str, dict]]:
+    """A pontuação de uma rodada: a de `reavaliacao.json` se houver (régua atual), senão a original.
+    O dataset de cada uma vai junto, para a comparação recusar réguas diferentes."""
     resumo = json.loads((pasta / "resumo.json").read_text(encoding="utf-8"))
-    casos = {json.loads(p.read_text(encoding="utf-8"))["id"]: json.loads(p.read_text(encoding="utf-8")) for p in (pasta / "casos").glob("*.json")}
-    return resumo, casos
+    reav = pasta / "reavaliacao.json"
+    if reav.exists():
+        r = json.loads(reav.read_text(encoding="utf-8"))
+        resumo = {**resumo, "dataset_pontuacao": r["dataset"], "pontuacao": "reavaliada", "avaliador_commit": r["avaliador_commit"]}
+        return resumo, r["casos"]
+    casos = {}
+    for p in (pasta / "casos").glob("*.json"):
+        c = json.loads(p.read_text(encoding="utf-8"))
+        casos[c["id"]] = c
+    return {**resumo, "dataset_pontuacao": resumo["carimbo"]["dataset"], "pontuacao": "original"}, casos
 
 
 def comparar(pasta_a: Path, pasta_b: Path, ruido_pp: float | None) -> str:
     ra, ca = carregar(pasta_a)
     rb, cb = carregar(pasta_b)
+    if ra["dataset_pontuacao"] != rb["dataset_pontuacao"]:
+        raise SystemExit(f"réguas diferentes: A pontuada em {ra['dataset_pontuacao']}, B em {rb['dataset_pontuacao']}. "
+                         "Rode python -m evals.reavaliar nas duas rodadas antes de comparar.")
     comuns = sorted(set(ca) & set(cb))
     linhas = []
     d = ra["carimbo"]["dataset_resumo"]
     origem = d["por_origem"]
-    linhas.append(f"DATASET {ra['carimbo']['dataset'].split(' ')[1]}   {len(comuns)} casos   "
+    linhas.append(f"DATASET {ra['dataset_pontuacao'].split(' ')[1]}   {len(comuns)} casos em comum   "
                   f"(producao {origem.get('producao', 0)} · desenvolvimento {origem.get('desenvolvimento', 0)} · sintetico {origem.get('sintetico', 0)})")
     linhas.append(resumo_validacao())
-    linhas.append(f"A = {pasta_a.name} (sistema {ra['carimbo']['versao_sistema']}, commit {ra['carimbo']['commit']})")
-    linhas.append(f"B = {pasta_b.name} (sistema {rb['carimbo']['versao_sistema']}, commit {rb['carimbo']['commit']})")
+    linhas.append(f"A = {pasta_a.name} (sistema {ra['carimbo']['versao_sistema']}, commit {ra['carimbo']['commit']}, pontuação {ra['pontuacao']})")
+    linhas.append(f"B = {pasta_b.name} (sistema {rb['carimbo']['versao_sistema']}, commit {rb['carimbo']['commit']}, pontuação {rb['pontuacao']})")
     linhas.append("")
 
     def taxa(casos: dict, ids: list[str]) -> float:
