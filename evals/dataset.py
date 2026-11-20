@@ -80,9 +80,7 @@ def validar(casos: list[Caso]) -> None:
 def hash_arquivo(caminho: Path = CAMINHO) -> str:
     # Normaliza a quebra de linha: com core.autocrlf, o mesmo commit tem CRLF no Windows e LF no
     # Linux, e o hash do arquivo não pode depender de onde a suíte rodou.
-    return hashlib.sha256(caminho.read_bytes().replace(b"
-", b"
-")).hexdigest()[:12]
+    return hashlib.sha256(caminho.read_bytes().replace(b"\r\n", b"\n")).hexdigest()[:12]
 
 
 def resumo(casos: list[Caso]) -> dict:
