@@ -117,7 +117,7 @@ O mapa completo, com finalidade, base legal (LGPD art. 7º, IX) e prazo de cada 
 
 | Risco | Por que foi aceito | O que o limita hoje | Evidência | Quando reavaliar |
 |---|---|---|---|---|
-| **R5 — injeção indireta pelo texto raspado dos sites das farmácias que altera o texto da resposta, sem escrita** | a mitigação real (LLM em quarentena) dobra as chamadas num provedor cujo limite por minuto já é o gargalo; sanitizar com regex é instrução disfarçada | números vêm de colunas numéricas; fonte conferível em toda resposta; suficiência em código; C2 e revisor barram a escrita | `seguranca.md` §4; C2: `src/grafo/controles.py:52`, `tests/test_controles.py::test_c2_no_grafo_o_pedido_com_numero_falso_nao_chega_ao_revisor` | ferramenta nova de escrita ou envio; exportação sem aprovação; texto imperativo encontrado nos campos raspados (**LACUNA**: a varredura não existe) |
+| **R6 — injeção indireta pelo texto raspado dos sites das farmácias que altera o texto da resposta, sem escrita** | a mitigação real (LLM em quarentena) dobra as chamadas num provedor cujo limite por minuto já é o gargalo; sanitizar com regex é instrução disfarçada | números vêm de colunas numéricas; fonte conferível em toda resposta; suficiência em código; C2 e revisor barram a escrita | `seguranca.md` §4; C2: `src/grafo/controles.py:52`, `tests/test_controles.py::test_c2_no_grafo_o_pedido_com_numero_falso_nao_chega_ao_revisor` | ferramenta nova de escrita ou envio; exportação sem aprovação; texto imperativo encontrado nos campos raspados (**LACUNA**: a varredura não existe) |
 
 ## 10. Supervisão humana
 
