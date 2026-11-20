@@ -15,7 +15,8 @@ estoque).
 from __future__ import annotations
 
 import hashlib
-from datetime import datetime, timezone
+import os
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 from src.core.tools import Ferramenta, RegistroFerramentas
@@ -46,7 +47,51 @@ def _consultar_precos(banco: BancoPrecos, produto: str, modo: str = "atual", far
                 "não invente um preço, informe ao usuário que não há esse dado."
             ),
         }
-    return {"encontrado": True, "fonte": banco.fonte, "resultados": linhas}
+    hoje = data_referencia()
+    for linha in linhas:
+        linha.update(situacao_da_linha(linha, modo, hoje))
+    return {"encontrado": True, "fonte": banco.fonte, "data_referencia": hoje.isoformat(), "resultados": linhas}
+
+
+DIAS_COLETA_RECENTE = 3          # regras-ruptura#s04: mais de 3 dias sem coleta = "sem coleta recente"
+COLETAS_RUPTURA_CONFIRMADA = 2   # regras-ruptura#s03: 2 coletas seguidas indisponível = confirmada
+
+
+def data_referencia() -> date:
+    """O "hoje" das regras de domínio que dependem de data. Em produção é a data corrente; a suíte
+    de avaliação fixa `AGENT_DATA_REFERENCIA` (AAAA-MM-DD) porque o espelho sintético parou numa
+    data — sem isso, toda pergunta de ruptura viraria "sem coleta recente" com o passar dos dias,
+    e os casos do golden mudariam de resposta sem nenhuma mudança no sistema."""
+    fixa = os.environ.get("AGENT_DATA_REFERENCIA", "").strip()
+    return date.fromisoformat(fixa) if fixa else date.today()
+
+
+def situacao_da_linha(linha: dict, modo: str, hoje: date) -> dict:
+    """As regras de ruptura do corpus (regras-ruptura#s02–s04), aplicadas em CÓDIGO na linha que o
+    banco devolveu. Correção da Parte 2 (docs/mudancas.md): o agente só seguia a regra se decidisse
+    consultar a base de conhecimento — e no caso 4 não consultou."""
+    bruto = linha.get("DataUltimaColeta") or linha.get("UltimaColeta") or linha.get("DataHoraColeta")
+    if not bruto:
+        return {}
+    ultima = datetime.fromisoformat(str(bruto)[:19]).date()
+    dias = (hoje - ultima).days
+    situacao: dict = {"dias_desde_ultima_coleta": dias}
+    if dias > DIAS_COLETA_RECENTE:
+        situacao["situacao_coleta"] = "sem_coleta_recente"
+        situacao["aviso"] = (
+            f"Última coleta há {dias} dias (mais de {DIAS_COLETA_RECENTE}): pela regra da rede não se afirma "
+            "nada sobre disponibilidade atual; informe a data da última coleta."
+        )
+        return situacao
+    situacao["situacao_coleta"] = "recente"
+    if modo == "ruptura" and "Disponivel" in linha:
+        if linha["Disponivel"]:
+            situacao["situacao_ruptura"] = "disponivel"
+        elif int(linha.get("QtdColetasNesseEstado") or 0) >= COLETAS_RUPTURA_CONFIRMADA:
+            situacao["situacao_ruptura"] = "ruptura_confirmada"
+        else:
+            situacao["situacao_ruptura"] = "ruptura_a_confirmar"
+    return situacao
 
 
 def _consultar_vendas(produto: str = "", farmacia: str = "", periodo: str = "") -> dict:
