@@ -42,6 +42,13 @@ SEMENTE = 20261120
 COLUNAS = ("amostra_id", "rodada", "caso_id", "classe", "pergunta", "resultados_ferramentas", "resposta",
            "rotulo_humano", "nota_humana", "rotulador", "veredito_juiz", "justificativa_juiz", "classificacao_desacordo")
 CLASSIFICACOES = ("juiz", "rubrica", "rotulo_humano")
+# Rótulo escrito por modelo pode ser registrado (com o rotulador declarado), mas não adota o juiz:
+# a validação mede concordância com PESSOAS, e um modelo concordando com outro não mede isso.
+MARCAS_ROTULADOR_NAO_HUMANO = ("assistente de ia", "claude", "gpt", "llm", "modelo")
+
+
+def rotulador_humano(rotulador: str) -> bool:
+    return not any(m in rotulador.casefold() for m in MARCAS_ROTULADOR_NAO_HUMANO)
 
 
 def preparar(rodadas: list[Path]) -> list[dict]:
@@ -114,6 +121,7 @@ def matriz(linhas: list[dict]) -> dict:
         raise SystemExit(f"rótulo sem rotulador declarado: {', '.join(sem_rotulador)} — preencha quem rotulou.")
     pares = [(l["veredito_juiz"], "nao" if l["rotulo_humano"].strip().lower() == "não" else l["rotulo_humano"].strip().lower(), l)
              for l in rotuladas if l["veredito_juiz"] in ("sim", "nao")]
+    nao_humanos = sorted({l["rotulador"] for l in rotuladas if not rotulador_humano(l["rotulador"])})
     m = {f"juiz_{j}_humano_{h}": sum(1 for a, b, _ in pares if a == j and b == h) for j in ("sim", "nao") for h in ("sim", "nao")}
     n = len(pares)
     concordancia = (m["juiz_sim_humano_sim"] + m["juiz_nao_humano_nao"]) / n if n else 0.0
@@ -123,7 +131,9 @@ def matriz(linhas: list[dict]) -> dict:
     return {
         "n_rotuladas": n, "n_amostras": len(linhas), "matriz": m, "concordancia": concordancia,
         "limiar": LIMIAR_ADOCAO, "minimo_rotulos": MINIMO_ROTULOS,
-        "adotado": n >= MINIMO_ROTULOS and concordancia >= LIMIAR_ADOCAO and all(d["classificacao"] in CLASSIFICACOES for d in desacordos),
+        "rotulos_humanos": not nao_humanos,
+        "adotado": (n >= MINIMO_ROTULOS and concordancia >= LIMIAR_ADOCAO and not nao_humanos
+                    and all(d["classificacao"] in CLASSIFICACOES for d in desacordos)),
         "desacordos": desacordos, "rotuladores": sorted({l["rotulador"] for l in rotuladas}),
     }
 
@@ -134,7 +144,8 @@ def resumo_validacao() -> str:
         return (f"JUIZ rubrica juiz_fundamentacao v1.0   não validado ({n}/{N_AMOSTRAS} rótulos humanos)   "
                 "limiar 85%   -> não adotado")
     v = json.loads(CAMINHO_VALIDACAO.read_text(encoding="utf-8"))
-    return (f"JUIZ rubrica juiz_fundamentacao v1.0   concordância {100 * v['concordancia']:.0f}% em {v['n_rotuladas']}   "
+    origem = "" if v.get("rotulos_humanos", True) else " (rótulos do assistente de IA, não humanos)"
+    return (f"JUIZ rubrica juiz_fundamentacao v1.0   concordância {100 * v['concordancia']:.0f}% em {v['n_rotuladas']}{origem}   "
             f"limiar {100 * v['limiar']:.0f}%   -> {'adotado' if v['adotado'] else 'não adotado'}")
 
 
@@ -161,6 +172,8 @@ def main() -> None:
         print(f"                humano sim   humano não\n juiz sim    {m['juiz_sim_humano_sim']:>10}   {m['juiz_sim_humano_nao']:>10}"
               f"\n juiz não    {m['juiz_nao_humano_sim']:>10}   {m['juiz_nao_humano_nao']:>10}")
         print(f"concordância {100 * v['concordancia']:.0f}% (limiar {100 * v['limiar']:.0f}%) -> {'ADOTADO' if v['adotado'] else 'NÃO ADOTADO'}")
+        if not v["rotulos_humanos"]:
+            print("  rótulos não humanos (rotulador declarado como modelo): a matriz é registro, não validação — o juiz não é adotado")
         for d in v["desacordos"]:
             print(f"  {d['amostra_id']} {d['caso_id']}: juiz={d['juiz']} humano={d['humano']}  [{d['classificacao']}]")
 

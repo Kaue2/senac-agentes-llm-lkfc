@@ -89,3 +89,14 @@ def test_avaliador_aceita_data_com_espaco_e_recusa_por_nao_contem():
     assert deterministico("indisponível desde 16 / 09 / 2026", {"valores": [["16/09"]]})["valor_esperado"] is True
     assert deterministico("A base de conhecimento não contém informação.", {"nao_encontrado": True})["recusa"] is True
     assert normalizar("R$ 13,63 / unidade") == "r$ 13,63 / unidade"  # barra fora de data fica
+
+
+def test_rotulo_de_modelo_nao_adota_o_juiz():
+    from evals import juiz
+
+    base = {"rodada": "r", "classe": "c", "pergunta": "p", "resultados_ferramentas": "x", "resposta": "y",
+            "nota_humana": "n", "justificativa_juiz": "j", "classificacao_desacordo": ""}
+    linhas = [{**base, "amostra_id": f"J{i}", "caso_id": f"G{i}", "rotulo_humano": "sim", "veredito_juiz": "sim",
+               "rotulador": "assistente de IA (Claude) - NAO e rotulo humano"} for i in range(20)]
+    v = juiz.matriz(linhas)
+    assert v["concordancia"] == 1.0 and v["rotulos_humanos"] is False and v["adotado"] is False
