@@ -1,0 +1,110 @@
+{
+  "id": "G16",
+  "classe": "limitacao",
+  "origem": "sintetico",
+  "entrada": "Qual o nível de estoque do Ozempic 1mg na Drogasil?",
+  "passou": true,
+  "falhas": [],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": null,
+      "sem_proibidos": null,
+      "pbm_rotulado": null,
+      "recusa": null,
+      "sem_preco_inventado": null,
+      "sem_quantidade_inventada": true,
+      "limitacao_declarada": true
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": null,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "A ferramenta de consulta de estoque ainda não está implementada, portanto não consigo informar o nível de estoque do Ozempic 1 mg na Drogasil. Não há como estimar ou gerar esse dado no momento.",
+      "fontes": [
+        {
+          "tipo": "ferramenta",
+          "referencia": "consultar_estoque",
+          "detalhe": "nao_implementado"
+        }
+      ],
+      "suficiencia": "insuficiente",
+      "motivo_insuficiencia": "consultar_estoque: pilar sem dado (não implementado)",
+      "suposicoes": [],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G16:a-20261120T1244",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G16:a-20261120T1244",
+      "ms": 2663,
+      "tokens": 4375,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "insuficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "vendas_estoque",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1330
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_estoque",
+      "argumentos": {
+        "farmacia": "Drogasil",
+        "produto": "Ozempic 1mg"
+      },
+      "resultado": {
+        "status": "nao_implementado",
+        "pilar": "estoque",
+        "mensagem": "A captura de dados de estoque ainda não existe — a função e o schema serão desenvolvidos pela equipe depois (ver docs/case.md §2.10/§2.11). Explique essa limitação ao usuário em vez de estimar ou inventar um nível de estoque."
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "A ferramenta de consulta de estoque ainda não está implementada, portanto não consigo informar o nível de estoque do Ozempic 1 mg na Drogasil. Não há como estimar ou gerar esse dado no momento."
+    }
+  ]
+}

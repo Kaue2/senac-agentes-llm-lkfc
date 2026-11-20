@@ -1,0 +1,126 @@
+{
+  "id": "G25",
+  "classe": "ruptura",
+  "origem": "desenvolvimento",
+  "entrada": "O Ozempic 1mg está em falta na Drogasil?",
+  "passou": true,
+  "falhas": [],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": true,
+      "sem_proibidos": true,
+      "pbm_rotulado": null,
+      "recusa": null,
+      "sem_preco_inventado": null,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": true,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "De acordo com a última coleta disponível (19 / 09 / 2026), o Ozempic 1 mg estava **indisponível** na Drogasil desde 16 / 09 / 2026. Contudo, a ferramenta indica que não há coleta mais recente (última há 62 dias), e pela regra da rede não podemos afirmar a situação atual. Portanto, a falta foi registrada até 16 / 09, mas não temos confirmação se ainda persiste hoje.",
+      "fontes": [
+        {
+          "tipo": "banco_precos",
+          "referencia": "vw_Ruptura(produto='Ozempic 1mg', farmacia='Drogasil')",
+          "detalhe": "1 linha(s), fonte=espelho_sqlite, coleta mais recente 2026-09-19 00:00:00"
+        }
+      ],
+      "suficiencia": "suficiente",
+      "motivo_insuficiencia": null,
+      "suposicoes": [],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G25:a-20261120T1244",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G25:a-20261120T1244",
+      "ms": 3337,
+      "tokens": 4597,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "suficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "preco",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1341
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Drogasil",
+        "modo": "ruptura",
+        "produto": "Ozempic 1mg"
+      },
+      "resultado": {
+        "encontrado": true,
+        "fonte": "espelho_sqlite",
+        "data_referencia": "2026-11-20",
+        "resultados": [
+          {
+            "ProdutoFarmaciaId": 13,
+            "Farmacia": "Drogasil",
+            "Produto": "Ozempic 1mg",
+            "Disponivel": 0,
+            "DesdeQuando": "2026-09-16 00:00:00",
+            "UltimaColeta": "2026-09-19 00:00:00",
+            "DiasNoEstadoAtual": 3,
+            "QtdColetasNesseEstado": 4,
+            "dias_desde_ultima_coleta": 62,
+            "situacao_coleta": "sem_coleta_recente",
+            "aviso": "Última coleta há 62 dias (mais de 3): pela regra da rede não se afirma nada sobre disponibilidade atual; informe a data da última coleta."
+          }
+        ]
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "De acordo com a última coleta disponível (19 / 09 / 2026), o Ozempic 1 mg estava **indisponível** na Drogasil desde 16 / 09 / 2026. Contudo, a ferramenta indica que não há coleta mais recente (última há 62 dias), e pela regra da rede não podemos afirmar a situação atual. Portanto, a falta foi registrada até 16 / 09, mas não temos confirmação se ainda persiste hoje."
+    }
+  ]
+}

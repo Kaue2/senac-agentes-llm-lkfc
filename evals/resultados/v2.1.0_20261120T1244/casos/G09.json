@@ -1,0 +1,109 @@
+{
+  "id": "G09",
+  "classe": "inexistente",
+  "origem": "sintetico",
+  "entrada": "Qual o preço da Ivermectina 6mg na Araujo?",
+  "passou": true,
+  "falhas": [],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": null,
+      "sem_proibidos": null,
+      "pbm_rotulado": null,
+      "recusa": true,
+      "sem_preco_inventado": true,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": true,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "Não há registro de **PrecoFarmacia** (preço da loja) para *Ivermectina 6 mg* na farmácia **Araujo** no banco de preços. Portanto não consigo informar o preço atual.",
+      "fontes": [],
+      "suficiencia": "insuficiente",
+      "motivo_insuficiencia": "nenhum registro em vw_PrecoAtual(produto='Ivermectina 6mg', farmacia='Araujo')",
+      "suposicoes": [
+        "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+      ],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G09:a-20261120T1244",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G09:a-20261120T1244",
+      "ms": 5252,
+      "tokens": 4439,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "insuficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "preco",
+      "suposicoes": [
+        "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+      ],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1301
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Araujo",
+        "modo": "atual",
+        "produto": "Ivermectina 6mg"
+      },
+      "resultado": {
+        "encontrado": false,
+        "fonte": "espelho_sqlite",
+        "mensagem": "Nenhum registro para produto='Ivermectina 6mg', farmacia='Araujo' no banco de preços. Pode ser um produto/farmácia fora do cadastro — não invente um preço, informe ao usuário que não há esse dado."
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Não há registro de **PrecoFarmacia** (preço da loja) para *Ivermectina 6 mg* na farmácia **Araujo** no banco de preços. Portanto não consigo informar o preço atual."
+    }
+  ]
+}

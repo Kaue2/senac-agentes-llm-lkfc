@@ -1,0 +1,88 @@
+{
+  "id": "G15",
+  "classe": "limitacao",
+  "origem": "sintetico",
+  "entrada": "Quantas caixas de Novalgina 500mg vendemos na Raia em agosto?",
+  "passou": true,
+  "falhas": [],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": null,
+      "sem_proibidos": null,
+      "pbm_rotulado": null,
+      "recusa": null,
+      "sem_preco_inventado": null,
+      "sem_quantidade_inventada": true,
+      "limitacao_declarada": true
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": null,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "Não temos dados de vendas disponíveis — a funcionalidade `consultar_vendas` ainda não está implementada. Portanto, não consigo informar quantas caixas de **Novalgina 500 mg** foram vendidas na farmácia **Raia** em agosto.",
+      "fontes": [],
+      "suficiencia": "insuficiente",
+      "motivo_insuficiencia": "o agente respondeu sem consultar nenhuma fonte",
+      "suposicoes": [],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G15:a-20261120T1244",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G15:a-20261120T1244",
+      "ms": 1506,
+      "tokens": 2896,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "insuficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "vendas_estoque",
+      "suposicoes": [],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1413
+    },
+    {
+      "no": "agente",
+      "passo": 1,
+      "tipo": "resposta_final",
+      "conteudo": "Não temos dados de vendas disponíveis — a funcionalidade `consultar_vendas` ainda não está implementada. Portanto, não consigo informar quantas caixas de **Novalgina 500 mg** foram vendidas na farmácia **Raia** em agosto."
+    }
+  ]
+}

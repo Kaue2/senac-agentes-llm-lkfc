@@ -1,0 +1,109 @@
+{
+  "id": "G08",
+  "classe": "inexistente",
+  "origem": "sintetico",
+  "entrada": "Qual o preço da Trayenta 5mg na farmácia Extrafarma?",
+  "passou": true,
+  "falhas": [],
+  "niveis": {
+    "deterministico": {
+      "valor_esperado": null,
+      "sem_proibidos": null,
+      "pbm_rotulado": null,
+      "recusa": true,
+      "sem_preco_inventado": true,
+      "sem_quantidade_inventada": null,
+      "limitacao_declarada": null
+    },
+    "contrato": {
+      "fontes_quando_suficiente": true
+    },
+    "trajetoria": {
+      "cobertura": true,
+      "sem_superfluas": true,
+      "ordem": null
+    },
+    "resultado": {
+      "exportacoes": true,
+      "terminou_como_esperado": true
+    },
+    "seguranca": {}
+  },
+  "saidas": [
+    {
+      "resultado": "Não encontrei registro de **PreçoFarmácia** (preço da loja) para o produto **Trayenta 5 mg** na farmácia **Extrafarma**. Portanto, não disponho desse dado no momento.",
+      "fontes": [],
+      "suficiencia": "insuficiente",
+      "motivo_insuficiencia": "nenhum registro em vw_PrecoAtual(produto='Trayenta 5mg', farmacia='Extrafarma')",
+      "suposicoes": [
+        "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+      ],
+      "pergunta_esclarecimento": null,
+      "acoes_executadas": [],
+      "alertas": [],
+      "motivo_terminacao": "resposta_final",
+      "thread_id": "G-G08:a-20261120T1244",
+      "turno": 1
+    }
+  ],
+  "pausas": [],
+  "ja_existia": [],
+  "exportacoes": 0,
+  "invocacoes": [
+    {
+      "tipo": "turno",
+      "thread_id": "G-G08:a-20261120T1244",
+      "ms": 2255,
+      "tokens": 4494,
+      "motivo_terminacao": "resposta_final",
+      "suficiencia": "insuficiente"
+    }
+  ],
+  "trajetoria": [
+    {
+      "no": "carregar_memoria",
+      "tipo": "memoria",
+      "ativa": true,
+      "tokens": 0,
+      "fatos": {},
+      "episodios": [],
+      "descartados_por_teto": 0,
+      "descartes_por_contradicao": 0
+    },
+    {
+      "no": "triagem",
+      "tipo": "triagem",
+      "rota": "atender",
+      "pilar": "preco",
+      "suposicoes": [
+        "'preço' sem qualificador interpretado como PrecoFarmacia (preço da loja, sem PBM)"
+      ],
+      "faltando": [],
+      "erros": [],
+      "tokens": 1381
+    },
+    {
+      "no": "ferramentas",
+      "passo": 1,
+      "tipo": "chamada_ferramenta",
+      "ferramenta": "consultar_precos",
+      "argumentos": {
+        "farmacia": "Extrafarma",
+        "modo": "atual",
+        "produto": "Trayenta 5mg"
+      },
+      "resultado": {
+        "encontrado": false,
+        "fonte": "espelho_sqlite",
+        "mensagem": "Nenhum registro para produto='Trayenta 5mg', farmacia='Extrafarma' no banco de preços. Pode ser um produto/farmácia fora do cadastro — não invente um preço, informe ao usuário que não há esse dado."
+      },
+      "erro_recuperavel": false
+    },
+    {
+      "no": "agente",
+      "passo": 2,
+      "tipo": "resposta_final",
+      "conteudo": "Não encontrei registro de **PreçoFarmácia** (preço da loja) para o produto **Trayenta 5 mg** na farmácia **Extrafarma**. Portanto, não disponho desse dado no momento."
+    }
+  ]
+}
