@@ -62,24 +62,38 @@ def test_rodar_caso_de_ponta_a_ponta_com_aprovacao_repetida(ambiente, tmp_path, 
     assert [i["tipo"] for i in r["invocacoes"]] == ["turno", "retomada", "retomada_repetida"]
 
 
-def test_matriz_do_juiz_e_recusa_rotulo_sem_rotulador(tmp_path):
+def test_matriz_do_juiz_exige_negativos_e_classificacao(tmp_path):
     import pytest
 
     from evals import juiz
 
     base = {"rodada": "r", "classe": "c", "pergunta": "p", "resultados_ferramentas": "x", "resposta": "y",
             "nota_humana": "n", "justificativa_juiz": "j", "classificacao_desacordo": ""}
-    linhas = [{**base, "amostra_id": f"J{i}", "caso_id": f"G{i}", "rotulador": "fulano",
-               "rotulo_humano": h, "veredito_juiz": j} for i, (h, j) in enumerate([("sim", "sim")] * 17 + [("nao", "nao"), ("nao", "sim"), ("sim", "nao")])]
+    pares = [("sim", "sim")] * 14 + [("nao", "nao")] * 5 + [("nao", "sim")]
+    linhas = [{**base, "amostra_id": f"J{i}", "caso_id": f"G{i}", "rotulador": "grupo",
+               "rotulo_humano": h, "veredito_juiz": j} for i, (h, j) in enumerate(pares)]
     v = juiz.matriz(linhas)
-    assert v["matriz"] == {"juiz_sim_humano_sim": 17, "juiz_sim_humano_nao": 1, "juiz_nao_humano_sim": 1, "juiz_nao_humano_nao": 1}
-    assert v["concordancia"] == 0.9 and not v["adotado"]  # desacordos ainda sem classificação
-    for l in linhas[-2:]:
-        l["classificacao_desacordo"] = "rubrica"
+    assert v["matriz"] == {"juiz_sim_humano_sim": 14, "juiz_sim_humano_nao": 1, "juiz_nao_humano_sim": 0, "juiz_nao_humano_nao": 5}
+    assert v["negativos"] == 6 and v["negativos_pegos"] == 5
+    assert v["concordancia"] == 0.95 and not v["adotado"]  # desacordo ainda sem classificação
+    linhas[-1]["classificacao_desacordo"] = "rubrica"
     assert juiz.matriz(linhas)["adotado"]
     linhas[0]["rotulador"] = ""
     with pytest.raises(SystemExit):
         juiz.matriz(linhas)
+
+
+def test_sem_negativos_suficientes_o_juiz_nao_e_adotado():
+    from evals import juiz
+
+    base = {"rodada": "r", "classe": "c", "pergunta": "p", "resultados_ferramentas": "x", "resposta": "y",
+            "nota_humana": "n", "justificativa_juiz": "j", "classificacao_desacordo": "rubrica"}
+    pares = [("sim", "sim")] * 19 + [("nao", "sim")]  # o formato da amostra v1: 1 negativo, errado
+    linhas = [{**base, "amostra_id": f"J{i}", "caso_id": f"G{i}", "rotulador": "grupo, com apoio de assistente de IA",
+               "rotulo_humano": h, "veredito_juiz": j} for i, (h, j) in enumerate(pares)]
+    v = juiz.matriz(linhas)
+    assert v["concordancia"] == 0.95 and v["negativos"] == 1 and v["adotado"] is False
+    assert v["rotulos_do_assistente"] is True
 
 
 def test_avaliador_aceita_data_com_espaco_e_recusa_por_nao_contem():
@@ -89,14 +103,3 @@ def test_avaliador_aceita_data_com_espaco_e_recusa_por_nao_contem():
     assert deterministico("indisponível desde 16 / 09 / 2026", {"valores": [["16/09"]]})["valor_esperado"] is True
     assert deterministico("A base de conhecimento não contém informação.", {"nao_encontrado": True})["recusa"] is True
     assert normalizar("R$ 13,63 / unidade") == "r$ 13,63 / unidade"  # barra fora de data fica
-
-
-def test_rotulo_de_modelo_nao_adota_o_juiz():
-    from evals import juiz
-
-    base = {"rodada": "r", "classe": "c", "pergunta": "p", "resultados_ferramentas": "x", "resposta": "y",
-            "nota_humana": "n", "justificativa_juiz": "j", "classificacao_desacordo": ""}
-    linhas = [{**base, "amostra_id": f"J{i}", "caso_id": f"G{i}", "rotulo_humano": "sim", "veredito_juiz": "sim",
-               "rotulador": "assistente de IA (Claude) - NAO e rotulo humano"} for i in range(20)]
-    v = juiz.matriz(linhas)
-    assert v["concordancia"] == 1.0 and v["rotulos_humanos"] is False and v["adotado"] is False
