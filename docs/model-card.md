@@ -96,7 +96,7 @@ O mapa completo, com finalidade, base legal (LGPD art. 7º, IX) e prazo de cada 
 | Os controles fazem o que dizem com o modelo real: o CPF não sai para o provedor nem fica no trace ou no checkpoint (S03); a instrução embutida não chega à memória (S05); a 2ª exportação é barrada antes do revisor (S04) | `evals/resultados/v2.1.0_20261120T1244/casos/S03.json`, `S04.json`, `S05.json` × as rodadas da 2.0.0 |
 | Ruído de base | **LACUNA**: não medido (não houve rodada A × A no limite diário de tokens); com 33 casos, 1 ou 2 casos de diferença estão dentro do ruído |
 | Concordância do juiz | **LACUNA L10**: 95% (19/20) contra rótulos escritos pelo **assistente de IA**, declarados como não humanos; o juiz não é adotado. O único desacordo é o único negativo da amostra (J03: "não há programa PBM" a partir de campo nulo), e o juiz o deixou passar (`evals/juiz/validacao_v1.json`; [`evals.md`](evals.md) §3) |
-| Sintéticos revisados | **LACUNA**: 17 dos 34 casos estão com a revisão do grupo pendente, declarada em `revisado_por` |
+| Sintéticos revisados | **LACUNA L14**: 18 dos 34 casos foram revisados pelo assistente de IA (valores conferidos no espelho, regras no corpus), e não por uma pessoa; declarado em `revisado_por` (dataset 3.0.1) |
 <!-- avaliacao:fim -->
 
 ## 8. Limites conhecidos
@@ -231,4 +231,4 @@ O detalhe, com os commits, está em [`mudancas.md`](mudancas.md).
 | L11 | Os pesos do modelo de embedding e os pacotes não têm hash fixado | `pip --require-hashes` e conferência do sha256 do modelo |
 | L12 | A falha de JSON da triagem não tem atributo próprio no trace | `app.triagem.erro` na raiz |
 | L13 | O ruído de base da suíte não foi medido (não houve rodada A × A) | rodar a versão vigente duas vezes num dia com cota (ou com chave paga) e usar a diferença na regra de promoção |
-| L14 | 17 dos 34 casos do golden estão com a revisão do grupo pendente (8 do v1 e os 9 escritos nesta entrega pelo assistente de IA) | uma pessoa do grupo revisa cada caso pendente e troca o `revisado_por` |
+| L14 | 18 dos 34 casos do golden têm só a revisão do assistente de IA (8 do v1 e os 10 escritos nesta entrega) | uma pessoa do grupo confere a nota de cada caso e troca o `revisado_por` |

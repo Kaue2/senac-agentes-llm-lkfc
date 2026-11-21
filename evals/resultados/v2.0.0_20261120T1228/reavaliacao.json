@@ -1,6 +1,6 @@
 {
-  "dataset": "golden_v2 v3.0.0 sha256:6785a459d7d2",
-  "avaliador_commit": "1834c24",
+  "dataset": "golden_v2 v3.0.1 sha256:0dc73f20fb4c",
+  "avaliador_commit": "744775c",
   "n_casos": 33,
   "taxa": 0.8787878787878788,
   "por_classe": {
