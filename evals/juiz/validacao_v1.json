@@ -10,7 +10,10 @@
   "concordancia": 0.95,
   "limiar": 0.85,
   "minimo_rotulos": 20,
-  "rotulos_humanos": false,
+  "rotulos_do_assistente": false,
+  "negativos": 1,
+  "negativos_pegos": 0,
+  "minimo_negativos": 5,
   "adotado": false,
   "desacordos": [
     {
@@ -24,6 +27,8 @@
     }
   ],
   "rotuladores": [
-    "assistente de IA (Claude), a pedido do grupo em 2026-11-20 - NAO e rotulo humano"
-  ]
+    "grupo, 2026-11-20"
+  ],
+  "rubrica": "juiz_fundamentacao_v1",
+  "amostra": "C:\\Users\\carme\\Documents\\GitHub\\senac-agentes-llm-lkfc\\evals\\juiz\\rotulos_v1.csv"
 }
