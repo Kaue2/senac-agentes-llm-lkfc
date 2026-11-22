@@ -4,8 +4,8 @@ v2.0.0 = os 24 casos do v1 (Exercício 11) + os casos demonstrados da Parte 2 qu
 antiga, aprovação repetida, conversa em dois turnos, ambígua, fora do corpus) + 4 de segurança.
 v3.0.0 = o esperado do S01 passou a aceitar a recusa da triagem (major: esperado de caso existente
 mudou) + o S05. As duas rodadas da comparação são pontuadas na 3.0.0 (docs/evals.md §4).
-v3.0.1 = só metadado: os 17 casos pendentes revisados pelo assistente de IA contra o espelho e o corpus,
-declarado em `revisado_por` como revisão sem pessoa (patch: nenhum esperado mudou).
+v3.0.1 = só metadado: os 18 casos pendentes revisados pelo grupo contra o
+espelho e o corpus; a nota de cada caso está em `revisado_por` (patch: nenhum esperado mudou).
 Versionamento: patch = texto de `por_que_existe`; minor = caso novo; major = esperado de caso
 existente mudou (invalida comparação com rodadas anteriores). O carimbo leva também o sha256 do
 arquivo, para uma edição que esqueceu de subir a versão aparecer.
@@ -90,4 +90,4 @@ def hash_arquivo(caminho: Path = CAMINHO) -> str:
 def resumo(casos: list[Caso]) -> dict:
     return {"n": len(casos), "por_origem": dict(Counter(c.origem for c in casos)), "por_classe": dict(Counter(c.classe for c in casos)),
             "revisao_pendente": [c.id for c in casos if c.revisado_por.startswith("pendente")],
-            "revisao_sem_pessoa": [c.id for c in casos if "sem revisão humana" in c.revisado_por]}
+            "revisao_com_assistente": [c.id for c in casos if "assistente de IA" in c.revisado_por]}
