@@ -98,7 +98,7 @@ def gravar(linhas: list[dict], caminho: Path = CAMINHO_ROTULOS) -> None:
         w.writerows({k: l.get(k, "") for k in COLUNAS} for l in linhas)
 
 
-def julgar(linhas: list[dict], rubrica: str = RUBRICA_PADRAO, refazer: bool = False) -> list[dict]:
+def julgar(linhas: list[dict], rubrica: str = RUBRICA_PADRAO, refazer: bool = False, destino: Path | None = None) -> list[dict]:
     from dotenv import load_dotenv
 
     load_dotenv(RAIZ / ".env")
@@ -109,13 +109,23 @@ def julgar(linhas: list[dict], rubrica: str = RUBRICA_PADRAO, refazer: bool = Fa
     config = ConfiguracaoModelo.do_ambiente()
     juiz = JuizFundamentacao(criar_cliente(config), config.modelo)
     juiz.prompt = carregar_prompt(rubrica)
+    import openai
+
     for l in linhas:
         if l["veredito_juiz"] and not refazer:
             continue
-        v = juiz.julgar(l["pergunta"], l["resultados_ferramentas"], l["resposta"])
-        l["veredito_juiz"] = "" if v.fundamentada is None else ("sim" if v.fundamentada else "nao")
-        l["justificativa_juiz"] = v.justificativa or (v.erro or "")
+        v, erro = None, ""
+        for _ in range(2):  # a Groq às vezes recusa o JSON gerado (400 json_validate_failed): 1 retentativa
+            try:
+                v = juiz.julgar(l["pergunta"], l["resultados_ferramentas"], l["resposta"])
+                break
+            except openai.BadRequestError as exc:
+                erro = f"{type(exc).__name__}: {str(exc)[:160]}"
+        l["veredito_juiz"] = "" if v is None or v.fundamentada is None else ("sim" if v.fundamentada else "nao")
+        l["justificativa_juiz"] = (v.justificativa or (v.erro or "")) if v else f"ERRO: {erro}"
         print(f"{l['amostra_id']} {l['caso_id']:4} juiz={l['veredito_juiz'] or 'ERRO'}")
+        if destino is not None:
+            gravar(linhas, destino)  # a cada item: uma queda no meio não perde o que já foi julgado
     return linhas
 
 
@@ -186,13 +196,13 @@ def main() -> None:
         gravar(amostra, args.amostra)
         print(f"{len(amostra)} amostras em {args.amostra}")
     if args.julgar:
-        gravar(julgar(ler(args.amostra), args.rubrica, args.refazer), args.amostra)
+        gravar(julgar(ler(args.amostra), args.rubrica, args.refazer, args.amostra), args.amostra)
     if args.matriz:
         v = matriz(ler(args.amostra))
         v["rubrica"], v["amostra"] = args.rubrica, str(args.amostra)
         destino = caminho_validacao(args.amostra, args.rubrica)
         destino.write_text(json.dumps(v, ensure_ascii=False, indent=2), encoding="utf-8")
-        (PASTA / "vigente.json").write_text(json.dumps({"validacao": str(destino.relative_to(RAIZ)) if destino.is_relative_to(RAIZ) else str(destino)}), encoding="utf-8")
+        (PASTA / "vigente.json").write_text(json.dumps({"validacao": destino.relative_to(RAIZ).as_posix() if destino.is_relative_to(RAIZ) else destino.as_posix()}), encoding="utf-8")
         m = v["matriz"]
         print(f"rotuladas {v['n_rotuladas']}/{v['n_amostras']}  rotuladores: {', '.join(v['rotuladores'])}")
         print(f"                humano sim   humano não\n juiz sim    {m['juiz_sim_humano_sim']:>10}   {m['juiz_sim_humano_nao']:>10}"
