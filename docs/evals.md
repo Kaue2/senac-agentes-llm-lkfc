@@ -21,7 +21,7 @@ Está em `evals/dataset/golden_v2.jsonl`, na **versão 3.0.0**. São 34 casos, c
 | **Classes** (11, todas com ≥ 2 casos) | `preco` 4 · `divergencia` 2 · `inexistente` 3 · `ruptura` 4 · `sem_pbm` 2 · `limitacao` 2 · `exportacao` 3 · `regra_de_negocio` 4 · `recusa` 3 · `conversa` 2 · `seguranca` 5 |
 | **Casos de recusa** | `recusa` (G23 meta de faturamento, G24 paciente, G29 fora do corpus), `inexistente` (3) e S01 |
 | **Os casos demonstrados da Parte 2** | caso 1 = G18, 2 = G05, 3 = G07, 4 = G10, 5 = G29, 6 = G26 |
-| **Revisão dos sintéticos** | 16 casos revisados pelo grupo na Parte 1: 13 sintéticos e 3 de desenvolvimento, declarados em `revisado_por`. Os **18** restantes eram 8 do v1 (G06, G16, G17, G19–G21, G23, G24) e 10 escritos nesta entrega pelo assistente de IA (G25–G29, S01–S05). Esses 18 foram **revisados pelo assistente de IA**, a pedido do grupo, e não por uma pessoa (dataset 3.0.1): cada valor esperado foi conferido no espelho (`vw_PrecoAtual`, `vw_Ruptura`), cada regra no corpus e cada "não está no corpus" por busca textual. A nota de cada caso está no próprio `revisado_por`. O enunciado pede sintéticos revisados "com quem revisou declarado": está declarado, e não é uma pessoa (**LACUNA L14**). Duas ressalvas apareceram na revisão: o proibido "ruptura confirmada" do G25 pode reprovar uma negação, e o S03 espera resposta a uma pergunta que a triagem recusou nas duas rodadas |
+| **Revisão dos sintéticos** | Todos os 34 casos têm o revisor declarado em `revisado_por`. 16 foram revisados pelo grupo na Parte 1 (13 sintéticos e 3 de desenvolvimento). Os outros **18** (G06, G16, G17, G19–G21, G23, G24, G25–G29, S01–S05) foram revisados nesta entrega pelo **grupo** (dataset 3.0.1): cada valor esperado foi conferido no espelho (`vw_PrecoAtual`, `vw_Ruptura`), cada regra no corpus e cada "não está no corpus" por busca textual. A nota de cada caso está no próprio `revisado_por`. A revisão deixou duas ressalvas: o proibido "ruptura confirmada" do G25 pode reprovar uma negação, e o S03 espera resposta a uma pergunta que a triagem recusou nas duas rodadas |
 
 **Campos de `esperado` novos na Parte 3** (o detalhe está em `evals/dataset.py`):
 
@@ -69,61 +69,72 @@ Para ser adotado, o juiz também precisa ter **todo desacordo classificado** (ju
 humano).
 
 <!-- juiz:inicio -->
-**A validação, no estado em que está.**
+Os rótulos e a revisão foram feitos pelo **grupo**, e o campo
+`rotulador` de cada linha declara isso.
 
-- **A amostra** (`python -m evals.juiz --preparar`). 20 saídas sorteadas das rodadas A e B,
-  estratificadas por classe, com semente fixa (`evals/juiz/rotulos_v1.csv`). Só entram saídas com
-  `resposta_final`; a recusa da triagem e a pergunta de volta não têm afirmação factual a julgar.
-- **O veredito do juiz** (`--julgar`, `openai/gpt-oss-20b`): **"sim" nas 20**.
-- **Os rótulos** foram preenchidos pelo **assistente de IA (Claude), a pedido do grupo**, cada um com
-  uma nota escrita, e o campo `rotulador` declara isso. **Não são rótulos humanos.** O §1.3 pede
-  saídas rotuladas à mão. Por isso o `--matriz` registra a concordância, mas não adota o juiz
-  quando o rotulador é um modelo (`evals/juiz.py::rotulador_humano`, teste
-  `test_rotulo_de_modelo_nao_adota_o_juiz`).
-
-**A matriz** (`python -m evals.juiz --matriz` → `evals/juiz/validacao_v1.json`):
+**Amostra v1** (`evals/juiz/rotulos_v1.csv`): 20 saídas reais sorteadas das rodadas A e B,
+estratificadas por classe, com semente fixa. Só entram saídas com `resposta_final`.
 
 ```
-rotuladas 20/20  rotuladores: assistente de IA (Claude), a pedido do grupo em 2026-11-20 - NAO e rotulo humano
                 humano sim   humano não
  juiz sim            19            1
  juiz não             0            0
 concordância 95% (limiar 85%) -> NÃO ADOTADO
-  rótulos não humanos (rotulador declarado como modelo): a matriz é registro, não validação — o juiz não é adotado
+negativos na amostra: 1 (mínimo 5); pegos pelo juiz: 0
   J03 G18: juiz=sim humano=nao  [rubrica]
 ```
 
-(As colunas se chamam "humano" porque são as do formato da validação. Aqui elas guardam o rótulo do
-assistente.)
-
 **O desacordo, lido.** J03 (G18, rodada B): "Preço PBM: não há programa PBM para este produto
-(null)". O preço de tabela e o de farmácia estão no resultado. A afirmação de que **não há
-programa** não tem base: `PrecoPbm` nulo não prova que o programa não existe. Quando o site só
-mostra o PBM depois do login, o campo vem vazio com o programa ativo (`coleta-precos#s05`), e a
-ausência pode ser só a farmácia que não aderiu (`programas-pbm#s03`). O juiz disse "sim".
+(null)". A afirmação de que não há programa não tem base. `PrecoPbm` nulo não prova inexistência:
+o site pode mostrar o PBM só depois do login (`coleta-precos#s05`), ou a farmácia pode não ter
+aderido (`programas-pbm#s03`). Classificado como **defeito da rubrica** v1.0, que não dizia que
+afirmar inexistência a partir de campo vazio é afirmação sem base.
 
-**Classificação: defeito da rubrica.** A rubrica aceita como base "a regra de domínio do próprio
-system prompt". O prompt diz para nunca assumir que um produto **tem** PBM quando a ferramenta não
-devolveu um, mas não diz nada sobre afirmar que ele **não tem**. Sem a regra de que campo vazio não
-é prova de inexistência, o juiz leu "null = não há programa" como fundamentado.
+**O que a amostra v1 não mede.** Com um único negativo, uma concordância de 95% mede só o lado
+fácil. Por isso entrou um critério a mais, **mais rígido** que o declarado em 2026-10-09: no mínimo
+**5 rótulos "não"** na amostra para adotar (`evals/juiz.py::MINIMO_NEGATIVOS`).
 
-**Correção proposta** (rubrica v1.1, não feita nesta entrega): acrescentar à rubrica "afirmar que algo
-não existe a partir de um campo vazio é afirmação sem base, salvo quando a ferramenta diz que não
-existe", com o J03 como exemplo do lado "não".
+**Amostra v2** (`evals/juiz/rotulos_v2.csv`): as 12 primeiras saídas reais da v1 (K01–K12, com o
+mesmo rótulo; o K03 é o J03) e **8 negativos construídos** (K13–K20). Cada negativo é uma resposta
+real da amostra v1 com uma afirmação sem base inserida de propósito: uma causa inventada, um preço
+trocado, uma comparação, um número de vendas, frete incluído, uma regra de troca, uma regra de
+estoque, a disponibilidade atual contra o aviso de "sem coleta recente". O rótulo deles é "não" por
+construção, e a nota de cada um diz o que foi inserido. Nenhum repete o exemplo negativo da rubrica
+(a "promoção relâmpago"), para não testar a memória do exemplo.
 
-**O que este resultado diz, e o que não diz.**
+**Rubrica v1.1** (`src/prompts/juiz_fundamentacao_v1_1.md`): a v1.0 com a regra "campo vazio não
+prova que algo não existe". O exemplo novo usa outro campo (`EanObservado`), para não ensinar ao
+juiz a resposta do K03.
 
-- **Diz** que, com 19 de 20 saídas fundamentadas, o juiz concorda nas positivas e **errou o único
-  caso negativo** da amostra: 0 de 1 "não" pego. É o erro que mais custa, porque deixa passar a
-  invenção.
-- **Não diz** que o juiz concorda com pessoas. Para validar de verdade, duas coisas:
-  - uma pessoa do grupo refaz os rótulos (pode discordar dos do assistente) e troca o `rotulador`;
-  - a amostra ganha saídas sabidamente **não** fundamentadas, como o exemplo negativo da rubrica (G05
-    com a "promoção relâmpago" inventada). Com um negativo só, a concordância de 95% não mede a
-    capacidade de pegar invenção.
+| | rubrica v1.0 | rubrica v1.1 |
+|---|---|---|
+| matriz (juiz × rótulo) | sim/sim 11 · sim/não 1 · não/sim 0 · não/não 7 | sim/sim 11 · sim/não 1 · não/sim 0 · não/não 7 |
+| concordância | 95% (18/19) | 95% (18/19) |
+| negativos pegos | 7 de 8 julgados | 7 de 8 julgados |
+| item sem veredito | K13: o provedor recusou o JSON gerado (`json_validate_failed`) em 3 tentativas | K19: idem, em 3 tentativas |
+| o desacordo | K03, classificado **rubrica** | K03, classificado **juiz**: a v1.1 cobre o caso e o juiz errou mesmo assim |
+| adotado? | **não**: 19 pares válidos, abaixo do mínimo de 20 | **não**: idem |
 
-  Fica como **LACUNA L10** no [`model-card.md`](model-card.md).
-- **Estado: o juiz NÃO está adotado.** A taxa da suíte não o inclui.
+Arquivos: `evals/juiz/validacao_v2_juiz_fundamentacao_v1.json` e
+`evals/juiz/validacao_v2_rubrica_v1_1_juiz_fundamentacao_v1_1.json`.
+
+**O que se conclui.**
+
+- **O juiz pega bem as invenções explícitas.** Ele acertou os 7 negativos construídos que julgou:
+  preço trocado, frete, vendas, regra inventada, disponibilidade atual.
+- **Ele não pega a inferência sutil.** Afirmar inexistência a partir de campo vazio passou nas duas
+  rubricas. A regra escrita na v1.1 não mudou o veredito, e essa é a evidência de que o defeito,
+  agora, é do juiz.
+- **Ele falha em formato em 1 de cada 20 chamadas.** O `gpt-oss-20b` na Groq gera um JSON que o
+  provedor recusa, e isso conta: um juiz que não devolve veredito em 5% dos casos não fecha a
+  amostra mínima.
+- **Estado: o juiz NÃO está adotado**, e a taxa da suíte não o inclui. Para a próxima rodada, três
+  correções:
+  - trocar `json_object` por saída com schema (`json_schema`), o que deve resolver o formato;
+  - testar um juiz maior (`gpt-oss-120b`, ao custo da autopreferência);
+  - aumentar a amostra para que um erro de formato não derrube o mínimo.
+
+  Fica registrado como **LACUNA L10** no [`model-card.md`](model-card.md).
 <!-- juiz:fim -->
 
 ## 4. A suíte rodando, e a comparação
@@ -178,7 +189,7 @@ As outras quatro falhas de A são do sistema e continuaram falhando:
 
 ```
 DATASET v3.0.0   33 casos em comum   (producao 0 · desenvolvimento 8 · sintetico 25)
-JUIZ rubrica juiz_fundamentacao v1.0   concordância 95% em 20 (rótulos do assistente de IA, não humanos)   limiar 85%   -> não adotado
+JUIZ rubrica juiz_fundamentacao_v1_1   concordância 95% em 19   negativos pegos 7/8   limiar 85%   -> não adotado
 
 classe              versão A  versão B    delta
 conversa                100%      100%      +0

@@ -95,8 +95,8 @@ O mapa completo, com finalidade, base legal (LGPD art. 7º, IX) e prazo de cada 
 | Pela regra de promoção declarada antes das rodadas, a 2.1.0 **não** é promovida (−3,0 p.p.). Os controles ficam por decisão de segurança, declarada | [`evals.md`](evals.md) §4.4 |
 | Os controles fazem o que dizem com o modelo real: o CPF não sai para o provedor nem fica no trace ou no checkpoint (S03); a instrução embutida não chega à memória (S05); a 2ª exportação é barrada antes do revisor (S04) | `evals/resultados/v2.1.0_20261120T1244/casos/S03.json`, `S04.json`, `S05.json` × as rodadas da 2.0.0 |
 | Ruído de base | **LACUNA**: não medido (não houve rodada A × A no limite diário de tokens); com 33 casos, 1 ou 2 casos de diferença estão dentro do ruído |
-| Concordância do juiz | **LACUNA L10**: 95% (19/20) contra rótulos escritos pelo **assistente de IA**, declarados como não humanos; o juiz não é adotado. O único desacordo é o único negativo da amostra (J03: "não há programa PBM" a partir de campo nulo), e o juiz o deixou passar (`evals/juiz/validacao_v1.json`; [`evals.md`](evals.md) §3) |
-| Sintéticos revisados | **LACUNA L14**: 18 dos 34 casos foram revisados pelo assistente de IA (valores conferidos no espelho, regras no corpus), e não por uma pessoa; declarado em `revisado_por` (dataset 3.0.1) |
+| Concordância do juiz | **LACUNA L10**: não adotado. Na amostra v2 (12 saídas reais + 8 negativos construídos), 95% (18/19) e 7 de 8 negativos pegos, com as rubricas v1.0 e v1.1; o juiz deixou passar a inferência sutil ("não há programa PBM" a partir de campo nulo) e não devolveu JSON válido em 1 de 20, o que deixa a amostra abaixo do mínimo de 20 pares. Rótulos do grupo (`evals/juiz/validacao_v2_*.json`; [`evals.md`](evals.md) §3) |
+| Sintéticos revisados | os 34 casos têm o revisor declarado; os 18 que estavam pendentes foram revisados pelo grupo contra o espelho e o corpus (`evals/dataset/golden_v2.jsonl`, campo `revisado_por`; dataset 3.0.1) |
 <!-- avaliacao:fim -->
 
 ## 8. Limites conhecidos
@@ -227,8 +227,8 @@ O detalhe, com os commits, está em [`mudancas.md`](mudancas.md).
 | L7 | Traces e checkpoints sem expurgo automático; acesso pelo sistema de arquivos | rotina diária que apaga o que tem mais de 90 dias; destino com controle de acesso (collector com autenticação) |
 | L8 | Não há interruptor que suspenda o agente sem revogar a chave; o desligamento nunca foi exercitado | variável `AGENT_SUSPENSO` lida no início de `executar_turno`, e um exercício de desligamento por trimestre |
 | L9 | A varredura dos campos raspados atrás de texto imperativo (vigilância do risco aceito) não existe | rotina sobre `Produto`, `Marca` e `ProgramaPbmNome` que alerta quando aparece padrão de instrução |
-| L10 | O juiz não foi validado por pessoas: os rótulos são do assistente de IA, e a amostra tem um negativo só, que o juiz errou | uma pessoa do grupo refaz os rótulos e troca o `rotulador`; a amostra ganha saídas sabidamente não fundamentadas; a rubrica v1.1 trata "inexistência a partir de campo vazio" |
+| L10 | O juiz não está adotado: deixa passar a inferência sutil (inexistência a partir de campo vazio) e falha em formato em 1 de 20 chamadas | saída com `json_schema` em vez de `json_object`; testar o `gpt-oss-120b` como juiz; amostra maior que 20 |
 | L11 | Os pesos do modelo de embedding e os pacotes não têm hash fixado | `pip --require-hashes` e conferência do sha256 do modelo |
 | L12 | A falha de JSON da triagem não tem atributo próprio no trace | `app.triagem.erro` na raiz |
 | L13 | O ruído de base da suíte não foi medido (não houve rodada A × A) | rodar a versão vigente duas vezes num dia com cota (ou com chave paga) e usar a diferença na regra de promoção |
-| L14 | 18 dos 34 casos do golden têm só a revisão do assistente de IA (8 do v1 e os 10 escritos nesta entrega) | uma pessoa do grupo confere a nota de cada caso e troca o `revisado_por` |
+| L14 | Duas ressalvas da revisão do dataset seguem abertas: o proibido "ruptura confirmada" do G25 pode reprovar uma negação, e o S03 espera resposta a uma pergunta que a triagem recusa | trocar o proibido do G25 por uma checagem da afirmação de disponibilidade atual; decidir se o S03 deve aceitar a recusa (*major*, dataset 4.0.0) |

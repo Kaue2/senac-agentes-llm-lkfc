@@ -222,9 +222,9 @@ python -m evals.juiz --julgar
 python -m evals.juiz --matriz
 ```
 
-O `--preparar` e o `--julgar` já foram rodados, e os rótulos atuais são do assistente de IA, declarados
-como não humanos: o juiz não é adotado. Para validar, uma pessoa do grupo refaz os rótulos em
-`evals/juiz/rotulos_v1.csv`, troca o `rotulador` e roda o `--matriz` de novo.
+As amostras e os vereditos estão em `evals/juiz/`. Para a amostra v2 com a rubrica v1.1:
+`python -m evals.juiz --amostra evals/juiz/rotulos_v2_rubrica_v1_1.csv --rubrica juiz_fundamentacao_v1_1 --julgar --matriz`.
+O juiz ainda não está adotado (`docs/evals.md` §3).
 
 ## Reproduzir os casos da Parte 2
 
